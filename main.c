@@ -88,30 +88,39 @@ static const nrf_drv_twi_t m_twi = NRF_DRV_TWI_INSTANCE(TWI_INSTANCE_ID);
 
 void heartrate5_writeReg(uint8_t regAddr, uint32_t wData) {
   uint8_t hr_storage[5];
-  //hr_storage[0] = regAddr;
-  hr_storage[0] = wData >> 16;
-  hr_storage[1] = wData >> 8;
-  hr_storage[2] = wData;
+  hr_storage[0] = regAddr;
+  hr_storage[1] = wData >> 16;
+  hr_storage[2] = wData >> 8;
+  hr_storage[3] = wData;
 
-  nrf_drv_twi_tx(&m_twi, regAddr, hr_storage, sizeof(hr_storage), false);
+  nrf_drv_twi_tx(&m_twi, HR5_ADDR, hr_storage, sizeof(hr_storage), false);
 }
 
 uint32_t heartrate5_readReg(uint8_t regAddr) {
-  uint8_t hr_storage[5];
+  uint8_t hr_storage[3];
   uint32_t returnValue = 0;
-  hr_storage[0] = regAddr;
+  //hr_storage[0] = regAddr;
 
   //hal_i2cStart();
   //heartrate5_write(_slaveAddress,hr_storage,1,END_MODE_RESTART);
-  nrf_drv_twi_tx(&m_twi, regAddr, hr_storage, sizeof(hr_storage), false);
-  returnValue = nrf_drv_twi_rx(&m_twi, regAddr, hr_storage, sizeof(hr_storage));
+  //nrf_drv_twi_tx(&m_twi, regAddr, hr_storage, sizeof(hr_storage), false);
+  //returnValue = nrf_drv_twi_rx(&m_twi, regAddr, hr_storage, sizeof(hr_storage));
   //hal_i2cRead(_slaveAddress,hr_storage,3,END_MODE_STOP);
-  NRF_LOG_INFO("data%x", returnValue);
-  NRF_LOG_FLUSH();
-  returnValue = hr_storage[0];
-  returnValue = returnValue << 16;
-  returnValue |= hr_storage[1] << 8;
-  returnValue |= hr_storage[2];
+  //NRF_LOG_INFO("data%x", returnValue);
+  //NRF_LOG_FLUSH();
+  //returnValue = hr_storage[0];
+  //returnValue = returnValue << 16;
+  //returnValue |= hr_storage[1] << 8;
+  //returnValue |= hr_storage[2];
+
+  if (NRF_SUCCESS == nrf_drv_twi_tx(&m_twi, HR5_ADDR, &regAddr, 1, true)) {
+    // Read the data back, 3 bytes
+    if (NRF_SUCCESS == nrf_drv_twi_rx(&m_twi, HR5_ADDR, hr_storage, sizeof(hr_storage))) {
+      returnValue = hr_storage[0];
+      returnValue = (returnValue << 8) | hr_storage[1];
+      returnValue = (returnValue << 8) | hr_storage[2];
+    }
+  }
   return returnValue;
 }
 
@@ -227,8 +236,9 @@ void twi_init(void) {
 
 void getReading() {
   uint32_t sensorVal;
-  sensorVal = heartrate5_getAled1val();
-  NRF_LOG_INFO("val%x", sensorVal);
+  sensorVal = heartrate5_getLed2_aled2val();
+  float idk = (float) sensorVal;
+  NRF_LOG_INFO("val%u", idk);
   NRF_LOG_FLUSH();
 }
 
@@ -255,6 +265,8 @@ int main(void) {
     NRF_LOG_INFO("Heart Rate 5 Click detected at address 0x%x.", HR5_ADDR);
     detected_device = true;
     heartrate5_init();
+    heartrate5_writeReg(0x00, 0x000000);
+    heartrate5_writeReg(0x01, 0x000050);
 
     while (true) {
       getReading();
