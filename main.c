@@ -106,32 +106,9 @@ void heartrate5_writeReg(uint8_t regAddr, uint32_t wData) {
   nrf_drv_twi_tx(&m_twi, HR5_ADDR, hr_storage, sizeof(hr_storage), false);
 }
 
-void heartrate5_writeReg_u8(uint8_t regAddr, uint8_t wData) {
-  uint8_t hr_storage[5];
-  hr_storage[0] = regAddr;
-  hr_storage[1] = wData >> 16;
-  hr_storage[2] = wData >> 8;
-  hr_storage[3] = wData;
-
-  nrf_drv_twi_tx(&m_twi, HR5_ADDR, hr_storage, sizeof(hr_storage), false);
-}
-
 uint32_t heartrate5_readReg(uint8_t regAddr) {
   uint8_t hr_storage[3];
   uint32_t returnValue = 0;
-  //hr_storage[0] = regAddr;
-
-  //hal_i2cStart();
-  //heartrate5_write(_slaveAddress,hr_storage,1,END_MODE_RESTART);
-  //nrf_drv_twi_tx(&m_twi, regAddr, hr_storage, sizeof(hr_storage), false);
-  //returnValue = nrf_drv_twi_rx(&m_twi, regAddr, hr_storage, sizeof(hr_storage));
-  //hal_i2cRead(_slaveAddress,hr_storage,3,END_MODE_STOP);
-  //NRF_LOG_INFO("data%x", returnValue);
-  //NRF_LOG_FLUSH();
-  //returnValue = hr_storage[0];
-  //returnValue = returnValue << 16;
-  //returnValue |= hr_storage[1] << 8;
-  //returnValue |= hr_storage[2];
 
   if (NRF_SUCCESS == nrf_drv_twi_tx(&m_twi, HR5_ADDR, &regAddr, 1, true)) {
     // Read the data back, 3 bytes
@@ -160,30 +137,11 @@ void delay10ms() {
 }
 
 uint8_t perform_hw_start_end(uint8_t regStart, uint8_t regEnd, uint16_t start, uint16_t end) {
-  uint8_t temp_st[3] = {0};
-  uint8_t temp_end[3] = {0};
-
   if (start > 65535 || end > 65535)
     return -1;
 
-  NRF_LOG_INFO("before%u", temp_st);
-  NRF_LOG_FLUSH();
-
-  temp_st[1] = start >> 8;
-  temp_st[2] = (uint8_t)start;
-
-  NRF_LOG_INFO("XD%u", temp_st);
-  NRF_LOG_FLUSH();
-
-  heartrate5_writeReg(regStart, temp_st);
-
-  temp_end[1] = end >> 8;
-  temp_end[2] = (uint8_t)end;
-
-  NRF_LOG_INFO("XD%x", temp_end);
-  NRF_LOG_FLUSH();
-
-  heartrate5_writeReg(regEnd, temp_end);
+  heartrate5_writeReg(regStart, (uint32_t)start);
+  heartrate5_writeReg(regEnd, (uint32_t)end);
 
   return 0;
 }
@@ -240,6 +198,8 @@ uint8_t set_prpct_count(uint16_t count) {
 }
 
 void heartrate5_init() {
+  //perform_hw_start_end(HR5_REG9H, HR5_REGAH, 0, 399);  //LED2
+
   //heartrate5_writeReg(0x00, 0x000000);
   //heartrate5_writeReg(0x01, 0x000050);
   //heartrate5_writeReg(0x02, 0x00018F);
@@ -314,7 +274,7 @@ void heartrate5_init() {
   perform_hw_start_end(HR5_REG13H, HR5_REG14H, 3612, 4671); //AMB1 CONVERT
 
   perform_hw_start_end(HR5_REG32H, HR5_REG33H, 5471, 39199); //PDN cycle
-  //perform_hw_start_end(HR5_REG1DH, HR5_REG1DH, 401, 39999);  //PRPCT count
+  perform_hw_start_end(HR5_REG1DH, HR5_REG1DH, 401, 39999);  //PRPCT count
   set_prpct_count(39999);
 }
 
@@ -379,6 +339,30 @@ int main(void) {
   APP_ERROR_CHECK(NRF_LOG_INIT(get_rtc_counter));
   NRF_LOG_DEFAULT_BACKENDS_INIT();
   nrf_gpio_cfg_output(BSP_QSPI_IO0_PIN);
+  nrf_gpio_cfg_output(15);
+  NRF_CLOCK->TASKS_HFCLKSTART = 1; //Start high frequency clock
+  while (NRF_CLOCK->EVENTS_HFCLKSTARTED == 0) {
+    //Wait for HFCLK to start
+  }
+  NRF_CLOCK->EVENTS_HFCLKSTARTED = 0; //Clear event
+
+  //Configure GPIOTE to toggle pin 18
+  NRF_GPIOTE->CONFIG[0] = GPIOTE_CONFIG_MODE_Task << GPIOTE_CONFIG_MODE_Pos |
+                          GPIOTE_CONFIG_POLARITY_Toggle << GPIOTE_CONFIG_POLARITY_Pos |
+                          15 << GPIOTE_CONFIG_PSEL_Pos |
+                          GPIOTE_CONFIG_OUTINIT_Low << GPIOTE_CONFIG_OUTINIT_Pos;
+
+  //Configure timer
+  NRF_TIMER1->PRESCALER = 0;
+  NRF_TIMER1->CC[0] = 1; // Adjust the output frequency by adjusting the CC.
+  NRF_TIMER1->SHORTS = TIMER_SHORTS_COMPARE0_CLEAR_Enabled << TIMER_SHORTS_COMPARE0_CLEAR_Pos;
+  NRF_TIMER1->TASKS_START = 1;
+
+  //Configure PPI
+  NRF_PPI->CH[0].EEP = (uint32_t)&NRF_TIMER1->EVENTS_COMPARE[0];
+  NRF_PPI->CH[0].TEP = (uint32_t)&NRF_GPIOTE->TASKS_OUT[0];
+
+  NRF_PPI->CHENSET = PPI_CHENSET_CH0_Enabled << PPI_CHENSET_CH0_Pos;
 
   NRF_LOG_INFO("TWI scanner started.");
   NRF_LOG_FLUSH();
@@ -398,31 +382,12 @@ int main(void) {
     nrf_delay_ms(100);
 
     nrf_delay_ms(500);
+    unsigned int hex16 = ((unsigned int) 399) & 0x000000;
+    uint32_t XDXD = 399;
 
     heartrate5_init();
 
-    //heartrate5_writeReg(0x00, 0x000000);
-    //heartrate5_writeReg(0x01, 0x000050);
-
     while (true) {
-      //heartrate5_init();
-      //heartrate5_writeReg(0x03, 0x000320);
-      //nrf_delay_ms(100);
-      //heartrate5_writeReg(0x04, 0x0004AF);
-      //nrf_delay_ms(100);
-
-      //heartrate5_writeReg(0x09, 0x000000);
-      //nrf_delay_ms(100);
-      //heartrate5_writeReg(0x0A, 0x00018F);
-      //nrf_delay_ms(100);
-
-      //heartrate5_writeReg(0x0F, 0x0005C4);
-      //nrf_delay_ms(100);
-      //heartrate5_writeReg(0x10, 0x0009E7);
-      //nrf_delay_ms(100);
-
-      //heartrate5_writeReg(0x03, 0x000320);
-      //heartrate5_writeReg(0x03, 0x000320);
       getReading();
       nrf_delay_ms(100);
     }

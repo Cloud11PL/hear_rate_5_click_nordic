@@ -1330,7 +1330,7 @@
 // <e> CLOCK_CONFIG_LOG_ENABLED - Enables logging in the module.
 //==========================================================
 #ifndef CLOCK_CONFIG_LOG_ENABLED
-#define CLOCK_CONFIG_LOG_ENABLED 0
+#define CLOCK_CONFIG_LOG_ENABLED 1
 #endif
 // <o> CLOCK_CONFIG_LOG_LEVEL  - Default Severity level
  
