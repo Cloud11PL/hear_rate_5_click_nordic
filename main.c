@@ -5,6 +5,7 @@
 #include "nrf_drv_twi.h"
 #include <stdio.h>
 
+//#include "nrf_drv_timer.h"
 #include "nrf_log.h"
 #include "nrf_log_ctrl.h"
 #include "nrf_log_default_backends.h"
@@ -14,7 +15,7 @@
 #ifdef __HEARTRATE5_DRV_I2C__
 static uint8_t _slaveAddress;
 #endif
-const uint8_t HR5_REG0H = 0x00;
+const uint8_t HR5_REG0H = 0x00;  //Control0
 const uint8_t HR5_REG1H = 0x01;  //LED2STC
 const uint8_t HR5_REG2H = 0x02;  //LED2ENDC
 const uint8_t HR5_REG3H = 0x03;  //LED1LEDSTC
@@ -86,7 +87,26 @@ const uint8_t HR5_ADDR = 0x58;
 /* TWI instance. */
 static const nrf_drv_twi_t m_twi = NRF_DRV_TWI_INSTANCE(TWI_INSTANCE_ID);
 
+//const nrf_drv_timer_t TIMER = NRF_DRV_TIMER_INSTANCE(0);
+
+uint32_t get_rtc_counter(void) {
+  return NRF_RTC1->COUNTER;
+}
+
 void heartrate5_writeReg(uint8_t regAddr, uint32_t wData) {
+  uint8_t hr_storage[5];
+  hr_storage[0] = regAddr;
+  hr_storage[1] = wData >> 16;
+  hr_storage[2] = wData >> 8;
+  hr_storage[3] = wData;
+
+  NRF_LOG_INFO("data%x", wData);
+  NRF_LOG_FLUSH();
+
+  nrf_drv_twi_tx(&m_twi, HR5_ADDR, hr_storage, sizeof(hr_storage), false);
+}
+
+void heartrate5_writeReg_u8(uint8_t regAddr, uint8_t wData) {
   uint8_t hr_storage[5];
   hr_storage[0] = regAddr;
   hr_storage[1] = wData >> 16;
@@ -124,16 +144,53 @@ uint32_t heartrate5_readReg(uint8_t regAddr) {
   return returnValue;
 }
 
-//void heartrate5_hwReset()
-//{
-//    hal_gpio_rstSet(0);
-//    Delay_50us();
-//    hal_gpio_rstSet(1);
-//}
-//void heartrate5_swReset()
-//{
-//    heartrate5_writeReg(HR5_REG0H, 0x000008);
-//}
+void heartrate5_hwReset() {
+  //hal_gpio_rstSet(0);
+  nrf_gpio_pin_clear(BSP_QSPI_IO0_PIN);
+
+  //Delay_50us();
+  nrf_delay_ms(50);
+  nrf_gpio_pin_set(BSP_QSPI_IO0_PIN);
+
+  //hal_gpio_rstSet(1);
+}
+
+void delay10ms() {
+  nrf_delay_ms(10);
+}
+
+uint8_t perform_hw_start_end(uint8_t regStart, uint8_t regEnd, uint16_t start, uint16_t end) {
+  uint8_t temp_st[3] = {0};
+  uint8_t temp_end[3] = {0};
+
+  if (start > 65535 || end > 65535)
+    return -1;
+
+  NRF_LOG_INFO("before%u", temp_st);
+  NRF_LOG_FLUSH();
+
+  temp_st[1] = start >> 8;
+  temp_st[2] = (uint8_t)start;
+
+  NRF_LOG_INFO("XD%u", temp_st);
+  NRF_LOG_FLUSH();
+
+  heartrate5_writeReg(regStart, temp_st);
+
+  temp_end[1] = end >> 8;
+  temp_end[2] = (uint8_t)end;
+
+  NRF_LOG_INFO("XD%x", temp_end);
+  NRF_LOG_FLUSH();
+
+  heartrate5_writeReg(regEnd, temp_end);
+
+  return 0;
+}
+
+void heartrate5_swReset() {
+  heartrate5_writeReg(HR5_REG0H, 0x000008);
+}
 uint32_t heartrate5_getLed2val(void) {
   uint32_t regDat;
   regDat = heartrate5_readReg(0x2A);
@@ -167,52 +224,98 @@ uint32_t heartrate5_getLed1_aled1val(void) {
   return regDat;
 }
 
+uint8_t set_prpct_count(uint16_t count) {
+  uint8_t reg = HR5_REG1DH;
+  uint8_t temp[3] = {0};
+
+  if (count > 65535)
+    return -1;
+
+  temp[1] = count >> 8;
+  temp[2] = (uint8_t)count;
+
+  heartrate5_writeReg(reg, (uint32_t)temp);
+
+  return 0;
+}
+
 void heartrate5_init() {
-  heartrate5_writeReg(0x00, 0x000000);
-  heartrate5_writeReg(0x01, 0x000050);
-  heartrate5_writeReg(0x02, 0x00018F);
-  heartrate5_writeReg(0x03, 0x000320);
-  heartrate5_writeReg(0x04, 0x0004AF);
-  heartrate5_writeReg(0x05, 0x0001E0);
-  heartrate5_writeReg(0x06, 0x00031F);
-  heartrate5_writeReg(0x07, 0x000370);
-  heartrate5_writeReg(0x08, 0x0004AF);
-  heartrate5_writeReg(0x09, 0x000000);
-  heartrate5_writeReg(0x0A, 0x00018F);
-  heartrate5_writeReg(0x0B, 0x0004FF);
-  heartrate5_writeReg(0x0C, 0x00063E);
-  heartrate5_writeReg(0x0D, 0x000198);
-  heartrate5_writeReg(0x0E, 0x0005BB);
-  heartrate5_writeReg(0x0F, 0x0005C4);
-  heartrate5_writeReg(0x10, 0x0009E7);
-  heartrate5_writeReg(0x11, 0x0009F0);
-  heartrate5_writeReg(0x12, 0x000E13);
-  heartrate5_writeReg(0x13, 0x000E1C);
-  heartrate5_writeReg(0x14, 0x00123F);
-  heartrate5_writeReg(0x15, 0x000191);
-  heartrate5_writeReg(0x16, 0x000197);
-  heartrate5_writeReg(0x17, 0x0005BD);
-  heartrate5_writeReg(0x18, 0x0005C3);
-  heartrate5_writeReg(0x19, 0x0009E9);
-  heartrate5_writeReg(0x1A, 0x0009EF);
-  heartrate5_writeReg(0x1B, 0x000E15);
-  heartrate5_writeReg(0x1C, 0x000E1B);
-  heartrate5_writeReg(0x1D, 0x009C3E);
-  heartrate5_writeReg(0x1E, 0x000103); // timeren set ; broj semplova od 0 do F
-  heartrate5_writeReg(0x20, 0x008003); //ENSEPGAIN  ; TIA_CF_SEP
-  heartrate5_writeReg(0x21, 0x000003); //PROG_TG_EN(disabled) ; TIA_CF(0); TIA_GAIN(3);
-  heartrate5_writeReg(0x22, 0x01B6D9); //LED3(bit12-bit17); LED2(bit6-bit11); LED1(bit0-bit5);
-  heartrate5_writeReg(0x23, 0x104218); //DYNAMIC1(bit20)=1; ILED_2X(bit17)=0; DYNAMIC2(bit14)=1; OSC_ENABLE(bit9)=1; DYNAMIC3(bit4) =1; DYNAMIC4(bit3)=1; PDNRX(bit1)=0; PDNAFE(bit0)=0;
-  heartrate5_writeReg(0x29, 0x000000); // ENABLE_CLKOUT(bit9)=0; CLKDIV_CLKOUT(bit1-bit4) =0;
-  heartrate5_writeReg(0x31, 0x000000); //PD_DISCONNECT(bit10)=0; ENABLE_INPUT_SHORT(bit5)=0; CLKDIV_EXTMODE(bit0-bit2)=0;
-  heartrate5_writeReg(0x32, 0x00155F); //PDNCYCLESTC(bit0-bit15) = 0x00155F;
-  heartrate5_writeReg(0x33, 0x00991E); //PDNCYCLEENDC(bit0-bit15) = 0x00991E;
-  heartrate5_writeReg(0x34, 0x000000); //PROG_TG_STC(bit0-bit15) = 0;
-  heartrate5_writeReg(0x35, 0x000000); //PROG_TG_ENDC(bit0-bit15) = 0;
-  heartrate5_writeReg(0x36, 0x000190); //LED3LEDSTC(bit0-bit15) =0x000190;
-  heartrate5_writeReg(0x37, 0x00031F); //LED3LEDENC(bit0-bit15) =0x00031F;
-  heartrate5_writeReg(0x39, 0x000000); //CLKDIV_PRF(bit0-bit2) = 0;
-  heartrate5_writeReg(0x3A, 0x000000); // POL_OFFDAC_LED2(bit19)=0; I_OFFDAC_LED2(bit15-bit18)=0; POL_OFFDAC_AMB1(bit14)=0; I_OFFDAC_AMB1(bit10-bit13)=0; POL_OFFDAC_LED1(bit9)=0; I_OFFDAC_LED1(bit5-bit8)=0; POL_OFFDAC_AMB2\POL_OFFDAC_LED3(bit4)=0; O_OFFDAC_AMB\IOFFDAC_LED3(bit0-bit3)=0;
+  //heartrate5_writeReg(0x00, 0x000000);
+  //heartrate5_writeReg(0x01, 0x000050);
+  //heartrate5_writeReg(0x02, 0x00018F);
+  //heartrate5_writeReg(0x03, 0x000320);
+  //heartrate5_writeReg(0x04, 0x0004AF);
+  //heartrate5_writeReg(0x05, 0x0001E0);
+  //heartrate5_writeReg(0x06, 0x00031F);
+  //heartrate5_writeReg(0x07, 0x000370);
+  //heartrate5_writeReg(0x08, 0x0004AF);
+  //heartrate5_writeReg(0x09, 0x000000);
+  //heartrate5_writeReg(0x0A, 0x00018F);
+  //heartrate5_writeReg(0x0B, 0x0004FF);
+  //heartrate5_writeReg(0x0C, 0x00063E);
+  //heartrate5_writeReg(0x0D, 0x000198);
+  //heartrate5_writeReg(0x0E, 0x0005BB);
+  //heartrate5_writeReg(0x0F, 0x0005C4);
+  //heartrate5_writeReg(0x10, 0x0009E7);
+  //heartrate5_writeReg(0x11, 0x0009F0);
+  //heartrate5_writeReg(0x12, 0x000E13);
+  //heartrate5_writeReg(0x13, 0x000E1C);
+  //heartrate5_writeReg(0x14, 0x00123F);
+  //heartrate5_writeReg(0x15, 0x000191);
+  //heartrate5_writeReg(0x16, 0x000197);
+  //heartrate5_writeReg(0x17, 0x0005BD);
+  //heartrate5_writeReg(0x18, 0x0005C3);
+  //heartrate5_writeReg(0x19, 0x0009E9);
+  //heartrate5_writeReg(0x1A, 0x0009EF);
+  //heartrate5_writeReg(0x1B, 0x000E15);
+  //heartrate5_writeReg(0x1C, 0x000E1B);
+  //heartrate5_writeReg(0x1D, 0x009C3E);
+  //heartrate5_writeReg(0x1E, 0x000103); // timeren set ; broj semplova od 0 do F
+  //heartrate5_writeReg(0x20, 0x008003); //ENSEPGAIN  ; TIA_CF_SEP
+  //heartrate5_writeReg(0x21, 0x000003); //PROG_TG_EN(disabled) ; TIA_CF(0); TIA_GAIN(3);
+  //heartrate5_writeReg(0x22, 0x01B6D9); //LED3(bit12-bit17); LED2(bit6-bit11); LED1(bit0-bit5);
+  //heartrate5_writeReg(0x23, 0x104218); //DYNAMIC1(bit20)=1; ILED_2X(bit17)=0; DYNAMIC2(bit14)=1; OSC_ENABLE(bit9)=1; DYNAMIC3(bit4) =1; DYNAMIC4(bit3)=1; PDNRX(bit1)=0; PDNAFE(bit0)=0;
+  //heartrate5_writeReg(0x29, 0x000000); // ENABLE_CLKOUT(bit9)=0; CLKDIV_CLKOUT(bit1-bit4) =0;
+  //heartrate5_writeReg(0x31, 0x000000); //PD_DISCONNECT(bit10)=0; ENABLE_INPUT_SHORT(bit5)=0; CLKDIV_EXTMODE(bit0-bit2)=0;
+  //heartrate5_writeReg(0x32, 0x00155F); //PDNCYCLESTC(bit0-bit15) = 0x00155F;
+  //heartrate5_writeReg(0x33, 0x00991E); //PDNCYCLEENDC(bit0-bit15) = 0x00991E;
+  //heartrate5_writeReg(0x34, 0x000000); //PROG_TG_STC(bit0-bit15) = 0;
+  //heartrate5_writeReg(0x35, 0x000000); //PROG_TG_ENDC(bit0-bit15) = 0;
+  //heartrate5_writeReg(0x36, 0x000190); //LED3LEDSTC(bit0-bit15) =0x000190;
+  //heartrate5_writeReg(0x37, 0x00031F); //LED3LEDENC(bit0-bit15) =0x00031F;
+  //heartrate5_writeReg(0x39, 0x000000); //CLKDIV_PRF(bit0-bit2) = 0;
+  //heartrate5_writeReg(0x3A, 0x000000); // POL_OFFDAC_LED2(bit19)=0; I_OFFDAC_LED2(bit15-bit18)=0; POL_OFFDAC_AMB1(bit14)=0; I_OFFDAC_AMB1(bit10-bit13)=0; POL_OFFDAC_LED1(bit9)=0; I_OFFDAC_LED1(bit5-bit8)=0; POL_OFFDAC_AMB2\POL_OFFDAC_LED3(bit4)=0; O_OFFDAC_AMB\IOFFDAC_LED3(bit0-bit3)=0;
+
+  perform_hw_start_end(HR5_REG9H, HR5_REGAH, 0, 399);  //LED2
+  perform_hw_start_end(HR5_REG1H, HR5_REG2H, 80, 399); //LED2 SAMPLE
+
+  perform_hw_start_end(HR5_REG15H, HR5_REG16H, 401, 407); //ADC Reset 0
+
+  perform_hw_start_end(HR5_REGDH, HR5_REGEH, 408, 1467); //LED 2 convert
+
+  perform_hw_start_end(HR5_REG36H, HR5_REG37H, 400, 799); //LED3
+  perform_hw_start_end(HR5_REG5H, HR5_REG6H, 480, 799);   //LED3 SAMPLE
+
+  perform_hw_start_end(HR5_REG17H, HR5_REG18H, 1469, 1475); //ADC RESET 1
+
+  perform_hw_start_end(HR5_REGFH, HR5_REG10H, 1476, 2535); //LED3 convert
+
+  perform_hw_start_end(HR5_REG3H, HR5_REG4H, 800, 1199); //LED1
+  perform_hw_start_end(HR5_REG7H, HR5_REG8H, 880, 1199); //LED1 SAMPLE
+
+  perform_hw_start_end(HR5_REG19H, HR5_REG1AH, 2537, 2543); //ADC RESET 2
+
+  perform_hw_start_end(HR5_REG11H, HR5_REG12H, 2544, 3603); //LED1 CONVERT
+
+  perform_hw_start_end(HR5_REGBH, HR5_REGCH, 1279, 1598); //AMB1
+
+  perform_hw_start_end(HR5_REG1BH, HR5_REG1CH, 3605, 3611); //ADC RESET 3
+
+  perform_hw_start_end(HR5_REG13H, HR5_REG14H, 3612, 4671); //AMB1 CONVERT
+
+  perform_hw_start_end(HR5_REG32H, HR5_REG33H, 5471, 39199); //PDN cycle
+  //perform_hw_start_end(HR5_REG1DH, HR5_REG1DH, 401, 39999);  //PRPCT count
+  set_prpct_count(39999);
 }
 
 /**
@@ -236,9 +339,28 @@ void twi_init(void) {
 
 void getReading() {
   uint32_t sensorVal;
-  sensorVal = heartrate5_getLed2_aled2val();
-  float idk = (float) sensorVal;
-  NRF_LOG_INFO("val%u", idk);
+  //sensorVal = heartrate5_getLed1val();
+  //float idk = (float)sensorVal;
+  delay10ms();
+
+  float valOne = (float)heartrate5_getLed2val();
+  delay10ms();
+
+  float valTwo = (float)heartrate5_getAled2val_led3val();
+  delay10ms();
+
+  float valThree = (float)heartrate5_getLed1val();
+  delay10ms();
+
+  float valFour = (float)heartrate5_getAled1val();
+  delay10ms();
+
+  float valFive = (float)heartrate5_getLed2_aled2val();
+  delay10ms();
+
+  float valSix = (float)heartrate5_getLed1_aled1val();
+
+  NRF_LOG_INFO("%u;%u;%u;%u;%u;", valOne, valTwo, valThree, valFour, valFive, valSix);
   NRF_LOG_FLUSH();
 }
 
@@ -250,13 +372,21 @@ int main(void) {
   uint8_t address;
   uint8_t sample_data;
   bool detected_device = false;
+  //uint32_t time_ms = 1;
+  //uint32_t time_ticks;
+  //uint32_t err_timer_code = NRF_SUCCESS;
 
-  APP_ERROR_CHECK(NRF_LOG_INIT(NULL));
+  APP_ERROR_CHECK(NRF_LOG_INIT(get_rtc_counter));
   NRF_LOG_DEFAULT_BACKENDS_INIT();
+  nrf_gpio_cfg_output(BSP_QSPI_IO0_PIN);
 
   NRF_LOG_INFO("TWI scanner started.");
   NRF_LOG_FLUSH();
   twi_init();
+
+  //nrf_drv_timer_config_t timer_cfg = NRF_DRV_TIMER_DEFAULT_CONFIG;
+  //err_code = nrf_drv_timer_init(&TIMER, &timer_cfg, timer_led_event_handler);
+  //APP_ERROR_CHECK(err_code);
 
   //HR5_ADDR
   err_code = nrf_drv_twi_rx(&m_twi, HR5_ADDR, &sample_data, sizeof(sample_data));
@@ -264,13 +394,37 @@ int main(void) {
   if (err_code == NRF_SUCCESS) {
     NRF_LOG_INFO("Heart Rate 5 Click detected at address 0x%x.", HR5_ADDR);
     detected_device = true;
+    heartrate5_hwReset();
+    nrf_delay_ms(100);
+
+    nrf_delay_ms(500);
+
     heartrate5_init();
-    heartrate5_writeReg(0x00, 0x000000);
-    heartrate5_writeReg(0x01, 0x000050);
+
+    //heartrate5_writeReg(0x00, 0x000000);
+    //heartrate5_writeReg(0x01, 0x000050);
 
     while (true) {
+      //heartrate5_init();
+      //heartrate5_writeReg(0x03, 0x000320);
+      //nrf_delay_ms(100);
+      //heartrate5_writeReg(0x04, 0x0004AF);
+      //nrf_delay_ms(100);
+
+      //heartrate5_writeReg(0x09, 0x000000);
+      //nrf_delay_ms(100);
+      //heartrate5_writeReg(0x0A, 0x00018F);
+      //nrf_delay_ms(100);
+
+      //heartrate5_writeReg(0x0F, 0x0005C4);
+      //nrf_delay_ms(100);
+      //heartrate5_writeReg(0x10, 0x0009E7);
+      //nrf_delay_ms(100);
+
+      //heartrate5_writeReg(0x03, 0x000320);
+      //heartrate5_writeReg(0x03, 0x000320);
       getReading();
-      nrf_delay_ms(500);
+      nrf_delay_ms(100);
     }
   }
   NRF_LOG_FLUSH();
