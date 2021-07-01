@@ -1,6 +1,6 @@
 Output/Release/Obj/twi_scanner_pca10056/nrf_ringbuf.o: \
- C\:\nrf_sdk\components\libraries\ringbuf\nrf_ringbuf.c \
- C\:\nrf_sdk\components\libraries\ringbuf\nrf_ringbuf.h \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\nrf_ringbuf.c \
+ c\:\nrf_sdk\components\libraries\ringbuf\nrf_ringbuf.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdint.h \
  c\:\nrf_sdk\components\libraries\atomic\nrf_atomic.h \
  c\:\nrf_sdk\components\libraries\util\sdk_common.h \

@@ -1,7 +1,7 @@
 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_printf.o: \
- C\:\nrf_sdk\external\segger_rtt\SEGGER_RTT_printf.c \
- C\:\nrf_sdk\external\segger_rtt\SEGGER_RTT.h \
- C\:\nrf_sdk\external\segger_rtt\SEGGER_RTT_Conf.h \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\SEGGER_RTT_printf.c \
+ c\:\nrf_sdk\external\segger_rtt\segger_rtt.h \
+ c\:\nrf_sdk\external\segger_rtt\SEGGER_RTT_Conf.h \
  c\:\nrf_sdk\components\libraries\util\nordic_common.h \
  c\:\nrf_sdk\components\libraries\util\app_util_platform.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdint.h \
@@ -27,6 +27,6 @@ Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_printf.o: \
  c\:\nrf_sdk\components\drivers_nrf\nrf_soc_nosd\nrf_error.h \
  c\:\nrf_sdk\components\libraries\util\nordic_common.h \
  c\:\nrf_sdk\components\libraries\util\app_error_weak.h \
- ../config/sdk_config.h \
+ ../config/sdk_config.h c\:\nrf_sdk\external\segger_rtt\segger_rtt_conf.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdlib.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdarg.h

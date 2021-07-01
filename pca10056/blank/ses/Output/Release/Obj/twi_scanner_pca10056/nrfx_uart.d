@@ -1,5 +1,5 @@
 Output/Release/Obj/twi_scanner_pca10056/nrfx_uart.o: \
- C\:\nrf_sdk\modules\nrfx\drivers\src\nrfx_uart.c \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\nrfx_uart.c \
  c\:\nrf_sdk\modules\nrfx\nrfx.h \
  c\:\nrf_sdk\integration\nrfx\nrfx_config.h ../config/sdk_config.h \
  c\:\nrf_sdk\modules\nrfx\drivers\nrfx_common.h \
@@ -44,7 +44,7 @@ Output/Release/Obj/twi_scanner_pca10056/nrfx_uart.o: \
  c\:\nrf_sdk\modules\nrfx\drivers\nrfx_errors.h \
  c\:\nrf_sdk\modules\nrfx\drivers\include\nrfx_uart.h \
  c\:\nrf_sdk\modules\nrfx\hal\nrf_uart.h \
- C\:\nrf_sdk\modules\nrfx\drivers\src\prs/nrfx_prs.h \
+ c\:\nrf_sdk\modules\nrfx\drivers\src\prs\nrfx_prs.h \
  c\:\nrf_sdk\modules\nrfx\hal\nrf_gpio.h \
  c\:\nrf_sdk\integration\nrfx\nrfx_log.h \
  c\:\nrf_sdk\components\libraries\log\nrf_log.h \

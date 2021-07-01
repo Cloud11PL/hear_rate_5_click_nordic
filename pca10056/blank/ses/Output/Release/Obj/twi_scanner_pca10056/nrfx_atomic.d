@@ -1,6 +1,6 @@
 Output/Release/Obj/twi_scanner_pca10056/nrfx_atomic.o: \
- C\:\nrf_sdk\modules\nrfx\soc\nrfx_atomic.c \
- C\:\nrf_sdk\modules\nrfx\soc\nrfx_atomic.h \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\nrfx_atomic.c \
+ c\:\nrf_sdk\modules\nrfx\soc\nrfx_atomic.h \
  c\:\nrf_sdk\modules\nrfx\nrfx.h \
  c\:\nrf_sdk\integration\nrfx\nrfx_config.h ../config/sdk_config.h \
  c\:\nrf_sdk\modules\nrfx\drivers\nrfx_common.h \
@@ -43,4 +43,4 @@ Output/Release/Obj/twi_scanner_pca10056/nrfx_atomic.o: \
  c\:\nrf_sdk\components\libraries\util\sdk_errors.h \
  c\:\nrf_sdk\components\libraries\util\sdk_resources.h \
  c\:\nrf_sdk\modules\nrfx\drivers\nrfx_errors.h \
- C\:\nrf_sdk\modules\nrfx\soc\nrfx_atomic_internal.h
+ c\:\nrf_sdk\modules\nrfx\soc\nrfx_atomic_internal.h

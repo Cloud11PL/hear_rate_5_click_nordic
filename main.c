@@ -11,6 +11,7 @@
 #include "nrf_log_default_backends.h"
 
 #include "nrf_drv_twi.h"
+//#include "hr5_drv.h"
 
 #ifdef __HEARTRATE5_DRV_I2C__
 static uint8_t _slaveAddress;
@@ -94,14 +95,11 @@ uint32_t get_rtc_counter(void) {
 }
 
 void heartrate5_writeReg(uint8_t regAddr, uint32_t wData) {
-  uint8_t hr_storage[5];
+  uint8_t hr_storage[5] = {0};
   hr_storage[0] = regAddr;
   hr_storage[1] = wData >> 16;
   hr_storage[2] = wData >> 8;
   hr_storage[3] = wData;
-
-  NRF_LOG_INFO("data%x", wData);
-  NRF_LOG_FLUSH();
 
   nrf_drv_twi_tx(&m_twi, HR5_ADDR, hr_storage, sizeof(hr_storage), false);
 }
@@ -122,14 +120,9 @@ uint32_t heartrate5_readReg(uint8_t regAddr) {
 }
 
 void heartrate5_hwReset() {
-  //hal_gpio_rstSet(0);
   nrf_gpio_pin_clear(BSP_QSPI_IO0_PIN);
-
-  //Delay_50us();
   nrf_delay_ms(50);
   nrf_gpio_pin_set(BSP_QSPI_IO0_PIN);
-
-  //hal_gpio_rstSet(1);
 }
 
 void delay10ms() {
@@ -192,90 +185,281 @@ uint8_t set_prpct_count(uint16_t count) {
   temp[1] = count >> 8;
   temp[2] = (uint8_t)count;
 
+  heartrate5_writeReg(reg, (uint32_t)count);
+
+  return 0;
+}
+
+uint8_t hr5_set_led_currents(uint8_t led1_current, uint8_t led2_current,
+    uint8_t led3_current) {
+  uint8_t temp[5] = {0};
+  unsigned long currents = 0;
+
+  if (led1_current > 63 ||
+      led2_current > 63 ||
+      led3_current > 63)
+    return -1;
+
+  currents |= (led3_current << 12);
+  currents |= (led2_current << 6);
+  currents |= led1_current;
+
+  temp[4] |= currents;
+  temp[3] |= currents >> 8;
+  temp[2] |= currents >> 16;
+  temp[0] = HR5_REG22H;
+
+  //heartrate5_writeReg(HR5_REG22H, (uint32_t)temp);
+  nrf_drv_twi_tx(&m_twi, HR5_ADDR, temp, sizeof(temp), false);
+
+  return 0;
+}
+
+uint8_t hr5_set_timer_and_average_num(bool enable, uint8_t av_num) {
+  uint8_t reg = HR5_REG1EH;
+  uint8_t temp[3] = {0};
+
+  if (av_num > 15 || av_num < 0)
+    return -1;
+
+  if (enable) {
+    temp[1] |= (1 << 0);
+    temp[2] |= (av_num << 0);
+    heartrate5_writeReg(reg, (uint32_t)temp);
+  } else {
+    temp[2] |= (av_num << 0);
+    heartrate5_writeReg(reg, (uint32_t)temp);
+  }
+
+  return 0;
+}
+
+uint8_t hr5_set_seperate_tia_gain(bool seperate, uint8_t cf_setting,
+    uint8_t gain_setting) {
+  uint8_t reg = HR5_REG20H;
+  uint8_t temp[3] = {0};
+
+  if (cf_setting > 7 || gain_setting > 7)
+    return -1;
+
+  if (seperate) {
+    temp[1] = 8;
+    temp[2] |= (cf_setting << 3);
+    temp[2] |= (gain_setting << 0);
+    heartrate5_writeReg(reg, (uint32_t)temp);
+  } else {
+    temp[2] |= (cf_setting << 3);
+    temp[2] |= (gain_setting << 0);
+    heartrate5_writeReg(reg, (uint32_t)temp);
+  }
+
+  return 0;
+}
+
+uint8_t hr5_set_tia_gain(bool replace, uint8_t cf_setting,
+    uint8_t gain_setting) {
+  uint8_t reg = HR5_REG21H;
+  uint8_t temp[3] = {0};
+
+  if (cf_setting > 7 || gain_setting > 7)
+    return -1;
+
+  if (replace) {
+    temp[1] = 1;
+    temp[2] |= (cf_setting << 3);
+    temp[2] |= (gain_setting << 0);
+    heartrate5_writeReg(reg, (uint32_t)temp);
+  } else {
+    temp[1] = 0;
+    temp[2] |= (cf_setting << 3);
+    temp[2] |= (gain_setting << 0);
+    heartrate5_writeReg(reg, (uint32_t)temp);
+  }
+
+  return 0;
+}
+
+uint8_t hr5_set_clkout_div(bool enable, uint8_t div) {
+  uint8_t reg = HR5_REG23H;
+  uint8_t temp[3] = {0};
+
+  if (div > 15)
+    return -1;
+
+  if (enable) {
+    temp[1] = (1 << 1);
+    temp[2] = (div << 1);
+    heartrate5_writeReg(reg, (uint32_t)temp);
+
+  } else {
+    temp[2] = (div << 1);
+    heartrate5_writeReg(reg, (uint32_t)temp);
+  }
+
+  return 0;
+}
+
+uint8_t hr5_set_int_clk_div(uint8_t div) {
+  uint8_t reg = HR5_REG39H;
+  uint8_t temp[3] = {0};
+
+  if (div > 7)
+    return -1;
+
+  temp[2] = div;
   heartrate5_writeReg(reg, (uint32_t)temp);
+
+  return 0;
+}
+
+#define SETTINGS 0x23  /**< Settings Address */
+#define STT_DYNMC1 20  /**< 0: Transmitter not pwrd dwn 1: pwrd dwn  */
+#define STT_ILED_2X 17 /**< 0: LED crrnt range 0-50 1: range 0-100   */
+#define STT_DYNMC2 14  /**< 0: ADC not pwrd dwn 1: ADC pwrd dwn      */
+#define STT_OSC_EN 9   /**< 0: External Clock 1: Internal Clock      */
+#define STT_DYNMC3 4   /**< 0: TIA not pwrd dwn 1: TIA pwrd dwn      */
+#define STT_DYNMC4 3   /**< 0: Rest of ADC ! pwrd dwn 1: Is pwrd dwn */
+#define STT_PDNRX 1    /**< 0: Normal Mode 1: RX of AFE pwrd dwn     */
+#define STT_PDNAFE 0   /**< 0: Normal Mode 1: Entire AFE pwrd dwn    */
+
+typedef struct
+{
+  transmitter_t transmit;
+  led_current_range_t curr_range;
+  adc_pwer_t adc_power;
+  clk_mode_t clk_mode;
+  tia_pwer_t tia_power;
+  rest_of_adc_t rest_of_adc;
+  afe_rx_mode_t afe_rx_mode;
+  afe_mode_t afe_mode;
+} dynamic_modes_t;
+
+uint8_t hr5_set_dynamic_settings(dynamic_modes_t *modes) {
+  uint8_t reg = SETTINGS;
+  uint8_t temp[3] = {0};
+  unsigned long buffer = 0;
+
+  buffer |= (modes->transmit << STT_DYNMC1);
+  buffer |= (modes->curr_range << STT_ILED_2X);
+  buffer |= (modes->adc_power << STT_DYNMC2);
+  buffer |= (modes->clk_mode << STT_OSC_EN);
+  buffer |= (modes->tia_power << STT_DYNMC3);
+  buffer |= (modes->rest_of_adc << STT_DYNMC4);
+  buffer |= (modes->afe_rx_mode << STT_PDNRX);
+  buffer |= (modes->afe_mode << STT_PDNAFE);
+
+  temp[2] |= buffer;
+  temp[1] |= buffer >> 8;
+  temp[0] |= buffer >> 16;
+
+  heartrate5_writeReg(reg, temp);
 
   return 0;
 }
 
 void heartrate5_init() {
   //perform_hw_start_end(HR5_REG9H, HR5_REGAH, 0, 399);  //LED2
+  dynamic_modes_t dynamic_modes;
 
-  //heartrate5_writeReg(0x00, 0x000000);
-  //heartrate5_writeReg(0x01, 0x000050);
-  //heartrate5_writeReg(0x02, 0x00018F);
-  //heartrate5_writeReg(0x03, 0x000320);
-  //heartrate5_writeReg(0x04, 0x0004AF);
-  //heartrate5_writeReg(0x05, 0x0001E0);
-  //heartrate5_writeReg(0x06, 0x00031F);
-  //heartrate5_writeReg(0x07, 0x000370);
-  //heartrate5_writeReg(0x08, 0x0004AF);
-  //heartrate5_writeReg(0x09, 0x000000);
-  //heartrate5_writeReg(0x0A, 0x00018F);
-  //heartrate5_writeReg(0x0B, 0x0004FF);
-  //heartrate5_writeReg(0x0C, 0x00063E);
-  //heartrate5_writeReg(0x0D, 0x000198);
-  //heartrate5_writeReg(0x0E, 0x0005BB);
-  //heartrate5_writeReg(0x0F, 0x0005C4);
-  //heartrate5_writeReg(0x10, 0x0009E7);
-  //heartrate5_writeReg(0x11, 0x0009F0);
-  //heartrate5_writeReg(0x12, 0x000E13);
-  //heartrate5_writeReg(0x13, 0x000E1C);
-  //heartrate5_writeReg(0x14, 0x00123F);
-  //heartrate5_writeReg(0x15, 0x000191);
-  //heartrate5_writeReg(0x16, 0x000197);
-  //heartrate5_writeReg(0x17, 0x0005BD);
-  //heartrate5_writeReg(0x18, 0x0005C3);
-  //heartrate5_writeReg(0x19, 0x0009E9);
-  //heartrate5_writeReg(0x1A, 0x0009EF);
-  //heartrate5_writeReg(0x1B, 0x000E15);
-  //heartrate5_writeReg(0x1C, 0x000E1B);
-  //heartrate5_writeReg(0x1D, 0x009C3E);
-  //heartrate5_writeReg(0x1E, 0x000103); // timeren set ; broj semplova od 0 do F
-  //heartrate5_writeReg(0x20, 0x008003); //ENSEPGAIN  ; TIA_CF_SEP
-  //heartrate5_writeReg(0x21, 0x000003); //PROG_TG_EN(disabled) ; TIA_CF(0); TIA_GAIN(3);
-  //heartrate5_writeReg(0x22, 0x01B6D9); //LED3(bit12-bit17); LED2(bit6-bit11); LED1(bit0-bit5);
-  //heartrate5_writeReg(0x23, 0x104218); //DYNAMIC1(bit20)=1; ILED_2X(bit17)=0; DYNAMIC2(bit14)=1; OSC_ENABLE(bit9)=1; DYNAMIC3(bit4) =1; DYNAMIC4(bit3)=1; PDNRX(bit1)=0; PDNAFE(bit0)=0;
-  //heartrate5_writeReg(0x29, 0x000000); // ENABLE_CLKOUT(bit9)=0; CLKDIV_CLKOUT(bit1-bit4) =0;
-  //heartrate5_writeReg(0x31, 0x000000); //PD_DISCONNECT(bit10)=0; ENABLE_INPUT_SHORT(bit5)=0; CLKDIV_EXTMODE(bit0-bit2)=0;
-  //heartrate5_writeReg(0x32, 0x00155F); //PDNCYCLESTC(bit0-bit15) = 0x00155F;
-  //heartrate5_writeReg(0x33, 0x00991E); //PDNCYCLEENDC(bit0-bit15) = 0x00991E;
-  //heartrate5_writeReg(0x34, 0x000000); //PROG_TG_STC(bit0-bit15) = 0;
-  //heartrate5_writeReg(0x35, 0x000000); //PROG_TG_ENDC(bit0-bit15) = 0;
-  //heartrate5_writeReg(0x36, 0x000190); //LED3LEDSTC(bit0-bit15) =0x000190;
-  //heartrate5_writeReg(0x37, 0x00031F); //LED3LEDENC(bit0-bit15) =0x00031F;
-  //heartrate5_writeReg(0x39, 0x000000); //CLKDIV_PRF(bit0-bit2) = 0;
-  //heartrate5_writeReg(0x3A, 0x000000); // POL_OFFDAC_LED2(bit19)=0; I_OFFDAC_LED2(bit15-bit18)=0; POL_OFFDAC_AMB1(bit14)=0; I_OFFDAC_AMB1(bit10-bit13)=0; POL_OFFDAC_LED1(bit9)=0; I_OFFDAC_LED1(bit5-bit8)=0; POL_OFFDAC_AMB2\POL_OFFDAC_LED3(bit4)=0; O_OFFDAC_AMB\IOFFDAC_LED3(bit0-bit3)=0;
+  dynamic_modes.transmit = trans_dis;          //Transmitter disabled
+  dynamic_modes.curr_range = led_double;       //LED range 0 - 100
+  dynamic_modes.adc_power = adc_on;            //ADC on
+  dynamic_modes.clk_mode = osc_mode;           //Use internal Oscillator
+  dynamic_modes.tia_power = tia_off;           //TIA off
+  dynamic_modes.rest_of_adc = rest_of_adc_off; //Rest of ADC off
+  dynamic_modes.afe_rx_mode = afe_rx_normal;   //Normal Receiving on AFE
+  dynamic_modes.afe_mode = afe_normal;         //Normal AFE functionality
 
-  perform_hw_start_end(HR5_REG9H, HR5_REGAH, 0, 399);  //LED2
-  perform_hw_start_end(HR5_REG1H, HR5_REG2H, 80, 399); //LED2 SAMPLE
+  //uint8_t temp[3] = {0};
 
-  perform_hw_start_end(HR5_REG15H, HR5_REG16H, 401, 407); //ADC Reset 0
+  //temp[2] |= (1 << 1);
+  heartrate5_writeReg(0x00, 0x000000);
 
-  perform_hw_start_end(HR5_REGDH, HR5_REGEH, 408, 1467); //LED 2 convert
+  heartrate5_writeReg(0x01, 0x000050);
+  heartrate5_writeReg(0x02, 0x00018F);
+  heartrate5_writeReg(0x03, 0x000320);
+  heartrate5_writeReg(0x04, 0x0004AF);
+  heartrate5_writeReg(0x05, 0x0001E0);
+  heartrate5_writeReg(0x06, 0x00031F);
+  heartrate5_writeReg(0x07, 0x000370);
+  heartrate5_writeReg(0x08, 0x0004AF);
+  heartrate5_writeReg(0x09, 0x000000);
+  heartrate5_writeReg(0x0A, 0x00018F);
+  heartrate5_writeReg(0x0B, 0x0004FF);
+  heartrate5_writeReg(0x0C, 0x00063E);
+  heartrate5_writeReg(0x0D, 0x000198);
+  heartrate5_writeReg(0x0E, 0x0005BB);
+  heartrate5_writeReg(0x0F, 0x0005C4);
+  heartrate5_writeReg(0x10, 0x0009E7);
+  heartrate5_writeReg(0x11, 0x0009F0);
+  heartrate5_writeReg(0x12, 0x000E13);
+  heartrate5_writeReg(0x13, 0x000E1C);
+  heartrate5_writeReg(0x14, 0x00123F);
+  heartrate5_writeReg(0x15, 0x000191);
+  heartrate5_writeReg(0x16, 0x000197);
+  heartrate5_writeReg(0x17, 0x0005BD);
+  heartrate5_writeReg(0x18, 0x0005C3);
+  heartrate5_writeReg(0x19, 0x0009E9);
+  heartrate5_writeReg(0x1A, 0x0009EF);
+  heartrate5_writeReg(0x1B, 0x000E15);
+  heartrate5_writeReg(0x1C, 0x000E1B);
+  heartrate5_writeReg(0x1D, 0x009C3E);
+  heartrate5_writeReg(0x1E, 0x000103); // timeren set ; broj semplova od 0 do F
+  heartrate5_writeReg(0x20, 0x008003); //ENSEPGAIN  ; TIA_CF_SEP
+  heartrate5_writeReg(0x21, 0x000003); //PROG_TG_EN(disabled) ; TIA_CF(0); TIA_GAIN(3);
+  heartrate5_writeReg(0x22, 0x01B6D9); //LED3(bit12-bit17); LED2(bit6-bit11); LED1(bit0-bit5);
+  
+  heartrate5_writeReg(0x23, 0x104218); //DYNAMIC1(bit20)=1; ILED_2X(bit17)=0; DYNAMIC2(bit14)=1; OSC_ENABLE(bit9)=1; DYNAMIC3(bit4) =1; DYNAMIC4(bit3)=1; PDNRX(bit1)=0; PDNAFE(bit0)=0;
+  //hr5_set_dynamic_settings(dynamic_modes);
+  heartrate5_writeReg(0x29, 0x000000); // ENABLE_CLKOUT(bit9)=0; CLKDIV_CLKOUT(bit1-bit4) =0;
+  heartrate5_writeReg(0x31, 0x000000); //PD_DISCONNECT(bit10)=0; ENABLE_INPUT_SHORT(bit5)=0; CLKDIV_EXTMODE(bit0-bit2)=0;
+  heartrate5_writeReg(0x32, 0x00155F); //PDNCYCLESTC(bit0-bit15) = 0x00155F;
+  heartrate5_writeReg(0x33, 0x00991E); //PDNCYCLEENDC(bit0-bit15) = 0x00991E;
+  heartrate5_writeReg(0x34, 0x000000); //PROG_TG_STC(bit0-bit15) = 0;
+  heartrate5_writeReg(0x35, 0x000000); //PROG_TG_ENDC(bit0-bit15) = 0;
+  heartrate5_writeReg(0x36, 0x000190); //LED3LEDSTC(bit0-bit15) =0x000190;
+  heartrate5_writeReg(0x37, 0x00031F); //LED3LEDENC(bit0-bit15) =0x00031F;
+  heartrate5_writeReg(0x39, 0x000000); //CLKDIV_PRF(bit0-bit2) = 0;
+  heartrate5_writeReg(0x3A, 0x000000); // POL_OFFDAC_LED2(bit19)=0; I_OFFDAC_LED2(bit15-bit18)=0; POL_OFFDAC_AMB1(bit14)=0; I_OFFDAC_AMB1(bit10-bit13)=0; POL_OFFDAC_LED1(bit9)=0; I_OFFDAC_LED1(bit5-bit8)=0; POL_OFFDAC_AMB2\POL_OFFDAC_LED3(bit4)=0; O_OFFDAC_AMB\IOFFDAC_LED3(bit0-bit3)=0;
 
-  perform_hw_start_end(HR5_REG36H, HR5_REG37H, 400, 799); //LED3
-  perform_hw_start_end(HR5_REG5H, HR5_REG6H, 480, 799);   //LED3 SAMPLE
+  //perform_hw_start_end(HR5_REG9H, HR5_REGAH, 0, 399);  //LED2
+  //perform_hw_start_end(HR5_REG1H, HR5_REG2H, 80, 399); //LED2 SAMPLE
 
-  perform_hw_start_end(HR5_REG17H, HR5_REG18H, 1469, 1475); //ADC RESET 1
+  //perform_hw_start_end(HR5_REG15H, HR5_REG16H, 401, 407); //ADC Reset 0
 
-  perform_hw_start_end(HR5_REGFH, HR5_REG10H, 1476, 2535); //LED3 convert
+  //perform_hw_start_end(HR5_REGDH, HR5_REGEH, 408, 1467); //LED 2 convert
 
-  perform_hw_start_end(HR5_REG3H, HR5_REG4H, 800, 1199); //LED1
-  perform_hw_start_end(HR5_REG7H, HR5_REG8H, 880, 1199); //LED1 SAMPLE
+  //perform_hw_start_end(HR5_REG36H, HR5_REG37H, 400, 799); //LED3
+  //perform_hw_start_end(HR5_REG5H, HR5_REG6H, 480, 799);   //LED3 SAMPLE
 
-  perform_hw_start_end(HR5_REG19H, HR5_REG1AH, 2537, 2543); //ADC RESET 2
+  //perform_hw_start_end(HR5_REG17H, HR5_REG18H, 1469, 1475); //ADC RESET 1
 
-  perform_hw_start_end(HR5_REG11H, HR5_REG12H, 2544, 3603); //LED1 CONVERT
+  //perform_hw_start_end(HR5_REGFH, HR5_REG10H, 1476, 2535); //LED3 convert
 
-  perform_hw_start_end(HR5_REGBH, HR5_REGCH, 1279, 1598); //AMB1
+  //perform_hw_start_end(HR5_REG3H, HR5_REG4H, 800, 1199); //LED1
+  //perform_hw_start_end(HR5_REG7H, HR5_REG8H, 880, 1199); //LED1 SAMPLE
 
-  perform_hw_start_end(HR5_REG1BH, HR5_REG1CH, 3605, 3611); //ADC RESET 3
+  //perform_hw_start_end(HR5_REG19H, HR5_REG1AH, 2537, 2543); //ADC RESET 2
 
-  perform_hw_start_end(HR5_REG13H, HR5_REG14H, 3612, 4671); //AMB1 CONVERT
+  //perform_hw_start_end(HR5_REG11H, HR5_REG12H, 2544, 3603); //LED1 CONVERT
 
-  perform_hw_start_end(HR5_REG32H, HR5_REG33H, 5471, 39199); //PDN cycle
-  perform_hw_start_end(HR5_REG1DH, HR5_REG1DH, 401, 39999);  //PRPCT count
-  set_prpct_count(39999);
+  //perform_hw_start_end(HR5_REGBH, HR5_REGCH, 1279, 1598); //AMB1
+
+  //perform_hw_start_end(HR5_REG1BH, HR5_REG1CH, 3605, 3611); //ADC RESET 3
+
+  //perform_hw_start_end(HR5_REG13H, HR5_REG14H, 3612, 4671); //AMB1 CONVERT
+
+  //perform_hw_start_end(HR5_REG32H, HR5_REG33H, 5471, 39199); //PDN cycle
+  //set_prpct_count(39999);
+
+  //hr5_set_led_currents(15, 3, 3);
+  //hr5_set_timer_and_average_num(true, 3);
+  //hr5_set_seperate_tia_gain(true, 0, 4);
+  //hr5_set_tia_gain(false, 0, 3);
+  //hr5_set_clkout_div(false, 2);
+  //hr5_set_int_clk_div(1);
+  //heartrate5_swReset();
+  ////perform_hw_start_end(HR5_REG1DH, HR5_REG1DH, 401, 39999);  //PRPCT count
 }
 
 /**
@@ -379,12 +563,6 @@ int main(void) {
     NRF_LOG_INFO("Heart Rate 5 Click detected at address 0x%x.", HR5_ADDR);
     detected_device = true;
     heartrate5_hwReset();
-    nrf_delay_ms(100);
-
-    nrf_delay_ms(500);
-    unsigned int hex16 = ((unsigned int) 399) & 0x000000;
-    uint32_t XDXD = 399;
-
     heartrate5_init();
 
     while (true) {

@@ -1,5 +1,5 @@
 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_serial.o: \
- C\:\nrf_sdk\components\libraries\log\src\nrf_log_backend_serial.c \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\nrf_log_backend_serial.c \
  c\:\nrf_sdk\components\libraries\util\sdk_common.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdint.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdbool.h \
@@ -27,7 +27,7 @@ Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_serial.o: \
  c\:\nrf_sdk\modules\nrfx\mdk\compiler_abstraction.h \
  c\:\nrf_sdk\components\libraries\util\sdk_macros.h \
  c\:\nrf_sdk\components\libraries\util\nrf_assert.h \
- C\:\nrf_sdk\components\libraries\log\src\nrf_log_backend_serial.h \
+ c\:\nrf_sdk\components\libraries\log\src\nrf_log_backend_serial.h \
  c\:\nrf_sdk\components\libraries\log\nrf_log_backend_interface.h \
  c\:\nrf_sdk\components\libraries\memobj\nrf_memobj.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdlib.h \
@@ -47,5 +47,5 @@ Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_serial.o: \
  c\:\nrf_sdk\components\libraries\log\nrf_log_ctrl.h \
  c\:\nrf_sdk\components\libraries\log\src\nrf_log_ctrl_internal.h \
  c\:\nrf_sdk\components\libraries\log\nrf_log_backend_interface.h \
- C\:\nrf_sdk\components\libraries\log\src\nrf_log_internal.h \
+ c\:\nrf_sdk\components\libraries\log\src\nrf_log_internal.h \
  c\:\nrf_sdk\components\libraries\log\nrf_log_types.h

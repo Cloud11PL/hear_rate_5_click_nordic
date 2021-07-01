@@ -1,5 +1,5 @@
 Output/Release/Obj/twi_scanner_pca10056/app_error.o: \
- C\:\nrf_sdk\components\libraries\util\app_error.c \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\app_error.c \
  c\:\nrf_sdk\modules\nrfx\mdk\nrf.h \
  c\:\nrf_sdk\modules\nrfx\mdk\nrf52840.h \
  c\:\nrf_sdk\components\toolchain\cmsis\include\core_cm4.h \
@@ -15,9 +15,11 @@ Output/Release/Obj/twi_scanner_pca10056/app_error.o: \
  c\:\nrf_sdk\modules\nrfx\mdk\compiler_abstraction.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdio.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/__crossworks.h \
- C\:\nrf_sdk\components\libraries\util\app_error.h \
+ c\:\nrf_sdk\components\libraries\util\app_error.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdbool.h \
- C\:\nrf_sdk\components\libraries\util\sdk_errors.h \
+ c\:\nrf_sdk\components\libraries\util\sdk_errors.h \
  c\:\nrf_sdk\components\drivers_nrf\nrf_soc_nosd\nrf_error.h \
- C\:\nrf_sdk\components\libraries\util\nordic_common.h \
- C\:\nrf_sdk\components\libraries\util\app_error_weak.h
+ c\:\nrf_sdk\components\libraries\util\nordic_common.h \
+ c\:\nrf_sdk\components\libraries\util\app_error_weak.h \
+ c\:\nrf_sdk\components\libraries\util\nordic_common.h \
+ c\:\nrf_sdk\components\libraries\util\sdk_errors.h

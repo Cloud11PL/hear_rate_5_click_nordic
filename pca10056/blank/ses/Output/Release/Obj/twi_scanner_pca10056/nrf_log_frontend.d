@@ -1,5 +1,5 @@
 Output/Release/Obj/twi_scanner_pca10056/nrf_log_frontend.o: \
- C\:\nrf_sdk\components\libraries\log\src\nrf_log_frontend.c \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\nrf_log_frontend.c \
  c\:\nrf_sdk\components\libraries\util\sdk_common.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdint.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdbool.h \
@@ -41,7 +41,6 @@ Output/Release/Obj/twi_scanner_pca10056/nrf_log_frontend.o: \
  c\:\nrf_sdk\components\libraries\log\nrf_log_instance.h \
  c\:\nrf_sdk\components\libraries\log\nrf_log_types.h \
  c\:\nrf_sdk\components\libraries\log\nrf_log_types.h \
- C\:\nrf_sdk\components\libraries\log\src\nrf_log_internal.h \
  c\:\nrf_sdk\components\libraries\log\nrf_log_ctrl.h \
  c\:\nrf_sdk\components\libraries\log\src\nrf_log_ctrl_internal.h \
  c\:\nrf_sdk\components\libraries\log\nrf_log_backend_interface.h \

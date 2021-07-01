@@ -1,5 +1,5 @@
 Output/Release/Obj/twi_scanner_pca10056/main.o: \
- C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\main.c \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\main.c \
  c\:\nrf_sdk\components\libraries\util\app_error.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdint.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdio.h \
@@ -70,4 +70,5 @@ Output/Release/Obj/twi_scanner_pca10056/main.o: \
  c\:\nrf_sdk\components\libraries\memobj\nrf_memobj.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdlib.h \
  c\:\nrf_sdk\components\libraries\balloc\nrf_balloc.h \
- c\:\nrf_sdk\components\libraries\log\nrf_log_default_backends.h
+ c\:\nrf_sdk\components\libraries\log\nrf_log_default_backends.h \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\hr5_drv.h

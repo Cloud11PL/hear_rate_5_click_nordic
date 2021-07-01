@@ -1,7 +1,7 @@
 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT.o: \
- C\:\nrf_sdk\external\segger_rtt\SEGGER_RTT.c \
- C\:\nrf_sdk\external\segger_rtt\SEGGER_RTT.h \
- C\:\nrf_sdk\external\segger_rtt\SEGGER_RTT_Conf.h \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\SEGGER_RTT.c \
+ c\:\nrf_sdk\external\segger_rtt\segger_rtt.h \
+ c\:\nrf_sdk\external\segger_rtt\SEGGER_RTT_Conf.h \
  c\:\nrf_sdk\components\libraries\util\nordic_common.h \
  c\:\nrf_sdk\components\libraries\util\app_util_platform.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdint.h \

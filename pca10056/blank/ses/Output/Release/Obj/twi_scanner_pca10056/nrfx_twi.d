@@ -1,5 +1,5 @@
 Output/Release/Obj/twi_scanner_pca10056/nrfx_twi.o: \
- C\:\nrf_sdk\modules\nrfx\drivers\src\nrfx_twi.c \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\nrfx_twi.c \
  c\:\nrf_sdk\modules\nrfx\nrfx.h \
  c\:\nrf_sdk\integration\nrfx\nrfx_config.h ../config/sdk_config.h \
  c\:\nrf_sdk\modules\nrfx\drivers\nrfx_common.h \

@@ -1,6 +1,6 @@
 Output/Release/Obj/twi_scanner_pca10056/nrf_atomic.o: \
- C\:\nrf_sdk\components\libraries\atomic\nrf_atomic.c \
- C\:\nrf_sdk\components\libraries\atomic\nrf_atomic.h \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\nrf_atomic.c \
+ c\:\nrf_sdk\components\libraries\atomic\nrf_atomic.h \
  c\:\nrf_sdk\components\libraries\util\sdk_common.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdint.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdbool.h \
@@ -28,4 +28,4 @@ Output/Release/Obj/twi_scanner_pca10056/nrf_atomic.o: \
  c\:\nrf_sdk\modules\nrfx\mdk\compiler_abstraction.h \
  c\:\nrf_sdk\components\libraries\util\sdk_macros.h \
  c\:\nrf_sdk\components\libraries\util\nrf_assert.h \
- C\:\nrf_sdk\components\libraries\atomic\nrf_atomic_internal.h
+ c\:\nrf_sdk\components\libraries\atomic\nrf_atomic_internal.h

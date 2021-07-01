@@ -1,2 +1,2 @@
 Output/Release/Obj/twi_scanner_pca10056/thumb_crt0.o: \
- C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/source/thumb_crt0.s
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\thumb_crt0.s
