@@ -3,8 +3,12 @@
 #include "boards.h"
 #include "nrf_delay.h"
 #include "nrf_drv_twi.h"
+#include <inttypes.h>
+#include <stdbool.h>
 #include <stdio.h>
 
+#include "nrf.h"
+#include "nrf_drv_gpiote.h"
 #include "nrf_log.h"
 #include "nrf_log_ctrl.h"
 #include "nrf_log_default_backends.h"
@@ -14,8 +18,9 @@
 
 /* TWI instance ID. */
 #if TWI0_ENABLED
-#define TWI_INSTANCE_ID 0elif TWI1_ENABLED
-#define TWI_INSTANCE_ID 1
+#define TWI_INSTANCE_ID 0
+//elif TWI1_ENABLED
+//#define TWI_INSTANCE_ID 1
 #endif
 
 /* Number of possible TWI addresses. */
@@ -276,7 +281,6 @@ uint8_t hr5_set_dynamic_settings(dynamic_modes_t *modes) {
   return 0;
 }
 
-
 void heartrate5_init() {
   uint32_t reg[NUM_REGISTERS][2] = {
       {0x00, 0x000000}, /*CONTROL0*/
@@ -310,9 +314,21 @@ void heartrate5_init() {
       {0x1C, 0x00064F}, /*ADCRSTENDCT3*/
       {0x1D, 0x009C3F}, /*PRPCOUNT*/
       {0x1E, 0x000103}, /*CONTROL1*/
-      {0x20, 0x008005}, /*TIAGAIN*/
-      {0x21, 0x000005}, /*TIA_AMB_GAIN*/
-      {0x22, 0x004280}, /*LEDCNTRL*/
+      {0x20, 0x008015}, /*TIAGAIN*/
+      //{0x20, 0x008005}, /*TIAGAIN*/
+      //{0x21, 0x000001}, /*TIA_AMB_GAIN*/
+      {0x21, 0x000021}, /*TIA_AMB_GAIN*/
+      //{0x21, 0x000011}, /*TIA_AMB_GAIN*/
+      //{0x21, 0x000011}, /*TIA_AMB_GAIN*/
+      //{0x22, 0x000000}, /*LEDCNTRL*/
+      //{0x22, 0x004280}, /*LEDCNTRL*/
+      //{0x22, 0x004200}, /*LEDCNTRL*/
+      {0x22, 0x0030C0}, /*LEDCNTRL*/
+      //{0x22, 0x002080}, /*LEDCNTRL*/
+      //{0x22, 0x0030C0}, /*LEDCNTRL*/
+      //{0x22, 0x0040C0}, /*LEDCNTRL*/
+      //{0x22, 0x004140}, /*LEDCNTRL*/
+      //{0x22, 0x004140}, /*LEDCNTRL*/
       {0x23, 0x124218}, /*CONTROL2*/
       {0x29, 0x000000}, /*CLKDIV1*/
       {0x2A, 0x000000}, /*LED2VAL*/
@@ -328,8 +344,12 @@ void heartrate5_init() {
       {0x35, 0x000000}, /*PROG_TG_ENDC*/
       {0x36, 0x000191}, /*LED3LEDSTC*/
       {0x37, 0x000320}, /*LED3LEDENDC*/
+      //{0x39, 0x000000}, /*CLKDIV2*/
       {0x39, 0x000005}, /*CLKDIV2*/
       {0x3A, 0x000000}, /*OFFDAC*/
+      //{0x3D, 0x000028}, /*AVG*/
+      {0x3D, 0x000022}, /*AVG*/
+                        //{0x3D, 0x000004}, /*AVG*/
   };
 
   // Do the i2c transfer
@@ -342,6 +362,7 @@ void heartrate5_init() {
     //  //return false;
     //}
   }
+  //hr5_set_timer_and_average_num(true, 3);
 
   //perform_hw_start_end(HR5_REG13H, HR5_REG14H, 3612, 4671); //AMB1 CONVERT
   //hr5_set_dynamic_settings(&dynamic_modes);
@@ -370,7 +391,6 @@ void heartrate5_init() {
   //heartrate5_swReset();
 }
 
-
 void twi_init(void) {
   ret_code_t err_code;
 
@@ -383,7 +403,6 @@ void twi_init(void) {
 
   err_code = nrf_drv_twi_init(&m_twi, &twi_config, NULL, NULL);
   APP_ERROR_CHECK(err_code);
-  NRF_LOG_INFO("val%x", err_code);
   nrf_drv_twi_enable(&m_twi);
 }
 
@@ -396,10 +415,323 @@ void getReading() {
   float valFive = (float)heartrate5_getLed2_aled2val();
   float valSix = (float)heartrate5_getLed1_aled1val();
 
-  NRF_LOG_INFO("%u;%u;%u;%u;%u;", valOne, valTwo, valThree);
+  //NRF_LOG_INFO(";%u;%u;%u;", valOne, valTwo, valThree);
+  //NRF_LOG_INFO(";%u;%u;", valTwo, valThree);
+  NRF_LOG_INFO(";%u;%u;%u;%u;%u;%u;", valOne, valTwo, heartrate5_readReg(0x3F), heartrate5_readReg(0x40), valFive, valSix);
+  //NRF_LOG_INFO(";%u;%u;%u;%u;%u;%u;", valOne, valTwo, valThree, valFour, valFive, valSix);
   NRF_LOG_FLUSH();
 }
 
+#define BUFFER_SIZE 25
+#define READING_DELAY 40
+#define min(a, b) ((a) < (b) ? (a) : (b))
+
+void find_peaks_above_min_height(int32_t *pn_locs, int32_t *n_npks, int32_t *pn_x, int32_t n_size, int32_t n_min_height) {
+  int32_t i = 1, n_width;
+  *n_npks = 0;
+
+  while (i < n_size - 1) {
+    if (pn_x[i] > n_min_height && pn_x[i] > pn_x[i - 1]) { // find left edge of potential peaks
+      n_width = 1;
+      while (i + n_width < n_size && pn_x[i] == pn_x[i + n_width]) // find flat peaks
+        n_width++;
+      if (pn_x[i] > pn_x[i + n_width] && (*n_npks) < 15) { // find right edge of peaks
+        pn_locs[(*n_npks)++] = i;
+        // for flat peaks, peak location is left edge
+        i += n_width + 1;
+      } else
+        i += n_width;
+    } else
+      i++;
+  }
+}
+
+void sort_ascend(int32_t *pn_x, int32_t n_size) {
+  int32_t i, j, n_temp;
+  for (i = 1; i < n_size; i++) {
+    n_temp = pn_x[i];
+    for (j = i; j > 0 && n_temp < pn_x[j - 1]; j--)
+      pn_x[j] = pn_x[j - 1];
+    pn_x[j] = n_temp;
+  }
+}
+
+void sort_indices_descend(int32_t *pn_x, int32_t *pn_indx, int32_t n_size) {
+  int32_t i, j, n_temp;
+  for (i = 1; i < n_size; i++) {
+    n_temp = pn_indx[i];
+    for (j = i; j > 0 && pn_x[n_temp] > pn_x[pn_indx[j - 1]]; j--)
+      pn_indx[j] = pn_indx[j - 1];
+    pn_indx[j] = n_temp;
+  }
+}
+
+void remove_close_peaks(int32_t *pn_locs, int32_t *pn_npks, int32_t *pn_x, int32_t n_min_distance) {
+  int32_t i, j, n_old_npks, n_dist;
+
+  /* Order peaks from large to small */
+  sort_indices_descend(pn_x, pn_locs, *pn_npks);
+
+  for (i = -1; i < *pn_npks; i++) {
+    n_old_npks = *pn_npks;
+    *pn_npks = i + 1;
+    for (j = i + 1; j < n_old_npks; j++) {
+      n_dist = pn_locs[j] - (i == -1 ? -1 : pn_locs[i]); // lag-zero peak of autocorr is at index -1
+      if (n_dist > n_min_distance || n_dist < -n_min_distance)
+        pn_locs[(*pn_npks)++] = pn_locs[j];
+    }
+  }
+
+  // Resort indices int32_to ascending order
+  sort_ascend(pn_locs, *pn_npks);
+};
+
+#define FS 25
+
+void find_peaks(int32_t *pn_locs, int32_t *n_npks, int32_t *pn_x, int32_t n_size, int32_t n_min_height, int32_t n_min_distance, int32_t n_max_num) {
+  find_peaks_above_min_height(pn_locs, n_npks, pn_x, n_size, n_min_height);
+  remove_close_peaks(pn_locs, n_npks, pn_x, n_min_distance);
+  *n_npks = min(*n_npks, n_max_num); // ????????????
+}
+
+bool adc_rdy = false;
+
+int32_t ir_buffer[BUFFER_SIZE];
+int32_t red_buffer[BUFFER_SIZE];
+
+void get_hr_vals_init() {
+  // get n readings (25Hz) -> 25 times per second
+  // eg 100 buffer -> 4 sec
+  // 4 seconds algorithm
+
+  int32_t k, i, n_exact_ir_valley_locs_count;
+  int32_t n_threshold_1, n_peaks, n_peak_interval_sum;
+  int32_t an_ir_valley_locs[15];
+  int32_t ir_buffer[BUFFER_SIZE];
+  int32_t red_buffer[BUFFER_SIZE];
+  int32_t an_x[BUFFER_SIZE];
+  int32_t an_y[BUFFER_SIZE];
+  static int32_t n_last_peak_interval = FS;
+
+  for (int i = 0; i < BUFFER_SIZE; i++) {
+    ir_buffer[i] = (float)heartrate5_getLed2val();
+    red_buffer[i] = (float)heartrate5_getAled2val_led3val();
+    nrf_delay_ms(READING_DELAY);
+  }
+
+  // DC and subtract DC from IR
+
+  uint32_t ir_mean_val;
+
+  ir_mean_val = 0;
+  for (k = 0; k < BUFFER_SIZE; k++) {
+    ir_mean_val += ir_buffer[k];
+  }
+
+  ir_mean_val = ir_mean_val / BUFFER_SIZE;
+
+  // remove DC
+
+  for (k = 0; k < BUFFER_SIZE; k++) {
+    an_x[k] = ir_mean_val - ir_buffer[k];
+  }
+
+  // 4 pt moving avg
+
+  for (k = 0; k < (BUFFER_SIZE - 4); k++) {
+    an_x[k] = (an_x[k] + an_x[k + 1] + an_x[k + 2] + an_x[k + 3]) / (int)4;
+  }
+
+  int32_t n_spo2_calc;
+  float *pn_spo2;
+  int8_t *pch_spo2_valid;
+  int8_t *pch_hr_valid;
+
+  // calculate threshold
+
+  n_threshold_1 = 0;
+  for (k = 0; k < (BUFFER_SIZE - 4); k++) {
+    n_threshold_1 += an_x[k];
+  }
+
+  n_threshold_1 = n_threshold_1 / (BUFFER_SIZE - 4);
+
+  NRF_LOG_INFO("TH1 %d.", n_threshold_1);
+  NRF_LOG_FLUSH();
+
+  for (k = 0; k < 15; k++)
+    an_ir_valley_locs[k] = 0;
+
+  find_peaks(an_ir_valley_locs, &n_peaks, an_x, (BUFFER_SIZE - 4), n_threshold_1, 4, 15);
+  n_peak_interval_sum = 0;
+
+  int32_t *pn_heart_rate; // !!!!!!!!!!!!!!!!
+
+  NRF_LOG_INFO("Peaks %d.", n_peaks);
+  NRF_LOG_FLUSH();
+
+  NRF_LOG_INFO("Interval sum %d.", n_peak_interval_sum);
+  NRF_LOG_FLUSH();
+
+  if (n_peaks >= 2) {
+    for (k = 1; k < n_peaks; k++)
+      n_peak_interval_sum += (an_ir_valley_locs[k] - an_ir_valley_locs[k - 1]);
+    n_peak_interval_sum = n_peak_interval_sum / (n_peaks - 1);
+    *pn_heart_rate = (int32_t)((FS * 60) / n_peak_interval_sum);
+    *pch_hr_valid = 1;
+  } else {
+    *pn_heart_rate = -999; // unable to calculate because # of peaks are too small
+    *pch_hr_valid = 0;
+  }
+
+  NRF_LOG_INFO("HR %x.", pn_heart_rate);
+  NRF_LOG_FLUSH();
+
+  n_exact_ir_valley_locs_count = n_peaks;
+
+  int32_t n_ratio_average, n_i_ratio_count, n_middle_idx;
+  int32_t an_ratio[5];
+
+  n_ratio_average = 0;
+  n_i_ratio_count = 0;
+
+  for (k = 0; k < 5; k++)
+    an_ratio[k] = 0;
+
+  for (k = 0; k < n_exact_ir_valley_locs_count; k++) {
+    if (an_ir_valley_locs[k] > BUFFER_SIZE) {
+      *pn_spo2 = -999; // do not use SPO2 since valley loc is out of range
+      *pch_spo2_valid = 0;
+      return;
+    }
+  }
+
+  int32_t n_y_ac, n_x_ac;
+  int32_t n_y_dc_max, n_x_dc_max;
+  int32_t n_y_dc_max_idx, n_x_dc_max_idx;
+  int32_t n_nume, n_denom;
+
+  for (k = 0; k < n_exact_ir_valley_locs_count - 1; k++) {
+    n_y_dc_max = -16777216;
+    n_x_dc_max = -16777216;
+    if (an_ir_valley_locs[k + 1] - an_ir_valley_locs[k] > 3) {
+      for (i = an_ir_valley_locs[k]; i < an_ir_valley_locs[k + 1]; i++) {
+        if (an_x[i] > n_x_dc_max) {
+          n_x_dc_max = an_x[i];
+          n_x_dc_max_idx = i;
+        }
+        if (an_y[i] > n_y_dc_max) {
+          n_y_dc_max = an_y[i];
+          n_y_dc_max_idx = i;
+        }
+      }
+      n_y_ac = (an_y[an_ir_valley_locs[k + 1]] - an_y[an_ir_valley_locs[k]]) * (n_y_dc_max_idx - an_ir_valley_locs[k]); //red
+      n_y_ac = an_y[an_ir_valley_locs[k]] + n_y_ac / (an_ir_valley_locs[k + 1] - an_ir_valley_locs[k]);
+      n_y_ac = an_y[n_y_dc_max_idx] - n_y_ac;                                                                           // subracting linear DC compoenents from raw
+      n_x_ac = (an_x[an_ir_valley_locs[k + 1]] - an_x[an_ir_valley_locs[k]]) * (n_x_dc_max_idx - an_ir_valley_locs[k]); // ir
+      n_x_ac = an_x[an_ir_valley_locs[k]] + n_x_ac / (an_ir_valley_locs[k + 1] - an_ir_valley_locs[k]);
+      n_x_ac = an_x[n_y_dc_max_idx] - n_x_ac; // subracting linear DC compoenents from raw
+      n_nume = (n_y_ac * n_x_dc_max) >> 7;    //prepare X100 to preserve floating value
+      n_denom = (n_x_ac * n_y_dc_max) >> 7;
+      if (n_denom > 0 && n_i_ratio_count < 5 && n_nume != 0) {
+        an_ratio[n_i_ratio_count] = (n_nume * 100) / n_denom; //formular is ( n_y_ac *n_x_dc_max) / ( n_x_ac *n_y_dc_max) ;
+        n_i_ratio_count++;
+      }
+    }
+  }
+
+  sort_ascend(an_ratio, n_i_ratio_count);
+  n_middle_idx = n_i_ratio_count / 2;
+
+  long uch_spo2_table[15];
+
+  if (n_middle_idx > 1)
+    n_ratio_average = (an_ratio[n_middle_idx - 1] + an_ratio[n_middle_idx]) / 2; // use median
+  else
+    n_ratio_average = an_ratio[n_middle_idx];
+
+  if (n_ratio_average > 2 && n_ratio_average < 184) {
+    n_spo2_calc = uch_spo2_table[n_ratio_average];
+    *pn_spo2 = uch_spo2_table[n_ratio_average];
+    *pch_spo2_valid = 1; //  float_SPO2 =  -45.060*n_ratio_average* n_ratio_average/10000 + 30.354 *n_ratio_average/100 + 94.845 ;  // for comparison with table
+  } else {
+    *pn_spo2 = -999; // do not use SPO2 since signal an_ratio is out of range
+    *pch_spo2_valid = 0;
+  }
+
+  NRF_LOG_INFO("Values %x.", pn_spo2);
+  NRF_LOG_FLUSH();
+  adc_rdy = false;
+  // get output values
+}
+
+#define PIN_IN ARDUINO_12_PIN
+
+#ifdef BSP_LED_0
+#define PIN_OUT BSP_LED_0
+#endif
+#ifndef PIN_OUT
+#error "Please indicate output pin"
+#endif
+
+void in_pin_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action) {
+  //nrf_drv_gpiote_out_toggle(PIN_OUT);
+  nrf_drv_gpiote_out_toggle(PIN_OUT);
+
+  switch (action) {
+  case NRF_GPIOTE_POLARITY_HITOLO:
+    adc_rdy = true;
+  default:
+    break;
+  }
+
+  //adc_rdy = true;
+  //NRF_LOG_INFO("Interrupted by adcrdy");
+  //NRF_LOG_FLUSH();
+  //switch(action) {
+  //  case GPIOTE_CONFIG_POLARITY_Toggle:
+  //    nrf_drv_gpiote_out_toggle(PIN_OUT);
+  //    adc_rdy = true;
+  //    break;
+  //  default:
+  //    break;
+  //}
+  //NRF_LOG_INFO("Gpio init XS");
+  //NRF_LOG_FLUSH();
+}
+
+static void gpio_init(void) {
+  ret_code_t err_code;
+
+  err_code = nrf_drv_gpiote_init();
+  APP_ERROR_CHECK(err_code);
+
+  nrf_gpio_cfg_output(PIN_OUT);
+  nrf_gpio_pin_set(PIN_OUT);
+
+  nrf_drv_gpiote_in_config_t in_config = GPIOTE_CONFIG_IN_SENSE_HITOLO(true);
+  in_config.pull = NRF_GPIO_PIN_PULLUP;
+
+  err_code = nrf_drv_gpiote_in_init(PIN_IN, &in_config, in_pin_handler);
+  APP_ERROR_CHECK(err_code);
+
+  nrf_drv_gpiote_in_event_enable(PIN_IN, true);
+
+  //nrf_drv_gpiote_out_config_t out_config = GPIOTE_CONFIG_OUT_SIMPLE(false);
+
+  //err_code = nrf_drv_gpiote_out_init(PIN_OUT, &out_config);
+  //APP_ERROR_CHECK(err_code);
+
+  //nrf_drv_gpiote_in_config_t in_config = GPIOTE_CONFIG_IN_SENSE_TOGGLE(true);
+  //in_config.pull = NRF_GPIO_PIN_PULLUP;
+
+  //err_code = nrf_drv_gpiote_in_init(PIN_IN, &in_config, in_pin_handler);
+  //APP_ERROR_CHECK(err_code);
+
+  //nrf_drv_gpiote_in_event_enable(PIN_IN, true);
+  NRF_LOG_INFO("Gpio init");
+  NRF_LOG_FLUSH();
+}
 
 int main(void) {
   ret_code_t err_code;
@@ -407,9 +739,13 @@ int main(void) {
   uint8_t sample_data;
   bool detected_device = false;
   APP_ERROR_CHECK(NRF_LOG_INIT(get_rtc_counter));
+  //uint32_t err_code
+  //err_code = NRF_LOG_INIT();
   NRF_LOG_DEFAULT_BACKENDS_INIT();
   nrf_gpio_cfg_output(BSP_QSPI_IO0_PIN);
   nrf_gpio_cfg_output(15);
+  gpio_init();
+  nrf_delay_ms(500);
 
   NRF_LOG_INFO("TWI scanner started.");
   NRF_LOG_FLUSH();
@@ -420,22 +756,69 @@ int main(void) {
 
   if (err_code == NRF_SUCCESS) {
     NRF_LOG_INFO("Heart Rate 5 Click detected at address 0x%x.", HR5_ADDR);
+    NRF_LOG_FLUSH();
     detected_device = true;
     heartrate5_init();
+    nrf_delay_ms(500);
 
     while (true) {
-      getReading();
-      nrf_delay_ms(100);
+      //if (adc_rdy == true) {
+      //  //getReading();
+      //  get_hr_vals_init();
+      //  //nrf_delay_ms(100);
+      //  //NRF_LOG_INFO("Adc rdy is trueee");
+      //  //NRF_LOG_FLUSH();
+      //  //adc_rdy = false;
+      //}
+      //get_hr_vals_init();
+      //getReading();
+      //nrf_delay_ms(1);
+
+      //if (!adc_rdy) {
+      //  //NRF_LOG_INFO("ADC READY FALSEEE")
+      //  //NRF_LOG_FLUSH();
+
+      //}
+
+      //while (!adc_rdy) {
+      nrf_delay_ms(1);
+      //}
+
+      if (adc_rdy) {
+        //NRF_LOG_INFO("adc redi");
+        //NRF_LOG_FLUSH();
+        //getReading();
+        get_hr_vals_init();
+        //nrf_delay_ms(40);
+        adc_rdy = false;
+      }
+
+      //nrf_delay_ms(1000);
+      //get_hr_vals_init();
+      //float valOne = heartrate5_getLed2val();
+      //float valTwo = (float)heartrate5_getAled2val_led3val();
+      //float valThree = (float)heartrate5_getLed1val();
+      //float valFour = (float)heartrate5_getAled1val();
+      //float valFive = (float)heartrate5_getLed2_aled2val();
+      //float valSix = (float)heartrate5_getLed1_aled1val();
+
+      //NRF_LOG_INFO(";%u;%u;%u;", valOne, valTwo, valThree);
+      //NRF_LOG_INFO(";%u;%u;", valTwo, valThree);
+      //NRF_LOG_INFO(";%u;%u;%u;%u;%u;%u;", valOne, valTwo, valThree, valFour, valFive, valSix);
+      //NRF_LOG_INFO("%" PRIu32 "\n", heartrate5_getLed2val())
+      //NRF_LOG_FLUSH();
+      //nrf_delay_ms(40);
     }
   }
-  NRF_LOG_FLUSH();
 
   if (!detected_device) {
     NRF_LOG_INFO("No device was found.");
     NRF_LOG_FLUSH();
   }
 
-  while (true) {
-  }
+  //while (true) {
+  //  NRF_LOG_INFO("LOL.");
+  //  NRF_LOG_FLUSH();
+  //  nrf_delay_ms(1000);
+  //}
 }
-

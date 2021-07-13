@@ -26,6 +26,7 @@
 "Output/Release/Obj/twi_scanner_pca10056/nrfx_twim.o"
 "Output/Release/Obj/twi_scanner_pca10056/nrfx_uart.o"
 "Output/Release/Obj/twi_scanner_pca10056/nrfx_uarte.o"
+"Output/Release/Obj/twi_scanner_pca10056/nrfx_gpiote.o"
 "Output/Release/Obj/twi_scanner_pca10056/main.o"
 "Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT.o"
 "Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o"

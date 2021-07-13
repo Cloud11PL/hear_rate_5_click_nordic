@@ -61,7 +61,7 @@
 *******************************************************************************/
 #define MAX30100_I2C_ADR 0x57
 
-#define NUM_REGISTERS 51
+#define NUM_REGISTERS 52
 
 #ifdef __HEARTRATE5_DRV_I2C__
 static uint8_t _slaveAddress;
