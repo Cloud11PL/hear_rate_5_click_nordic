@@ -344,11 +344,12 @@ void heartrate5_init() {
       {0x35, 0x000000}, /*PROG_TG_ENDC*/
       {0x36, 0x000191}, /*LED3LEDSTC*/
       {0x37, 0x000320}, /*LED3LEDENDC*/
-      //{0x39, 0x000000}, /*CLKDIV2*/
       {0x39, 0x000005}, /*CLKDIV2*/
+      //{0x39, 0x000000}, /*CLKDIV2*/
+      //{0x39, 0x000005}, /*CLKDIV2*/
       {0x3A, 0x000000}, /*OFFDAC*/
-      //{0x3D, 0x000028}, /*AVG*/
-      {0x3D, 0x000022}, /*AVG*/
+                        //{0x3D, 0x000028}, /*AVG*/
+                        //{0x3D, 0x000022}, /*AVG*/
                         //{0x3D, 0x000004}, /*AVG*/
   };
 
@@ -717,20 +718,29 @@ static void gpio_init(void) {
 
   nrf_drv_gpiote_in_event_enable(PIN_IN, true);
 
-  //nrf_drv_gpiote_out_config_t out_config = GPIOTE_CONFIG_OUT_SIMPLE(false);
-
-  //err_code = nrf_drv_gpiote_out_init(PIN_OUT, &out_config);
-  //APP_ERROR_CHECK(err_code);
-
-  //nrf_drv_gpiote_in_config_t in_config = GPIOTE_CONFIG_IN_SENSE_TOGGLE(true);
-  //in_config.pull = NRF_GPIO_PIN_PULLUP;
-
-  //err_code = nrf_drv_gpiote_in_init(PIN_IN, &in_config, in_pin_handler);
-  //APP_ERROR_CHECK(err_code);
-
-  //nrf_drv_gpiote_in_event_enable(PIN_IN, true);
   NRF_LOG_INFO("Gpio init");
   NRF_LOG_FLUSH();
+}
+
+#define WIDE_BUFFER_SIZE 50
+
+uint32_t IR_BUFFER[WIDE_BUFFER_SIZE];
+uint32_t RED_BUFFER[WIDE_BUFFER_SIZE];
+uint32_t BUFFER_INDEX = 0;
+uint32_t HR_INDEX = 0;
+uint32_t NUMBER_OF_PEAKS = 0;
+uint32_t avgHR = 0;
+uint32_t peaksIdx[WIDE_BUFFER_SIZE];
+
+void resetBuffers(void) {
+  memset(IR_BUFFER, 0, sizeof(IR_BUFFER));
+  memset(RED_BUFFER, 0, sizeof(RED_BUFFER));
+  BUFFER_INDEX = 0;
+}
+
+void addLEDvalsToBuffers(void) {
+  IR_BUFFER[BUFFER_INDEX] = heartrate5_getLed2val();
+  RED_BUFFER[BUFFER_INDEX] = heartrate5_getAled2val_led3val();
 }
 
 int main(void) {
@@ -762,6 +772,120 @@ int main(void) {
     nrf_delay_ms(500);
 
     while (true) {
+      // 1. Everytime adc is rdy add vals at specific interval to buffer
+
+      // 2. Check if buffer is filled
+
+      // if filled
+      // do algorithm for vals
+      // if not
+      // return
+
+      nrf_delay_ms(1);
+
+      if (adc_rdy) {
+        if (BUFFER_INDEX <= WIDE_BUFFER_SIZE) {
+          addLEDvalsToBuffers();
+        }
+
+        if (BUFFER_INDEX == WIDE_BUFFER_SIZE) {
+          // DO ALGORITHM
+          //for (int i = 0; i < BUFFER_SIZE; i++) {
+          //  NRF_LOG_INFO("%d;%d", RED_BUFFER[i], IR_BUFFER[i]);
+          //  NRF_LOG_FLUSH();
+          //}
+
+          // TO MOVE
+          uint32_t windowSize = 4;
+          uint32_t windowIndexRight = 0;
+          uint32_t windowIndexLeft = 0;
+          
+          uint32_t tempWidth = 0;
+          uint32_t peaksWidth[WIDE_BUFFER_SIZE];
+          uint32_t peaksNumber = 0;
+          uint32_t rightScore = 0;
+          uint32_t leftScore = 0;
+
+          for (int i = 0; i <= WIDE_BUFFER_SIZE; i++) {
+            rightScore = 0;
+            leftScore = 0;
+
+            for (int k = 0; k <= windowSize; k++) {
+              windowIndexRight = i + k;
+              windowIndexLeft = i - k;
+
+              if (windowIndexRight <= WIDE_BUFFER_SIZE) {
+                if (RED_BUFFER[i] > RED_BUFFER[windowIndexRight]) {
+                  // possible peak if true for window
+                  rightScore += 1;
+                }
+              }
+
+              if (windowIndexLeft > 0) {
+                if (RED_BUFFER[i] > RED_BUFFER[windowIndexLeft]) {
+                  // possible peak if true for window
+                  leftScore += 1;
+                }
+              }
+            }
+
+            if (rightScore == windowSize && leftScore == windowSize) {
+              // peak detected
+              peaksIdx[i] = i;
+              peaksNumber += 1;
+            }
+          }
+
+          uint32_t calculatedHR = peaksNumber;
+          //uint32_t calculatedHR = peaksNumber * 60 / 0.032 * WIDE_BUFFER_SIZE;
+
+          for (int i = 0; i < WIDE_BUFFER_SIZE; i++) {
+            NRF_LOG_INFO("%d;%d", RED_BUFFER[i], IR_BUFFER[i]);
+            NRF_LOG_FLUSH();
+          }
+
+          NRF_LOG_INFO("Number of Peaks %d", peaksNumber);
+          NRF_LOG_INFO("Number of calculatedHR %d", calculatedHR);
+
+          avgHR += peaksNumber;
+          
+          if (HR_INDEX > 150) {
+            HR_INDEX = 0;
+
+            //for (int k = 0; k < WIDE_BUFFER_SIZE; k++) {
+            //  if (peaksIdx[k] > 0) {
+            //    avgHR += 1;
+            //  }
+            //}
+            avgHR = avgHR;
+            NRF_LOG_INFO("Number of AVG LONG HR %d", avgHR);
+            memset(peaksIdx, 0, sizeof(peaksIdx));
+            //avgHr 
+            avgHR = 0;
+          }
+  
+          NRF_LOG_FLUSH();
+        }
+
+        if (BUFFER_INDEX == WIDE_BUFFER_SIZE || BUFFER_INDEX > WIDE_BUFFER_SIZE) {
+          resetBuffers();
+        }
+
+        adc_rdy = false;
+        BUFFER_INDEX += 1;
+        HR_INDEX += 1;
+      }
+
+      //for (int i = 0; i < BUFFER_SIZE; i++) {
+      //  NRF_LOG_INFO("Buffer %d:%d", i, IR_BUFFER[i]);
+      //  NRF_LOG_FLUSH();
+      //}
+      //NRF_LOG_INFO("adc redi");
+      //NRF_LOG_FLUSH();
+      //getReading();
+      //get_hr_vals_init();
+      //nrf_delay_ms(40);
+
       //if (adc_rdy == true) {
       //  //getReading();
       //  get_hr_vals_init();
@@ -779,19 +903,6 @@ int main(void) {
       //  //NRF_LOG_FLUSH();
 
       //}
-
-      //while (!adc_rdy) {
-      nrf_delay_ms(1);
-      //}
-
-      if (adc_rdy) {
-        //NRF_LOG_INFO("adc redi");
-        //NRF_LOG_FLUSH();
-        //getReading();
-        get_hr_vals_init();
-        //nrf_delay_ms(40);
-        adc_rdy = false;
-      }
 
       //nrf_delay_ms(1000);
       //get_hr_vals_init();
