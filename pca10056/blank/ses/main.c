@@ -725,17 +725,23 @@ static void gpio_init(void) {
 }
 
 #define WIDE_BUFFER_SIZE 50
+#define WIDE_BUFFER_SIZE_CUT 46
 
-uint32_t IR_BUFFER[WIDE_BUFFER_SIZE];
-uint32_t WIDE_IR_BUFFER[WIDE_BUFFER_SIZE * 3];
-uint32_t RED_BUFFER[WIDE_BUFFER_SIZE];
-uint32_t WIDE_RED_BUFFER[WIDE_BUFFER_SIZE * 3];
+float IR_BUFFER[WIDE_BUFFER_SIZE];
+float WIDE_IR_BUFFER[WIDE_BUFFER_SIZE * 3];
+float RED_BUFFER[WIDE_BUFFER_SIZE];
+float WIDE_RED_BUFFER[WIDE_BUFFER_SIZE * 3];
 
 uint32_t BUFFER_INDEX = 0;
 uint32_t HR_INDEX = 0;
-uint32_t NUMBER_OF_PEAKS = 0;
-uint32_t avgHR = 0;
-uint32_t peaksIdx[WIDE_BUFFER_SIZE];
+float NUMBER_OF_PEAKS = 0;
+float avgHR = 0;
+float peaksIdx[WIDE_BUFFER_SIZE];
+
+float IRmean, REDmean, IRThreshold;
+uint32_t k;
+float IR_processed[WIDE_BUFFER_SIZE];
+uint32_t IR_valley_locations[WIDE_BUFFER_SIZE];
 
 void resetBuffers(void) {
   memset(IR_BUFFER, 0, sizeof(IR_BUFFER));
@@ -744,24 +750,52 @@ void resetBuffers(void) {
 }
 
 void addLEDvalsToBuffers(void) {
-  IR_BUFFER[BUFFER_INDEX] = heartrate5_getLed2val();
   RED_BUFFER[BUFFER_INDEX] = heartrate5_getAled2val_led3val();
+  IR_BUFFER[BUFFER_INDEX] = heartrate5_getLed2val();
 }
 
-void Timer_Initialize(void) {
-  ret_code_t err_code;
+void IRcalculateDCmean(void) {
+  IRmean = 0;
 
-  nrfx_timer_config_t tmr_config = NRFX_TIMER_DEFAULT_CONFIG;
-  tmr_config.frequency = (nrf_timer_frequency_t)NRF_TIMER_FREQ_1MHz;
-  tmr_config.mode = (nrf_timer_mode_t)NRF_TIMER_MODE_TIMER;
-  tmr_config.bit_width = (nrf_timer_bit_width_t)NRF_TIMER_BIT_WIDTH_8;
+  for (k = 0; k < WIDE_BUFFER_SIZE; k++) {
+    IRmean += IR_BUFFER[k];
+  }
 
-  err_code = nrfx_timer_init(&m_timer2, &tmr_config, Timer_2_Interrupt_Handler);
-  APP_ERROR_CHECK(err_code);
+  NRF_LOG_INFO("IRMean before %d", IRmean);
+  NRF_LOG_FLUSH();
 
-  nrfx_timer_extended_compare(&m_timer2, NRF_TIMER_CC_CHANNEL0, 100, NRF_TIMER_SHORT_COMPARE0_CLEAR_MASK, true);
+  IRmean = IRmean / WIDE_BUFFER_SIZE;
+  NRF_LOG_INFO("IRMean after %d", IRmean);
+  NRF_LOG_FLUSH();
+}
 
-  nrfx_timer_enable(&m_timer2);
+void IRremoveDCandInvert(void) {
+  for (k = 0; k < WIDE_BUFFER_SIZE; k++) {
+    IR_processed[k] = (float)IRmean - (float)IR_BUFFER[k];
+  }
+}
+
+void IRmoveAverage(void) {
+  // why
+  for (k = 0; k < WIDE_BUFFER_SIZE_CUT; k++) {
+    double addedVal = IR_processed[k] + IR_processed[k + 1] + IR_processed[k + 2] + IR_processed[k + 3];
+    //NRF_LOG_INFO("Added val %d", addedVal);
+    //NRF_LOG_FLUSH();
+    IR_processed[k] = addedVal / (int)4;
+  }
+}
+
+void IRcalcThreshold(void) {
+  IRThreshold = 0;
+
+  for (k = 0; k < WIDE_BUFFER_SIZE_CUT; k++) {
+    IRThreshold += IR_processed[k];
+  }
+
+  IRThreshold = IRThreshold / WIDE_BUFFER_SIZE_CUT;
+}
+
+void IR_sort_indices_descend() {
 }
 
 int main(void) {
@@ -803,8 +837,9 @@ int main(void) {
       nrf_delay_ms(1);
 
       if (adc_rdy) {
-        WIDE_IR_BUFFER[HR_INDEX] = heartrate5_getLed2val();
-        WIDE_RED_BUFFER[HR_INDEX] = heartrate5_getAled2val_led3val();
+        //nrf_delay_ms(10);
+        //WIDE_IR_BUFFER[HR_INDEX] = heartrate5_getLed2val();
+        //WIDE_RED_BUFFER[HR_INDEX] = heartrate5_getAled2val_led3val();
 
         if (BUFFER_INDEX <= WIDE_BUFFER_SIZE) {
           addLEDvalsToBuffers();
@@ -817,143 +852,247 @@ int main(void) {
           //  NRF_LOG_FLUSH();
           //}
 
-          // TO MOVE
+          // Data preprocessing
+
+          IRcalculateDCmean();
+          //for (int i = 0; i < WIDE_BUFFER_SIZE; i++) {
+          //  NRF_LOG_INFO(";%d", IR_BUFFER[i]);
+          //  NRF_LOG_FLUSH();
+          //}
+          IRremoveDCandInvert();
+          //for (int i = 0; i < WIDE_BUFFER_SIZE; i++) {
+          //  NRF_LOG_INFO(";%d", IR_processed[i]);
+          //  NRF_LOG_FLUSH();
+          //}
+          IRmoveAverage();
+          //for (int i = 0; i < WIDE_BUFFER_SIZE; i++) {
+          //  NRF_LOG_INFO(";%d", IR_processed[i]);
+          //  NRF_LOG_FLUSH();
+          //}
+          IRcalcThreshold();
+          NRF_LOG_INFO("Threshold %d", IRThreshold);
+
+
           uint32_t windowSize = 4;
-          uint32_t windowIndexRight = 0;
-          uint32_t windowIndexLeft = 0;
+          uint32_t peakWidth = 0;
+          uint32_t numberOfPeaks = 0;
+          uint32_t i, j = 0;
 
-          uint32_t tempWidth = 0;
-          uint32_t peaksWidth[WIDE_BUFFER_SIZE];
-          uint32_t peaksNumber = 0;
-          uint32_t rightScore = 0;
-          uint32_t leftScore = 0;
+          // find peaks above min height
 
-          for (int i = 0; i <= WIDE_BUFFER_SIZE; i++) {
-            rightScore = 0;
-            leftScore = 0;
+          while (i < WIDE_BUFFER_SIZE_CUT - 1) {
+            if (IR_processed[i] > IRThreshold && IR_processed[i] > IR_processed[i - 1]) { // left edge
+              peakWidth = 1;
 
-            for (int k = 0; k <= windowSize; k++) {
-              windowIndexRight = i + k;
-              windowIndexLeft = i - k;
-
-              if (windowIndexRight <= WIDE_BUFFER_SIZE) {
-                if (RED_BUFFER[i] > RED_BUFFER[windowIndexRight]) {
-                  // possible peak if true for window
-                  rightScore += 1;
-                }
+              while (i + peakWidth < WIDE_BUFFER_SIZE_CUT && IR_processed[i] == IR_processed[i + peakWidth]) { // flat peaks
+                peakWidth += 1;
               }
 
-              if (windowIndexLeft > 0) {
-                if (RED_BUFFER[i] > RED_BUFFER[windowIndexLeft]) {
-                  // possible peak if true for window
-                  leftScore += 1;
-                }
+              if (IR_processed[i] > IR_processed[i + peakWidth] && numberOfPeaks < 15) {
+                numberOfPeaks += 1;
+                IR_valley_locations[numberOfPeaks] = i;
+                i += peakWidth + 1;
+              } else {
+                i += peakWidth;
               }
-            }
-
-            if (rightScore == windowSize && leftScore == windowSize) {
-              // peak detected
-              peaksIdx[i] = i;
-              peaksNumber += 1;
+            } else {
+              i += 1;
             }
           }
 
-          uint32_t calculatedHR = peaksNumber;
-          //uint32_t calculatedHR = peaksNumber * 60 / 0.032 * WIDE_BUFFER_SIZE;
+          // Remove close peaks
 
-          for (int i = 0; i < WIDE_BUFFER_SIZE * 3; i++) {
-            NRF_LOG_INFO(";%d;%d", WIDE_IR_BUFFER[i], WIDE_RED_BUFFER[i]);
-            NRF_LOG_FLUSH();
+          // sort indices descend
+
+          uint32_t tempNumber = 0;
+
+          for (i = 1; i < numberOfPeaks; i++) {
+            tempNumber = IR_valley_locations[i];
+
+            for (j = 1; j > 0 && IR_processed[tempNumber] > IR_processed[IR_valley_locations[j - 1]]; j--) {
+              IR_valley_locations[j] = IR_valley_locations[j - 1];
+            }
+
+            IR_valley_locations[j] = tempNumber;
           }
 
-          //nrfx_timer_capture()
-          //NRF_LOG_INFO("%d", nrfx_);
-          NRF_LOG_INFO("Number of Peaks %d", peaksNumber);
-          NRF_LOG_INFO("Number of calculatedHR %d", calculatedHR);
+          // remove peaks
 
-          avgHR += peaksNumber;
+          float numberOfOldPeaks, peakDistance = 0;
 
-          if (HR_INDEX > 150) {
-            HR_INDEX = 0;
+          for (i = 1; i < numberOfPeaks; i++) {
+            numberOfOldPeaks = numberOfPeaks;
+            numberOfPeaks = i + 1;
 
-            //for (int k = 0; k < WIDE_BUFFER_SIZE; k++) {
-            //  if (peaksIdx[k] > 0) {
-            //    avgHR += 1;
-            //  }
-            //}
-            avgHR = avgHR;
-            NRF_LOG_INFO("Number of AVG LONG HR %d", avgHR);
-            memset(peaksIdx, 0, sizeof(peaksIdx));
-            //avgHr
-            avgHR = 0;
+            for (j = i + 1; j < numberOfOldPeaks; j++) {
+              peakDistance = IR_valley_locations[j] - (i == -1 ? -1 : IR_valley_locations[i]);
+
+              if (peakDistance > windowSize || peakDistance < -windowSize) {
+                numberOfPeaks += 1;
+                IR_valley_locations[numberOfPeaks] = IR_valley_locations[j];
+              }
+            }
           }
 
-          NRF_LOG_FLUSH();
-        }
+          // resort indices
 
-        if (BUFFER_INDEX == WIDE_BUFFER_SIZE || BUFFER_INDEX > WIDE_BUFFER_SIZE) {
-          resetBuffers();
+          for (i = 1; i < numberOfPeaks; i++) {
+            tempNumber = IR_processed[i];
+
+            for (j = i; j > 0 && tempNumber < IR_processed[j - 1]; j--) {
+              IR_processed[j] = IR_processed[j - 1];
+            }
+
+            IR_processed[j] = tempNumber;
+          }
+
+          //for (int i = 0; i < WIDE_BUFFER_SIZE; i++) {
+          //  NRF_LOG_INFO(";%d", IR_processed[i]);
+          //  NRF_LOG_FLUSH();
+          //}
+
+          numberOfPeaks = min(numberOfPeaks, 15);
+
+          NRF_LOG_INFO("Number of Peaks %d", numberOfPeaks);
+          //NRF_LOG_INFO("Number of calculatedHR %d", calculatedHR);
+
+          //// TO MOVE
+          //uint32_t windowSize = 4;
+          //uint32_t windowIndexRight = 0;
+          //uint32_t windowIndexLeft = 0;
+
+          //uint32_t tempWidth = 0;
+          //uint32_t peaksWidth[WIDE_BUFFER_SIZE];
+          //uint32_t peaksNumber = 0;
+          //uint32_t rightScore = 0;
+          //uint32_t leftScore = 0;
+
+          //for (int i = 0; i <= WIDE_BUFFER_SIZE; i++) {
+          //  rightScore = 0;
+          //  leftScore = 0;
+
+          //  for (int k = 0; k <= windowSize; k++) {
+          //    windowIndexRight = i + k;
+          //    windowIndexLeft = i - k;
+
+          //    if (windowIndexRight <= WIDE_BUFFER_SIZE) {
+          //      if (RED_BUFFER[i] > RED_BUFFER[windowIndexRight]) {
+          //        // possible peak if true for window
+          //        rightScore += 1;
+          //      }
+          //    }
+
+          //    if (windowIndexLeft > 0) {
+          //      if (RED_BUFFER[i] > RED_BUFFER[windowIndexLeft]) {
+          //        // possible peak if true for window
+          //        leftScore += 1;
+          //      }
+          //    }
+          //  }
+
+          //  if (rightScore == windowSize && leftScore == windowSize) {
+          //    // peak detected
+          //    peaksIdx[i] = i;
+          //    peaksNumber += 1;
+          //  }
+          //}
+
+          //uint32_t calculatedHR = peaksNumber;
+          ////uint32_t calculatedHR = peaksNumber * 60 / 0.032 * WIDE_BUFFER_SIZE;
+
+          //for (int i = 0; i < WIDE_BUFFER_SIZE * 3; i++) {
+          //  NRF_LOG_INFO(";%d;%d", WIDE_IR_BUFFER[i], WIDE_RED_BUFFER[i]);
+          //  NRF_LOG_FLUSH();
+          //}
+
+          ////nrfx_timer_capture()
+          ////NRF_LOG_INFO("%d", nrfx_);
+          //NRF_LOG_INFO("Number of Peaks %d", peaksNumber);
+          //NRF_LOG_INFO("Number of calculatedHR %d", calculatedHR);
+
+          //avgHR += peaksNumber;
+
+          //if (HR_INDEX > 150) {
+          //  HR_INDEX = 0;
+
+          //  //for (int k = 0; k < WIDE_BUFFER_SIZE; k++) {
+          //  //  if (peaksIdx[k] > 0) {
+          //  //    avgHR += 1;
+          //  //  }
+          //  //}
+          //  avgHR = avgHR;
+          //  NRF_LOG_INFO("Number of AVG LONG HR %d", avgHR);
+          //  memset(peaksIdx, 0, sizeof(peaksIdx));
+          //  //avgHr
+          //  avgHR = 0;
         }
 
         adc_rdy = false;
-        BUFFER_INDEX += 1;
         HR_INDEX += 1;
+
+        if (BUFFER_INDEX == WIDE_BUFFER_SIZE || BUFFER_INDEX > WIDE_BUFFER_SIZE) {
+          resetBuffers();
+        } else {
+          BUFFER_INDEX += 1;
+        }
+
+        NRF_LOG_FLUSH();
       }
+    }
 
-      //for (int i = 0; i < BUFFER_SIZE; i++) {
-      //  NRF_LOG_INFO("Buffer %d:%d", i, IR_BUFFER[i]);
-      //  NRF_LOG_FLUSH();
-      //}
-      //NRF_LOG_INFO("adc redi");
-      //NRF_LOG_FLUSH();
-      //getReading();
-      //get_hr_vals_init();
-      //nrf_delay_ms(40);
+    //for (int i = 0; i < BUFFER_SIZE; i++) {
+    //  NRF_LOG_INFO("Buffer %d:%d", i, IR_BUFFER[i]);
+    //  NRF_LOG_FLUSH();
+    //}
+    //NRF_LOG_INFO("adc redi");
+    //NRF_LOG_FLUSH();
+    //getReading();
+    //get_hr_vals_init();
+    //nrf_delay_ms(40);
 
-      //if (adc_rdy == true) {
-      //  //getReading();
-      //  get_hr_vals_init();
-      //  //nrf_delay_ms(100);
-      //  //NRF_LOG_INFO("Adc rdy is trueee");
-      //  //NRF_LOG_FLUSH();
-      //  //adc_rdy = false;
-      //}
-      //get_hr_vals_init();
-      //getReading();
-      //nrf_delay_ms(1);
+    //if (adc_rdy == true) {
+    //  //getReading();
+    //  get_hr_vals_init();
+    //  //nrf_delay_ms(100);
+    //  //NRF_LOG_INFO("Adc rdy is trueee");
+    //  //NRF_LOG_FLUSH();
+    //  //adc_rdy = false;
+    //}
+    //get_hr_vals_init();
+    //getReading();
+    //nrf_delay_ms(1);
 
-      //if (!adc_rdy) {
-      //  //NRF_LOG_INFO("ADC READY FALSEEE")
-      //  //NRF_LOG_FLUSH();
+    //if (!adc_rdy) {
+    //  //NRF_LOG_INFO("ADC READY FALSEEE")
+    //  //NRF_LOG_FLUSH();
 
-      //}
+    //}
 
-      //nrf_delay_ms(1000);
-      //get_hr_vals_init();
-      //float valOne = heartrate5_getLed2val();
-      //float valTwo = (float)heartrate5_getAled2val_led3val();
-      //float valThree = (float)heartrate5_getLed1val();
-      //float valFour = (float)heartrate5_getAled1val();
-      //float valFive = (float)heartrate5_getLed2_aled2val();
-      //float valSix = (float)heartrate5_getLed1_aled1val();
+    //nrf_delay_ms(1000);
+    //get_hr_vals_init();
+    //float valOne = heartrate5_getLed2val();
+    //float valTwo = (float)heartrate5_getAled2val_led3val();
+    //float valThree = (float)heartrate5_getLed1val();
+    //float valFour = (float)heartrate5_getAled1val();
+    //float valFive = (float)heartrate5_getLed2_aled2val();
+    //float valSix = (float)heartrate5_getLed1_aled1val();
 
-      //NRF_LOG_INFO(";%u;%u;%u;", valOne, valTwo, valThree);
-      //NRF_LOG_INFO(";%u;%u;", valTwo, valThree);
-      //NRF_LOG_INFO(";%u;%u;%u;%u;%u;%u;", valOne, valTwo, valThree, valFour, valFive, valSix);
-      //NRF_LOG_INFO("%" PRIu32 "\n", heartrate5_getLed2val())
-      //NRF_LOG_FLUSH();
-      //nrf_delay_ms(40);
+    //NRF_LOG_INFO(";%u;%u;%u;", valOne, valTwo, valThree);
+    //NRF_LOG_INFO(";%u;%u;", valTwo, valThree);
+    //NRF_LOG_INFO(";%u;%u;%u;%u;%u;%u;", valOne, valTwo, valThree, valFour, valFive, valSix);
+    //NRF_LOG_INFO("%" PRIu32 "\n", heartrate5_getLed2val())
+    //NRF_LOG_FLUSH();
+    //nrf_delay_ms(40);
+    if (!detected_device) {
+      NRF_LOG_INFO("No device was found.");
+      NRF_LOG_FLUSH();
     }
   }
-
-  if (!detected_device) {
-    NRF_LOG_INFO("No device was found.");
-    NRF_LOG_FLUSH();
-  }
-
-  //while (true) {
-  //  NRF_LOG_INFO("LOL.");
-  //  NRF_LOG_FLUSH();
-  //  nrf_delay_ms(1000);
-  //}
 }
+
+//while (true) {
+//  NRF_LOG_INFO("LOL.");
+//  NRF_LOG_FLUSH();
+//  nrf_delay_ms(1000);
+//}
+//}
