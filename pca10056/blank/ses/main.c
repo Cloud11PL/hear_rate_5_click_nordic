@@ -2,6 +2,7 @@
 #include "app_util_platform.h"
 #include "boards.h"
 #include "nrf_delay.h"
+#include "nrf_drv_timer.h"
 #include "nrf_drv_twi.h"
 #include <inttypes.h>
 #include <stdbool.h>
@@ -28,6 +29,7 @@
 
 /* TWI instance. */
 static const nrf_drv_twi_t m_twi = NRF_DRV_TWI_INSTANCE(TWI_INSTANCE_ID);
+const nrf_drv_timer_t TIMER_LED = NRF_DRV_TIMER_INSTANCE(0);
 
 uint32_t get_rtc_counter(void) {
   return NRF_RTC1->COUNTER;
@@ -725,7 +727,10 @@ static void gpio_init(void) {
 #define WIDE_BUFFER_SIZE 50
 
 uint32_t IR_BUFFER[WIDE_BUFFER_SIZE];
+uint32_t WIDE_IR_BUFFER[WIDE_BUFFER_SIZE * 3];
 uint32_t RED_BUFFER[WIDE_BUFFER_SIZE];
+uint32_t WIDE_RED_BUFFER[WIDE_BUFFER_SIZE * 3];
+
 uint32_t BUFFER_INDEX = 0;
 uint32_t HR_INDEX = 0;
 uint32_t NUMBER_OF_PEAKS = 0;
@@ -743,14 +748,28 @@ void addLEDvalsToBuffers(void) {
   RED_BUFFER[BUFFER_INDEX] = heartrate5_getAled2val_led3val();
 }
 
+void Timer_Initialize(void) {
+  ret_code_t err_code;
+
+  nrfx_timer_config_t tmr_config = NRFX_TIMER_DEFAULT_CONFIG;
+  tmr_config.frequency = (nrf_timer_frequency_t)NRF_TIMER_FREQ_1MHz;
+  tmr_config.mode = (nrf_timer_mode_t)NRF_TIMER_MODE_TIMER;
+  tmr_config.bit_width = (nrf_timer_bit_width_t)NRF_TIMER_BIT_WIDTH_8;
+
+  err_code = nrfx_timer_init(&m_timer2, &tmr_config, Timer_2_Interrupt_Handler);
+  APP_ERROR_CHECK(err_code);
+
+  nrfx_timer_extended_compare(&m_timer2, NRF_TIMER_CC_CHANNEL0, 100, NRF_TIMER_SHORT_COMPARE0_CLEAR_MASK, true);
+
+  nrfx_timer_enable(&m_timer2);
+}
+
 int main(void) {
   ret_code_t err_code;
   uint8_t address;
   uint8_t sample_data;
   bool detected_device = false;
   APP_ERROR_CHECK(NRF_LOG_INIT(get_rtc_counter));
-  //uint32_t err_code
-  //err_code = NRF_LOG_INIT();
   NRF_LOG_DEFAULT_BACKENDS_INIT();
   nrf_gpio_cfg_output(BSP_QSPI_IO0_PIN);
   nrf_gpio_cfg_output(15);
@@ -784,6 +803,9 @@ int main(void) {
       nrf_delay_ms(1);
 
       if (adc_rdy) {
+        WIDE_IR_BUFFER[HR_INDEX] = heartrate5_getLed2val();
+        WIDE_RED_BUFFER[HR_INDEX] = heartrate5_getAled2val_led3val();
+
         if (BUFFER_INDEX <= WIDE_BUFFER_SIZE) {
           addLEDvalsToBuffers();
         }
@@ -799,7 +821,7 @@ int main(void) {
           uint32_t windowSize = 4;
           uint32_t windowIndexRight = 0;
           uint32_t windowIndexLeft = 0;
-          
+
           uint32_t tempWidth = 0;
           uint32_t peaksWidth[WIDE_BUFFER_SIZE];
           uint32_t peaksNumber = 0;
@@ -839,16 +861,18 @@ int main(void) {
           uint32_t calculatedHR = peaksNumber;
           //uint32_t calculatedHR = peaksNumber * 60 / 0.032 * WIDE_BUFFER_SIZE;
 
-          for (int i = 0; i < WIDE_BUFFER_SIZE; i++) {
-            NRF_LOG_INFO("%d;%d", RED_BUFFER[i], IR_BUFFER[i]);
+          for (int i = 0; i < WIDE_BUFFER_SIZE * 3; i++) {
+            NRF_LOG_INFO(";%d;%d", WIDE_IR_BUFFER[i], WIDE_RED_BUFFER[i]);
             NRF_LOG_FLUSH();
           }
 
+          //nrfx_timer_capture()
+          //NRF_LOG_INFO("%d", nrfx_);
           NRF_LOG_INFO("Number of Peaks %d", peaksNumber);
           NRF_LOG_INFO("Number of calculatedHR %d", calculatedHR);
 
           avgHR += peaksNumber;
-          
+
           if (HR_INDEX > 150) {
             HR_INDEX = 0;
 
@@ -860,10 +884,10 @@ int main(void) {
             avgHR = avgHR;
             NRF_LOG_INFO("Number of AVG LONG HR %d", avgHR);
             memset(peaksIdx, 0, sizeof(peaksIdx));
-            //avgHr 
+            //avgHr
             avgHR = 0;
           }
-  
+
           NRF_LOG_FLUSH();
         }
 
