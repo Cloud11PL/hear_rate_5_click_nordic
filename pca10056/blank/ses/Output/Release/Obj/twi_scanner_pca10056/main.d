@@ -79,4 +79,56 @@ Output/Release/Obj/twi_scanner_pca10056/main.o: \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdlib.h \
  c\:\nrf_sdk\components\libraries\balloc\nrf_balloc.h \
  c\:\nrf_sdk\components\libraries\log\nrf_log_default_backends.h \
- C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\hr5_drv.h
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\hr5_drv.h \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\ble.h \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\nrf_svc.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\ble_err.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_error.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\ble_gap.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_svc.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\ble_hci.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\ble_ranges.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\ble_types.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\ble_err.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\ble_l2cap.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\ble_gatt.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\ble_gattc.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\ble_gatt.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\ble_gatts.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\ble_gap.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\ble_hci.h \
+ c\:\nrf_sdk\components\ble\common\ble_srv_common.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\ble_types.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\ble.h \
+ c\:\nrf_sdk\components\ble\common\ble_advdata.h \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\ble_advertising.h \
+ c\:\nrf_sdk\components\ble\ble_services\ble_bas\ble_bas.h \
+ c\:\nrf_sdk\components\softdevice\common\nrf_sdh_ble.h \
+ c\:\nrf_sdk\components\libraries\experimental_section_vars\nrf_section_iter.h \
+ c\:\nrf_sdk\components\libraries\experimental_section_vars\nrf_section.h \
+ c\:\nrf_sdk\components\ble\ble_services\ble_hrs\ble_hrs.h \
+ c\:\nrf_sdk\components\ble\nrf_ble_gatt\nrf_ble_gatt.h \
+ c\:\nrf_sdk\components\ble\ble_services\ble_dis\ble_dis.h \
+ c\:\nrf_sdk\components\ble\common\ble_conn_params.h \
+ c\:\nrf_sdk\components\ble\common\ble_srv_common.h \
+ c\:\nrf_sdk\components\libraries\sensorsim\sensorsim.h \
+ c\:\nrf_sdk\components\softdevice\common\nrf_sdh.h \
+ c\:\nrf_sdk\components\softdevice\common\nrf_sdh_soc.h \
+ c\:\nrf_sdk\components\drivers_nrf\nrf_soc_nosd\nrf_soc.h \
+ c\:\nrf_sdk\components\libraries\timer\app_timer.h \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\bsp_btn_ble.h \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\bsp.h \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\app_button.h \
+ c\:\nrf_sdk\components\ble\peer_manager\peer_manager.h \
+ c\:\nrf_sdk\components\ble\peer_manager\peer_manager_types.h \
+ c\:\nrf_sdk\components\ble\common\ble_gatt_db.h \
+ c\:\nrf_sdk\components\ble\peer_manager\peer_database.h \
+ c\:\nrf_sdk\components\ble\peer_manager\peer_manager_internal.h \
+ c\:\nrf_sdk\components\ble\peer_manager\peer_manager_handler.h \
+ c\:\nrf_sdk\components\ble\peer_manager\peer_manager.h \
+ c\:\nrf_sdk\components\libraries\fds\fds.h \
+ c\:\nrf_sdk\components\ble\peer_manager\nrf_ble_lesc.h \
+ c\:\nrf_sdk\components\ble\nrf_ble_qwr\nrf_ble_qwr.h \
+ c\:\nrf_sdk\components\ble\common\ble_conn_state.h \
+ c\:\nrf_sdk\components\libraries\atomic\nrf_atomic.h \
+ c\:\nrf_sdk\components\libraries\pwr_mgmt\nrf_pwr_mgmt.h

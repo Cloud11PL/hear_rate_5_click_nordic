@@ -7,6 +7,7 @@
 #include <inttypes.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdint.h>
 
 #include "nrf.h"
 #include "nrf_drv_gpiote.h"
@@ -17,6 +18,32 @@
 #include "hr5_drv.h"
 #include "nrf_drv_twi.h"
 
+#include "nordic_common.h"
+#include "ble.h"
+#include "ble_err.h"
+#include "ble_hci.h"
+#include "ble_srv_common.h"
+#include "ble_advdata.h"
+#include "ble_advertising.h"
+#include "ble_bas.h"
+#include "ble_hrs.h"
+#include "ble_dis.h"
+#include "ble_conn_params.h"
+#include "sensorsim.h"
+#include "nrf_sdh.h"
+#include "nrf_sdh_ble.h"
+#include "nrf_sdh_soc.h"
+#include "app_timer.h"
+#include "bsp_btn_ble.h"
+#include "peer_manager.h"
+#include "peer_manager_handler.h"
+#include "fds.h"
+#include "nrf_ble_gatt.h"
+#include "nrf_ble_lesc.h"
+#include "nrf_ble_qwr.h"
+#include "ble_conn_state.h"
+#include "nrf_pwr_mgmt.h"
+             
 /* TWI instance ID. */
 #if TWI0_ENABLED
 #define TWI_INSTANCE_ID 0
@@ -26,6 +53,26 @@
 
 /* Number of possible TWI addresses. */
 #define TWI_ADDRESSES 127
+
+#define DEVICE_NAME "Heart Rate SpO2 Device"
+#define MANUFACTURER_NAME "UwU"
+#define APP_ADV_INTERVAL 300
+
+#define APP_ADV_DURATION 18000
+
+#define APP_BLE_CONN_CFG_TAG 1
+#define APP_BLE_OBSERVER_PRIO 3 /**< Application's BLE observer priority. You shouldn't need to modify this value. */
+
+#define LESC_DEBUG_MODE 0 /**< Set to 1 to use LESC debug keys, allows you to use a sniffer to inspect traffic. */
+
+#define SEC_PARAM_BOND 1                               /**< Perform bonding. */
+#define SEC_PARAM_MITM 0                               /**< Man In The Middle protection not required. */
+#define SEC_PARAM_LESC 1                               /**< LE Secure Connections enabled. */
+#define SEC_PARAM_KEYPRESS 0                           /**< Keypress notifications not enabled. */
+#define SEC_PARAM_IO_CAPABILITIES BLE_GAP_IO_CAPS_NONE /**< No I/O capabilities. */
+#define SEC_PARAM_OOB 0                                /**< Out Of Band data not available. */
+#define SEC_PARAM_MIN_KEY_SIZE 7                       /**< Minimum encryption key size. */
+#define SEC_PARAM_MAX_KEY_SIZE 16                      /**< Maximum encryption key size. */
 
 /* TWI instance. */
 static const nrf_drv_twi_t m_twi = NRF_DRV_TWI_INSTANCE(TWI_INSTANCE_ID);

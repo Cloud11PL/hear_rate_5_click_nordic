@@ -1,5 +1,7 @@
 Archive member included to satisfy reference by file (symbol)
 
+C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+                              Output/Release/Obj/twi_scanner_pca10056/bsp.o (__aeabi_uldivmod)
 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
                               Output/Release/Obj/twi_scanner_pca10056/nrf_log_str_formatter.o (isprint)
 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
@@ -10,8 +12,6 @@ C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_
                               (__vfscanf_long)
 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc.o)
                               C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o) (__heap_lock)
-C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
-                              C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o) (__aeabi_uldivmod)
 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
                               Output/Release/Obj/twi_scanner_pca10056/thumb_crt0.o (debug_fopen)
 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(do_nv_debug_operation.o)
@@ -99,7 +99,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_rtt.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_rtt.o
  .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_rtt.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_rtt.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_rtt.o
  .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_rtt.o
  .debug_macro   0x0000000000000000       0x5c Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_rtt.o
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_rtt.o
@@ -121,7 +121,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_rtt.o
  .debug_macro   0x0000000000000000       0x55 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_rtt.o
  .debug_line    0x0000000000000000      0x317 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_rtt.o
- .debug_str     0x0000000000000000    0x80444 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_rtt.o
+ .debug_str     0x0000000000000000    0x81289 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_rtt.o
  .comment       0x0000000000000000       0x26 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_rtt.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_rtt.o
@@ -172,7 +172,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_serial.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_serial.o
  .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_serial.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_serial.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_serial.o
  .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_serial.o
  .debug_macro   0x0000000000000000       0x5c Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_serial.o
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_serial.o
@@ -253,7 +253,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_uart.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_uart.o
  .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_uart.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_uart.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_uart.o
  .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_uart.o
  .debug_macro   0x0000000000000000       0x5c Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_uart.o
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_uart.o
@@ -332,7 +332,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_log_default_backends.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrf_log_default_backends.o
  .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/nrf_log_default_backends.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrf_log_default_backends.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrf_log_default_backends.o
  .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/nrf_log_default_backends.o
  .debug_macro   0x0000000000000000       0x5c Output/Release/Obj/twi_scanner_pca10056/nrf_log_default_backends.o
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_log_default_backends.o
@@ -434,7 +434,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_log_frontend.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrf_log_frontend.o
  .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/nrf_log_frontend.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrf_log_frontend.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrf_log_frontend.o
  .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/nrf_log_frontend.o
  .debug_macro   0x0000000000000000       0x5c Output/Release/Obj/twi_scanner_pca10056/nrf_log_frontend.o
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_log_frontend.o
@@ -518,7 +518,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_log_str_formatter.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrf_log_str_formatter.o
  .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/nrf_log_str_formatter.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrf_log_str_formatter.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrf_log_str_formatter.o
  .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/nrf_log_str_formatter.o
  .debug_macro   0x0000000000000000       0x5c Output/Release/Obj/twi_scanner_pca10056/nrf_log_str_formatter.o
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_log_str_formatter.o
@@ -636,7 +636,7 @@ Discarded input sections
  .debug_ranges  0x0000000000000000      0x2c8 Output/Release/Obj/twi_scanner_pca10056/boards.o
  .debug_macro   0x0000000000000000      0x225 Output/Release/Obj/twi_scanner_pca10056/boards.o
  .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/boards.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/boards.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/boards.o
  .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/boards.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/boards.o
  .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/boards.o
@@ -676,7 +676,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x208 Output/Release/Obj/twi_scanner_pca10056/boards.o
  .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/boards.o
  .debug_line    0x0000000000000000      0xaf1 Output/Release/Obj/twi_scanner_pca10056/boards.o
- .debug_str     0x0000000000000000    0x85a05 Output/Release/Obj/twi_scanner_pca10056/boards.o
+ .debug_str     0x0000000000000000    0x8684a Output/Release/Obj/twi_scanner_pca10056/boards.o
  .comment       0x0000000000000000       0x26 Output/Release/Obj/twi_scanner_pca10056/boards.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/Release/Obj/twi_scanner_pca10056/boards.o
@@ -778,7 +778,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/app_error_handler_gcc.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/app_error_handler_gcc.o
  .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/app_error_handler_gcc.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/app_error_handler_gcc.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/app_error_handler_gcc.o
  .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/app_error_handler_gcc.o
  .debug_macro   0x0000000000000000       0x5c Output/Release/Obj/twi_scanner_pca10056/app_error_handler_gcc.o
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/app_error_handler_gcc.o
@@ -802,7 +802,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x72 Output/Release/Obj/twi_scanner_pca10056/app_error_handler_gcc.o
  .debug_macro   0x0000000000000000       0x49 Output/Release/Obj/twi_scanner_pca10056/app_error_handler_gcc.o
  .debug_line    0x0000000000000000      0x35f Output/Release/Obj/twi_scanner_pca10056/app_error_handler_gcc.o
- .debug_str     0x0000000000000000    0x8092f Output/Release/Obj/twi_scanner_pca10056/app_error_handler_gcc.o
+ .debug_str     0x0000000000000000    0x81774 Output/Release/Obj/twi_scanner_pca10056/app_error_handler_gcc.o
  .comment       0x0000000000000000       0x26 Output/Release/Obj/twi_scanner_pca10056/app_error_handler_gcc.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/Release/Obj/twi_scanner_pca10056/app_error_handler_gcc.o
@@ -869,7 +869,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0xad Output/Release/Obj/twi_scanner_pca10056/app_error_weak.o
  .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/app_error_weak.o
  .debug_macro   0x0000000000000000       0x49 Output/Release/Obj/twi_scanner_pca10056/app_error_weak.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/app_error_weak.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/app_error_weak.o
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/app_error_weak.o
  .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/app_error_weak.o
  .debug_macro   0x0000000000000000      0x7ca Output/Release/Obj/twi_scanner_pca10056/app_error_weak.o
@@ -1065,7 +1065,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_atomic.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrf_atomic.o
  .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/nrf_atomic.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrf_atomic.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrf_atomic.o
  .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/nrf_atomic.o
  .debug_macro   0x0000000000000000       0x5c Output/Release/Obj/twi_scanner_pca10056/nrf_atomic.o
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_atomic.o
@@ -1129,7 +1129,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_balloc.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrf_balloc.o
  .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/nrf_balloc.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrf_balloc.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrf_balloc.o
  .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/nrf_balloc.o
  .debug_macro   0x0000000000000000       0x5c Output/Release/Obj/twi_scanner_pca10056/nrf_balloc.o
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_balloc.o
@@ -1194,7 +1194,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_fprintf.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrf_fprintf.o
  .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/nrf_fprintf.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrf_fprintf.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrf_fprintf.o
  .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/nrf_fprintf.o
  .debug_macro   0x0000000000000000       0x5c Output/Release/Obj/twi_scanner_pca10056/nrf_fprintf.o
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_fprintf.o
@@ -1252,7 +1252,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_fprintf_format.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrf_fprintf_format.o
  .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/nrf_fprintf_format.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrf_fprintf_format.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrf_fprintf_format.o
  .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/nrf_fprintf_format.o
  .debug_macro   0x0000000000000000       0x5c Output/Release/Obj/twi_scanner_pca10056/nrf_fprintf_format.o
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_fprintf_format.o
@@ -1316,7 +1316,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrf_memobj.o
  .debug_macro   0x0000000000000000       0x8e Output/Release/Obj/twi_scanner_pca10056/nrf_memobj.o
  .debug_macro   0x0000000000000000       0xad Output/Release/Obj/twi_scanner_pca10056/nrf_memobj.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrf_memobj.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrf_memobj.o
  .debug_macro   0x0000000000000000       0x5c Output/Release/Obj/twi_scanner_pca10056/nrf_memobj.o
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_memobj.o
  .debug_macro   0x0000000000000000       0x3b Output/Release/Obj/twi_scanner_pca10056/nrf_memobj.o
@@ -1390,7 +1390,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_ringbuf.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrf_ringbuf.o
  .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/nrf_ringbuf.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrf_ringbuf.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrf_ringbuf.o
  .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/nrf_ringbuf.o
  .debug_macro   0x0000000000000000       0x5c Output/Release/Obj/twi_scanner_pca10056/nrf_ringbuf.o
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_ringbuf.o
@@ -1470,7 +1470,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_strerror.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrf_strerror.o
  .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/nrf_strerror.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrf_strerror.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrf_strerror.o
  .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/nrf_strerror.o
  .debug_macro   0x0000000000000000       0x5c Output/Release/Obj/twi_scanner_pca10056/nrf_strerror.o
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_strerror.o
@@ -1492,10 +1492,217 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/nrf_strerror.o
  .debug_macro   0x0000000000000000       0x55 Output/Release/Obj/twi_scanner_pca10056/nrf_strerror.o
  .debug_line    0x0000000000000000      0x3dd Output/Release/Obj/twi_scanner_pca10056/nrf_strerror.o
- .debug_str     0x0000000000000000    0x80529 Output/Release/Obj/twi_scanner_pca10056/nrf_strerror.o
+ .debug_str     0x0000000000000000    0x8136e Output/Release/Obj/twi_scanner_pca10056/nrf_strerror.o
  .comment       0x0000000000000000       0x26 Output/Release/Obj/twi_scanner_pca10056/nrf_strerror.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/Release/Obj/twi_scanner_pca10056/nrf_strerror.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .text          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .data          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .bss           0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_info    0x0000000000000000       0x6f Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_abbrev  0x0000000000000000       0x2c Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_pubnames
+                0x0000000000000000       0x12 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_pubtypes
+                0x0000000000000000       0xc5 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_aranges
+                0x0000000000000000       0x18 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000      0x13a Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000       0x5c Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000       0x8e Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000       0xad Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000       0x3b Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000       0xe3 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000     0x1011 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000      0x11f Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000      0x402 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000    0x10cfd Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000      0xa65 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000       0x96 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000      0x7ca Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_macro   0x0000000000000000       0x55 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_line    0x0000000000000000      0x30e Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .debug_str     0x0000000000000000    0x81280 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .comment       0x0000000000000000       0x26 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .ARM.attributes
+                0x0000000000000000       0x39 Output/Release/Obj/twi_scanner_pca10056/app_button.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .text          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .data          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .bss           0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_info    0x0000000000000000       0x6f Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_abbrev  0x0000000000000000       0x2c Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_pubnames
+                0x0000000000000000       0x12 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_pubtypes
+                0x0000000000000000       0xc5 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_aranges
+                0x0000000000000000       0x18 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000      0x13a Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000       0x5c Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000       0x8e Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000       0xad Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000       0x3b Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000       0xe3 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000     0x1011 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000      0x11f Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000      0x402 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000    0x10cfd Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000      0xa65 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000       0x96 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000      0x7ca Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_macro   0x0000000000000000       0x55 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_line    0x0000000000000000      0x2e5 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .debug_str     0x0000000000000000    0x81257 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .comment       0x0000000000000000       0x26 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .ARM.attributes
+                0x0000000000000000       0x39 Output/Release/Obj/twi_scanner_pca10056/fds.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .text          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .data          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .bss           0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_info    0x0000000000000000       0x6f Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_abbrev  0x0000000000000000       0x2c Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_pubnames
+                0x0000000000000000       0x12 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_pubtypes
+                0x0000000000000000       0xc5 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_aranges
+                0x0000000000000000       0x18 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000      0x13a Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000       0x5c Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000       0x8e Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000       0xad Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000       0x3b Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000       0xe3 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000     0x1011 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000      0x11f Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000      0x402 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000    0x10cfd Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000      0xa65 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000       0x96 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000      0x7ca Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_macro   0x0000000000000000       0x55 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_line    0x0000000000000000      0x310 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .debug_str     0x0000000000000000    0x81282 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .comment       0x0000000000000000       0x26 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
+ .ARM.attributes
+                0x0000000000000000       0x39 Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
  .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_drv_twi.o
  .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_drv_twi.o
  .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/nrf_drv_twi.o
@@ -1542,7 +1749,7 @@ Discarded input sections
  .data          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/nrf_drv_twi.o
  .bss           0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/nrf_drv_twi.o
  .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/nrf_drv_twi.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrf_drv_twi.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrf_drv_twi.o
  .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/nrf_drv_twi.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrf_drv_twi.o
  .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/nrf_drv_twi.o
@@ -1625,7 +1832,7 @@ Discarded input sections
  .data          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/nrf_drv_uart.o
  .bss           0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/nrf_drv_uart.o
  .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/nrf_drv_uart.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrf_drv_uart.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrf_drv_uart.o
  .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/nrf_drv_uart.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrf_drv_uart.o
  .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/nrf_drv_uart.o
@@ -1759,7 +1966,7 @@ Discarded input sections
  .debug_ranges  0x0000000000000000      0x208 Output/Release/Obj/twi_scanner_pca10056/nrfx_atomic.o
  .debug_macro   0x0000000000000000      0x213 Output/Release/Obj/twi_scanner_pca10056/nrfx_atomic.o
  .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/nrfx_atomic.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrfx_atomic.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrfx_atomic.o
  .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/nrfx_atomic.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrfx_atomic.o
  .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/nrfx_atomic.o
@@ -1797,7 +2004,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x20 Output/Release/Obj/twi_scanner_pca10056/nrfx_atomic.o
  .debug_macro   0x0000000000000000       0x42 Output/Release/Obj/twi_scanner_pca10056/nrfx_atomic.o
  .debug_line    0x0000000000000000      0x7f4 Output/Release/Obj/twi_scanner_pca10056/nrfx_atomic.o
- .debug_str     0x0000000000000000    0x8492c Output/Release/Obj/twi_scanner_pca10056/nrfx_atomic.o
+ .debug_str     0x0000000000000000    0x85771 Output/Release/Obj/twi_scanner_pca10056/nrfx_atomic.o
  .comment       0x0000000000000000       0x26 Output/Release/Obj/twi_scanner_pca10056/nrfx_atomic.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/Release/Obj/twi_scanner_pca10056/nrfx_atomic.o
@@ -1852,7 +2059,7 @@ Discarded input sections
  .data          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/nrfx_prs.o
  .bss           0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/nrfx_prs.o
  .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/nrfx_prs.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrfx_prs.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrfx_prs.o
  .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/nrfx_prs.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrfx_prs.o
  .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/nrfx_prs.o
@@ -1943,7 +2150,7 @@ Discarded input sections
                 0x0000000000000000       0x18 Output/Release/Obj/twi_scanner_pca10056/nrfx_twi.o
  .debug_macro   0x0000000000000000      0x1fe Output/Release/Obj/twi_scanner_pca10056/nrfx_twi.o
  .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/nrfx_twi.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrfx_twi.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrfx_twi.o
  .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/nrfx_twi.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrfx_twi.o
  .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/nrfx_twi.o
@@ -1980,7 +2187,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x64 Output/Release/Obj/twi_scanner_pca10056/nrfx_twi.o
  .debug_macro   0x0000000000000000       0x20 Output/Release/Obj/twi_scanner_pca10056/nrfx_twi.o
  .debug_line    0x0000000000000000      0x49a Output/Release/Obj/twi_scanner_pca10056/nrfx_twi.o
- .debug_str     0x0000000000000000    0x841e8 Output/Release/Obj/twi_scanner_pca10056/nrfx_twi.o
+ .debug_str     0x0000000000000000    0x8502d Output/Release/Obj/twi_scanner_pca10056/nrfx_twi.o
  .comment       0x0000000000000000       0x26 Output/Release/Obj/twi_scanner_pca10056/nrfx_twi.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/Release/Obj/twi_scanner_pca10056/nrfx_twi.o
@@ -2047,7 +2254,7 @@ Discarded input sections
  .text.nrfx_twim_stopped_event_get
                 0x0000000000000000        0x8 Output/Release/Obj/twi_scanner_pca10056/nrfx_twim.o
  .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/nrfx_twim.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrfx_twim.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrfx_twim.o
  .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/nrfx_twim.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrfx_twim.o
  .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/nrfx_twim.o
@@ -2165,7 +2372,7 @@ Discarded input sections
  .text.nrfx_uart_rx_abort
                 0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/nrfx_uart.o
  .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/nrfx_uart.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrfx_uart.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrfx_uart.o
  .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/nrfx_uart.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrfx_uart.o
  .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/nrfx_uart.o
@@ -2278,7 +2485,7 @@ Discarded input sections
  .text.nrfx_uarte_rx_abort
                 0x0000000000000000       0x28 Output/Release/Obj/twi_scanner_pca10056/nrfx_uarte.o
  .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/nrfx_uarte.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrfx_uarte.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrfx_uarte.o
  .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/nrfx_uarte.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrfx_uarte.o
  .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/nrfx_uarte.o
@@ -2427,7 +2634,7 @@ Discarded input sections
  .text.nrfx_gpiote_in_event_addr_get
                 0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/nrfx_gpiote.o
  .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/nrfx_gpiote.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrfx_gpiote.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrfx_gpiote.o
  .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/nrfx_gpiote.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrfx_gpiote.o
  .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/nrfx_gpiote.o
@@ -2553,7 +2760,7 @@ Discarded input sections
  .text.nrfx_timer_compare_int_disable
                 0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/nrfx_timer.o
  .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/nrfx_timer.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/nrfx_timer.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/nrfx_timer.o
  .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/nrfx_timer.o
  .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/nrfx_timer.o
  .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/nrfx_timer.o
@@ -2598,6 +2805,37 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x17f Output/Release/Obj/twi_scanner_pca10056/nrfx_timer.o
  .debug_macro   0x0000000000000000       0x9a Output/Release/Obj/twi_scanner_pca10056/nrfx_timer.o
  .debug_macro   0x0000000000000000       0x42 Output/Release/Obj/twi_scanner_pca10056/nrfx_timer.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
  .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
  .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
  .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/main.o
@@ -2757,7 +2995,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x49 Output/Release/Obj/twi_scanner_pca10056/main.o
  .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/main.o
  .debug_macro   0x0000000000000000       0x8c Output/Release/Obj/twi_scanner_pca10056/main.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/main.o
  .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/main.o
  .debug_macro   0x0000000000000000      0x462 Output/Release/Obj/twi_scanner_pca10056/main.o
  .debug_macro   0x0000000000000000       0x59 Output/Release/Obj/twi_scanner_pca10056/main.o
@@ -2898,7 +3136,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0xad Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT.o
  .debug_macro   0x0000000000000000       0x49 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT.o
  .debug_macro   0x0000000000000000       0x8c Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT.o
  .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
  .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
  .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
@@ -2938,7 +3176,7 @@ Discarded input sections
  .text.__getchar
                 0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
  .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
  .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
  .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
  .debug_macro   0x0000000000000000       0x5c Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
@@ -3040,13 +3278,13 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0xad Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_printf.o
  .debug_macro   0x0000000000000000       0x49 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_printf.o
  .debug_macro   0x0000000000000000       0x8c Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_printf.o
- .debug_macro   0x0000000000000000      0x9a8 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_printf.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_printf.o
  .debug_macro   0x0000000000000000       0x47 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_printf.o
  .debug_macro   0x0000000000000000      0x115 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_printf.o
  .debug_macro   0x0000000000000000       0x28 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_printf.o
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_printf.o
  .debug_line    0x0000000000000000      0x890 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_printf.o
- .debug_str     0x0000000000000000    0x7976c Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_printf.o
+ .debug_str     0x0000000000000000    0x7a5b1 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_printf.o
  .comment       0x0000000000000000       0x26 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_printf.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_printf.o
@@ -3091,6 +3329,1056 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0xa65 Output/Release/Obj/twi_scanner_pca10056/system_nrf52840.o
  .debug_macro   0x0000000000000000       0x96 Output/Release/Obj/twi_scanner_pca10056/system_nrf52840.o
  .debug_macro   0x0000000000000000       0x40 Output/Release/Obj/twi_scanner_pca10056/system_nrf52840.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .text          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .data          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .bss           0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .text.sd_ble_gap_addr_get
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .text.sd_ble_gap_appearance_get
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .text.sd_ble_gap_device_name_get
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .text.sd_ble_uuid_encode
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .text.uuid_list_sized_encode
+                0x0000000000000000       0xac Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .text.uuid_list_encode
+                0x0000000000000000       0x38 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .text.ble_advdata_encode
+                0x0000000000000000      0x394 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .text.ble_advdata_search
+                0x0000000000000000       0x48 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .text.ble_advdata_parse
+                0x0000000000000000       0x20 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .text.ble_advdata_name_find
+                0x0000000000000000       0x48 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .text.ble_advdata_short_name_find
+                0x0000000000000000       0x56 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .text.ble_advdata_uuid_find
+                0x0000000000000000       0x9a Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .text.ble_advdata_appearance_find
+                0x0000000000000000       0x3a Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_frame   0x0000000000000000      0x228 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_info    0x0000000000000000     0x1b0e Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_abbrev  0x0000000000000000      0x3dd Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_loc     0x0000000000000000     0x11ef Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_pubnames
+                0x0000000000000000      0x884 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_pubtypes
+                0x0000000000000000      0x25a Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_aranges
+                0x0000000000000000       0x80 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_ranges  0x0000000000000000      0x1a0 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000      0x205 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0x9a Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0x46 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0xb2 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000      0x13a Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000      0x204 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000      0x5ad Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0x8d Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000      0x205 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0x3b Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0xfb Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000     0x1011 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000      0x11f Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000      0x402 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000    0x10cfd Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000      0xa65 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0x96 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0x40 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0xf4 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0x3c Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0xad Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000      0x7ca Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0x55 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000       0x6a Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_macro   0x0000000000000000      0x343 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_line    0x0000000000000000      0xf44 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .debug_str     0x0000000000000000    0x889f2 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .comment       0x0000000000000000       0x26 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .ARM.attributes
+                0x0000000000000000       0x39 Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .text          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .data          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .bss           0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .text.sd_ble_gap_conn_param_update
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .text.sd_ble_gap_disconnect
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .text.sd_ble_gap_ppcp_set
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .text.sd_ble_gap_ppcp_get
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .text.instance_get
+                0x0000000000000000       0x14 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .text.send_error_evt
+                0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .text.update_timeout_handler
+                0x0000000000000000       0x70 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .text.conn_params_negotiation
+                0x0000000000000000       0x48 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .text.is_conn_params_ok.constprop.0
+                0x0000000000000000       0x32 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .text.ble_evt_handler
+                0x0000000000000000       0xe0 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .text.ble_conn_params_init
+                0x0000000000000000       0x74 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .text.ble_conn_params_stop
+                0x0000000000000000       0x20 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .text.ble_conn_params_change_conn_params
+                0x0000000000000000       0x3c Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .bss.m_conn_params_config
+                0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .bss.m_conn_params_instances
+                0x0000000000000000       0x14 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .bss.m_preferred_conn_params
+                0x0000000000000000        0x8 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .bss.m_timer_data
+                0x0000000000000000       0x20 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .sdh_ble_observers1
+                0x0000000000000000        0x8 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_frame   0x0000000000000000      0x1a8 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_info    0x0000000000000000     0x2943 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_abbrev  0x0000000000000000      0x544 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_loc     0x0000000000000000      0xa6e Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_pubnames
+                0x0000000000000000      0xbdb Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_pubtypes
+                0x0000000000000000      0xc75 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_aranges
+                0x0000000000000000       0x80 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_ranges  0x0000000000000000      0x1b0 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000      0x276 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x5c Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x8e Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0xad Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x3b Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0xe3 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000     0x1011 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000      0x11f Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000      0x402 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000    0x10cfd Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000      0xa65 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x96 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000      0x7ca Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x55 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0xb2 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x40 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000      0x13a Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000      0x204 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000      0x5ad Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x8d Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000      0x205 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0xf4 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x3c Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000      0x343 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x31 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x11 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x72 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x49 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_macro   0x0000000000000000       0x42 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_line    0x0000000000000000      0xa7b Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .debug_str     0x0000000000000000    0x8a718 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .comment       0x0000000000000000       0x26 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .ARM.attributes
+                0x0000000000000000       0x39 Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .data          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .bss           0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.for_each_set_flag
+                0x0000000000000000       0x34 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.flag_toggle
+                0x0000000000000000        0xa Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.bcs_internal_state_reset
+                0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.conn_handle_list_get
+                0x0000000000000000       0x2e Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.ble_evt_handler
+                0x0000000000000000      0x110 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.active_flag_count
+                0x0000000000000000       0x20 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.ble_conn_state_init
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.ble_conn_state_valid
+                0x0000000000000000       0x14 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.ble_conn_state_role
+                0x0000000000000000       0x24 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.ble_conn_state_status
+                0x0000000000000000       0x24 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.ble_conn_state_encrypted
+                0x0000000000000000       0x24 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.ble_conn_state_mitm_protected
+                0x0000000000000000       0x24 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.ble_conn_state_lesc
+                0x0000000000000000       0x24 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.ble_conn_state_conn_count
+                0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.ble_conn_state_central_conn_count
+                0x0000000000000000       0x20 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.ble_conn_state_peripheral_conn_count
+                0x0000000000000000       0x24 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.ble_conn_state_conn_handles
+                0x0000000000000000       0x14 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.ble_conn_state_central_handles
+                0x0000000000000000       0x24 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.ble_conn_state_periph_handles
+                0x0000000000000000       0x28 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.ble_conn_state_conn_idx
+                0x0000000000000000       0x12 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.ble_conn_state_user_flag_acquire
+                0x0000000000000000       0x14 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.ble_conn_state_user_flag_get
+                0x0000000000000000       0x30 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.ble_conn_state_user_flag_set
+                0x0000000000000000       0x34 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.ble_conn_state_for_each_connected
+                0x0000000000000000       0x14 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .text.ble_conn_state_for_each_set_user_flag
+                0x0000000000000000       0x34 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .bss.m_bcs     0x0000000000000000       0x7c Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .sdh_ble_observers0
+                0x0000000000000000        0x8 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_frame   0x0000000000000000      0x3d4 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_info    0x0000000000000000     0x29cb Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_abbrev  0x0000000000000000      0x4d1 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_loc     0x0000000000000000      0x8a0 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_pubnames
+                0x0000000000000000      0x9dc Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_pubtypes
+                0x0000000000000000      0xc32 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_aranges
+                0x0000000000000000       0xe0 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_ranges  0x0000000000000000      0x228 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000      0x257 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x9a Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x46 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0xb2 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000      0x13a Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000      0x204 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000      0x5ad Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x8d Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000      0x205 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x3b Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0xfb Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000     0x1011 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000      0x11f Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000      0x402 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000    0x10cfd Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000      0xa65 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x96 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x40 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0xf4 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x3c Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0xad Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000      0x7ca Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x55 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x72 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x49 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x31 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x11 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_macro   0x0000000000000000       0x8c Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_line    0x0000000000000000      0xbc6 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .debug_str     0x0000000000000000    0x894bf Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .comment       0x0000000000000000       0x26 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .ARM.attributes
+                0x0000000000000000       0x39 Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .text          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .data          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .bss           0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .text.sd_ble_gatts_characteristic_add
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .text.sd_ble_gatts_descriptor_add
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .text.set_security_req
+                0x0000000000000000       0x2a Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .text.ble_srv_is_notification_enabled
+                0x0000000000000000        0x8 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .text.ble_srv_is_indication_enabled
+                0x0000000000000000        0x8 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .text.ble_srv_report_ref_encode
+                0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .text.ble_srv_ascii_to_utf8
+                0x0000000000000000       0x12 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .text.characteristic_add
+                0x0000000000000000      0x148 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .text.descriptor_add
+                0x0000000000000000       0x94 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_frame   0x0000000000000000       0xf0 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_info    0x0000000000000000      0xc6c Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_abbrev  0x0000000000000000      0x270 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_loc     0x0000000000000000      0x293 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_pubnames
+                0x0000000000000000      0x338 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_pubtypes
+                0x0000000000000000      0x285 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_aranges
+                0x0000000000000000       0x60 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_ranges  0x0000000000000000       0x50 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000      0x1bb Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000      0x204 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000       0x5c Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000       0x3b Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000       0xe3 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000     0x1011 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000      0x11f Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000      0x402 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000    0x10cfd Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000      0xa65 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000       0x96 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000      0x7ca Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000       0x9a Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000       0x46 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000       0xb2 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000      0x13a Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000      0x5ad Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000       0x8d Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000      0x205 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000       0xf4 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000       0x3c Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000      0x343 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000       0x72 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000       0xad Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_macro   0x0000000000000000       0x49 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_line    0x0000000000000000      0x6bf Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .debug_str     0x0000000000000000    0x84813 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .comment       0x0000000000000000       0x26 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .ARM.attributes
+                0x0000000000000000       0x39 Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .text          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .data          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .bss           0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .text.sd_ble_gap_adv_set_configure
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .text.sd_ble_gap_adv_start
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .text.sd_ble_gap_adv_stop
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .text.flags_set
+                0x0000000000000000       0x2c Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .text.ble_advertising_conn_cfg_tag_set
+                0x0000000000000000        0x6 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .text.ble_advertising_init
+                0x0000000000000000       0xfa Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .text.ble_advertising_start
+                0x0000000000000000      0x214 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .text.ble_advertising_on_ble_evt
+                0x0000000000000000       0x6a Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .text.ble_advertising_peer_addr_reply
+                0x0000000000000000       0x26 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .text.ble_advertising_whitelist_reply
+                0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .text.ble_advertising_restart_without_whitelist
+                0x0000000000000000       0x3c Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .text.ble_advertising_modes_config_set
+                0x0000000000000000       0x18 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .text.ble_advertising_advdata_update
+                0x0000000000000000       0xc4 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_frame   0x0000000000000000      0x188 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_info    0x0000000000000000     0x31cb Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_abbrev  0x0000000000000000      0x4c5 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_loc     0x0000000000000000      0xc04 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_pubnames
+                0x0000000000000000      0xc55 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_pubtypes
+                0x0000000000000000      0xd4a Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_aranges
+                0x0000000000000000       0x80 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_ranges  0x0000000000000000      0x1a0 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000      0x277 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x5c Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x8e Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0xad Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x3b Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0xe3 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000     0x1011 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000      0x11f Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000      0x402 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000    0x10cfd Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000      0xa65 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x96 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000      0x7ca Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x55 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x46 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0xb2 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000      0x13a Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000      0x204 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000      0x5ad Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x8d Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000      0x205 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0xf4 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x3c Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x6a Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x31 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x55 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000      0x185 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x9a Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x11 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_line    0x0000000000000000      0xee1 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .debug_str     0x0000000000000000    0x8baab Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .comment       0x0000000000000000       0x26 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .ARM.attributes
+                0x0000000000000000       0x39 Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .text          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .data          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .bss           0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .text.advertising_buttons_configure
+                0x0000000000000000       0x36 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .text.ble_evt_handler
+                0x0000000000000000       0x80 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .text.bsp_btn_ble_sleep_mode_prepare
+                0x0000000000000000       0x1e Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .text.bsp_btn_ble_init
+                0x0000000000000000       0x40 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .bss.m_error_handler
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .bss.m_num_connections
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .sdh_ble_observers1
+                0x0000000000000000        0x8 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_frame   0x0000000000000000       0xa0 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_info    0x0000000000000000     0x1e4e Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_abbrev  0x0000000000000000      0x328 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_loc     0x0000000000000000      0x21c Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_pubnames
+                0x0000000000000000      0x5e9 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_pubtypes
+                0x0000000000000000      0xb84 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_aranges
+                0x0000000000000000       0x38 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_ranges  0x0000000000000000       0x40 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000      0x333 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x9a Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x46 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0xb2 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000      0x13a Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000      0x204 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000      0x5ad Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x8d Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000      0x205 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x3b Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0xfb Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000     0x1011 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000      0x11f Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000      0x402 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000    0x10cfd Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000      0xa65 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x96 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x40 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0xf4 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x3c Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000      0x462 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x59 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000      0x383 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000      0x14e Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000      0x7ca Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x3f Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x72 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0xad Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x49 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x8c Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x19 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x1d Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x35 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x7b Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x64 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x20 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000      0x208 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x37 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x11 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_line    0x0000000000000000      0x8c1 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .debug_str     0x0000000000000000    0x8dc08 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .comment       0x0000000000000000       0x26 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .ARM.attributes
+                0x0000000000000000       0x39 Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .group         0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .text          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .data          0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .bss           0x0000000000000000        0x0 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .text.nrf_gpio_cfg_sense_set
+                0x0000000000000000       0x30 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .text.alert_timer_handler
+                0x0000000000000000        0x6 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .text.bsp_button_event_handler
+                0x0000000000000000       0x9c Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .text.button_timer_handler
+                0x0000000000000000        0x8 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .text.leds_off
+                0x0000000000000000       0x2c Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .text.bsp_led_indication
+                0x0000000000000000      0x200 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .text.leds_timer_handler
+                0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .text.bsp_button_is_pressed
+                0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .text.bsp_indication_set
+                0x0000000000000000       0x18 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .text.bsp_init
+                0x0000000000000000       0x9c Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .text.bsp_event_to_button_action_assign
+                0x0000000000000000       0x4c Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .text.bsp_buttons_enable
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .text.bsp_buttons_disable
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .text.bsp_wakeup_button_enable
+                0x0000000000000000       0x18 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .text.bsp_wakeup_button_disable
+                0x0000000000000000       0x18 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .bss.current_long_push_pin_no.1
+                0x0000000000000000        0x1 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .bss.m_alert_on
+                0x0000000000000000        0x1 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .bss.m_bsp_alert_tmr_data
+                0x0000000000000000       0x20 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .bss.m_bsp_button_tmr_data
+                0x0000000000000000       0x20 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .bss.m_bsp_leds_tmr_data
+                0x0000000000000000       0x20 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .bss.m_events_list
+                0x0000000000000000        0xc Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .bss.m_indication_type
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .bss.m_leds_clear
+                0x0000000000000000        0x1 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .bss.m_registered_callback
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .bss.m_stable_state
+                0x0000000000000000        0x1 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .bss.release_event_at_push.0
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .rodata.app_buttons
+                0x0000000000000000       0x20 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .rodata.m_bsp_alert_tmr
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .rodata.m_bsp_button_tmr
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .rodata.m_bsp_leds_tmr
+                0x0000000000000000        0x4 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_frame   0x0000000000000000      0x1b8 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_info    0x0000000000000000     0x1171 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_abbrev  0x0000000000000000      0x41e Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_loc     0x0000000000000000      0xb25 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_pubnames
+                0x0000000000000000      0x879 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_pubtypes
+                0x0000000000000000      0x217 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_aranges
+                0x0000000000000000       0x90 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_ranges  0x0000000000000000      0x120 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000      0x25d Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000      0xab4 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000      0x1a3 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000      0xd48 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x89 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x3b Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0xfb Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000     0x1011 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000      0x11f Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000      0x402 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000    0x10cfd Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000      0xa65 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x96 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x40 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000      0x462 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x59 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000      0x383 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000      0x14e Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000      0x7ca Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x3f Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x72 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x8e Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0xad Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x49 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x8c Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x19 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x1d Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x35 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x7b Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x64 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x20 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000      0x208 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000      0x16d Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000      0x100 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_macro   0x0000000000000000       0x48 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_line    0x0000000000000000      0xca6 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .debug_str     0x0000000000000000    0x87904 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .comment       0x0000000000000000       0x26 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .ARM.attributes
+                0x0000000000000000       0x39 Output/Release/Obj/twi_scanner_pca10056/bsp.o
+ .text.libc     0x0000000000000000        0x0 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .data.libc     0x0000000000000000        0x0 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .bss.libc      0x0000000000000000        0x0 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.__int64_umod
+                0x0000000000000000        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.__int64_asr
+                0x0000000000000000       0x26 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.__int64_div
+                0x0000000000000000       0x44 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.__int64_lsl
+                0x0000000000000000       0x26 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.__int64_lsr
+                0x0000000000000000       0x26 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.__int64_mod
+                0x0000000000000000       0x46 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.__int64_udivmod
+                0x0000000000000000       0xce C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.__aeabi_ldivmod
+                0x0000000000000000       0x58 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.__int64_cmp
+                0x0000000000000000       0x1a C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.__int64_ucmp
+                0x0000000000000000       0x18 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.muldi3
+                0x0000000000000000       0x18 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.__int32_umod
+                0x0000000000000000        0xa C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.__int32_div
+                0x0000000000000000      0x216 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .rodata.libc.__aeabi_idiv
+                0x0000000000000000        0xa C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.__uint32_div
+                0x0000000000000000       0xf6 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .rodata.libc.__aeabi_uidiv
+                0x0000000000000000       0x46 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.__int32_mod
+                0x0000000000000000        0xa C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.__aeabi_uidivmod
+                0x0000000000000000       0x2a C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.__aeabi_idivmod
+                0x0000000000000000       0x4a C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.ctl_count_leading_zeros_32
+                0x0000000000000000       0x34 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.ctl_count_leading_zeros_16
+                0x0000000000000000       0x32 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.__gnu_thumb1_case_shi
+                0x0000000000000000       0x14 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.__gnu_thumb1_case_si
+                0x0000000000000000       0x18 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.__gnu_thumb1_case_sqi
+                0x0000000000000000       0x14 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.__gnu_thumb1_case_uhi
+                0x0000000000000000       0x14 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .text.libc.__gnu_thumb1_case_uqi
+                0x0000000000000000       0x14 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .ARM.attributes
+                0x0000000000000000       0x20 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
  .text          0x0000000000000000        0x0 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .data          0x0000000000000000        0x0 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .bss           0x0000000000000000        0x0 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
@@ -4764,63 +6052,6 @@ Discarded input sections
  .comment       0x0000000000000000       0x26 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc.o)
  .ARM.attributes
                 0x0000000000000000       0x34 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc.o)
- .text.libc     0x0000000000000000        0x0 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .data.libc     0x0000000000000000        0x0 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .bss.libc      0x0000000000000000        0x0 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.__int64_umod
-                0x0000000000000000        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.__int64_asr
-                0x0000000000000000       0x26 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.__int64_div
-                0x0000000000000000       0x44 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.__int64_lsl
-                0x0000000000000000       0x26 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.__int64_lsr
-                0x0000000000000000       0x26 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.__int64_mod
-                0x0000000000000000       0x46 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.__int64_udivmod
-                0x0000000000000000       0xce C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.__aeabi_ldivmod
-                0x0000000000000000       0x58 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.__int64_cmp
-                0x0000000000000000       0x1a C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.__int64_ucmp
-                0x0000000000000000       0x18 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.muldi3
-                0x0000000000000000       0x18 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.__int32_umod
-                0x0000000000000000        0xa C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.__int32_div
-                0x0000000000000000      0x216 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .rodata.libc.__aeabi_idiv
-                0x0000000000000000        0xa C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.__uint32_div
-                0x0000000000000000       0xf6 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .rodata.libc.__aeabi_uidiv
-                0x0000000000000000       0x46 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.__int32_mod
-                0x0000000000000000        0xa C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.__aeabi_uidivmod
-                0x0000000000000000       0x2a C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.__aeabi_idivmod
-                0x0000000000000000       0x4a C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.ctl_count_leading_zeros_32
-                0x0000000000000000       0x34 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.ctl_count_leading_zeros_16
-                0x0000000000000000       0x32 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.__gnu_thumb1_case_shi
-                0x0000000000000000       0x14 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.__gnu_thumb1_case_si
-                0x0000000000000000       0x18 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.__gnu_thumb1_case_sqi
-                0x0000000000000000       0x14 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.__gnu_thumb1_case_uhi
-                0x0000000000000000       0x14 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .text.libc.__gnu_thumb1_case_uqi
-                0x0000000000000000       0x14 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .ARM.attributes
-                0x0000000000000000       0x20 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
  .text          0x0000000000000000        0x0 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
  .data          0x0000000000000000        0x0 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
  .bss           0x0000000000000000        0x0 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libdebugio.o)
@@ -6362,6 +7593,9 @@ LOAD Output/Release/Obj/twi_scanner_pca10056/nrf_fprintf_format.o
 LOAD Output/Release/Obj/twi_scanner_pca10056/nrf_memobj.o
 LOAD Output/Release/Obj/twi_scanner_pca10056/nrf_ringbuf.o
 LOAD Output/Release/Obj/twi_scanner_pca10056/nrf_strerror.o
+LOAD Output/Release/Obj/twi_scanner_pca10056/app_button.o
+LOAD Output/Release/Obj/twi_scanner_pca10056/fds.o
+LOAD Output/Release/Obj/twi_scanner_pca10056/nrf_pwr_mgmt.o
 LOAD Output/Release/Obj/twi_scanner_pca10056/nrf_drv_twi.o
 LOAD Output/Release/Obj/twi_scanner_pca10056/nrf_drv_uart.o
 LOAD Output/Release/Obj/twi_scanner_pca10056/nrfx_atomic.o
@@ -6379,6 +7613,13 @@ LOAD Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_printf.o
 LOAD Output/Release/Obj/twi_scanner_pca10056/ses_startup_nrf52840.o
 LOAD Output/Release/Obj/twi_scanner_pca10056/ses_startup_nrf_common.o
 LOAD Output/Release/Obj/twi_scanner_pca10056/system_nrf52840.o
+LOAD Output/Release/Obj/twi_scanner_pca10056/ble_advdata.o
+LOAD Output/Release/Obj/twi_scanner_pca10056/ble_conn_params.o
+LOAD Output/Release/Obj/twi_scanner_pca10056/ble_conn_state.o
+LOAD Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o
+LOAD Output/Release/Obj/twi_scanner_pca10056/ble_advertising.o
+LOAD Output/Release/Obj/twi_scanner_pca10056/bsp_btn_ble.o
+LOAD Output/Release/Obj/twi_scanner_pca10056/bsp.o
 LOAD C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a
 LOAD C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a
 LOAD C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libdebugio_v7em_fpv4_sp_d16_hard_t_le_eabi.a
@@ -6484,7 +7725,7 @@ LOAD linker stubs
  .comment       0x0000000000000025       0x26 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .comment       0x0000000000000025       0x26 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.50a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libvfprintf.o)
 
-.debug_line     0x0000000000000000    0x12e73
+.debug_line     0x0000000000000000    0x13378
  .debug_line    0x0000000000000000      0x221 Output/Release/Obj/twi_scanner_pca10056/thumb_crt0.o
  .debug_line    0x0000000000000221      0x681 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_serial.o
  .debug_line    0x00000000000008a2      0x92c Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_uart.o
@@ -6508,14 +7749,14 @@ LOAD linker stubs
  .debug_line    0x000000000000ad2d     0x16e6 Output/Release/Obj/twi_scanner_pca10056/nrfx_uarte.o
  .debug_line    0x000000000000c413     0x1c3b Output/Release/Obj/twi_scanner_pca10056/nrfx_gpiote.o
  .debug_line    0x000000000000e04e      0xf26 Output/Release/Obj/twi_scanner_pca10056/nrfx_timer.o
- .debug_line    0x000000000000ef74     0x2114 Output/Release/Obj/twi_scanner_pca10056/main.o
- .debug_line    0x0000000000011088     0x1284 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT.o
- .debug_line    0x000000000001230c      0x45c Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
- .debug_line    0x0000000000012768       0x9b Output/Release/Obj/twi_scanner_pca10056/ses_startup_nrf52840.o
- .debug_line    0x0000000000012803       0xba Output/Release/Obj/twi_scanner_pca10056/ses_startup_nrf_common.o
- .debug_line    0x00000000000128bd      0x5b6 Output/Release/Obj/twi_scanner_pca10056/system_nrf52840.o
+ .debug_line    0x000000000000ef74     0x2619 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_line    0x000000000001158d     0x1284 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT.o
+ .debug_line    0x0000000000012811      0x45c Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
+ .debug_line    0x0000000000012c6d       0x9b Output/Release/Obj/twi_scanner_pca10056/ses_startup_nrf52840.o
+ .debug_line    0x0000000000012d08       0xba Output/Release/Obj/twi_scanner_pca10056/ses_startup_nrf_common.o
+ .debug_line    0x0000000000012dc2      0x5b6 Output/Release/Obj/twi_scanner_pca10056/system_nrf52840.o
 
-.debug_info     0x0000000000000000    0x1f8be
+.debug_info     0x0000000000000000    0x1f8f4
  .debug_info    0x0000000000000000       0x22 Output/Release/Obj/twi_scanner_pca10056/thumb_crt0.o
  .debug_info    0x0000000000000022      0x77b Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_serial.o
  .debug_info    0x000000000000079d     0x1161 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_uart.o
@@ -6539,12 +7780,12 @@ LOAD linker stubs
  .debug_info    0x0000000000010d64     0x3330 Output/Release/Obj/twi_scanner_pca10056/nrfx_uarte.o
  .debug_info    0x0000000000014094     0x36fd Output/Release/Obj/twi_scanner_pca10056/nrfx_gpiote.o
  .debug_info    0x0000000000017791     0x1b63 Output/Release/Obj/twi_scanner_pca10056/nrfx_timer.o
- .debug_info    0x00000000000192f4     0x371c Output/Release/Obj/twi_scanner_pca10056/main.o
- .debug_info    0x000000000001ca10     0x15fd Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT.o
- .debug_info    0x000000000001e00d      0x2cb Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
- .debug_info    0x000000000001e2d8       0x23 Output/Release/Obj/twi_scanner_pca10056/ses_startup_nrf52840.o
- .debug_info    0x000000000001e2fb       0x23 Output/Release/Obj/twi_scanner_pca10056/ses_startup_nrf_common.o
- .debug_info    0x000000000001e31e     0x15a0 Output/Release/Obj/twi_scanner_pca10056/system_nrf52840.o
+ .debug_info    0x00000000000192f4     0x3752 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_info    0x000000000001ca46     0x15fd Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT.o
+ .debug_info    0x000000000001e043      0x2cb Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
+ .debug_info    0x000000000001e30e       0x23 Output/Release/Obj/twi_scanner_pca10056/ses_startup_nrf52840.o
+ .debug_info    0x000000000001e331       0x23 Output/Release/Obj/twi_scanner_pca10056/ses_startup_nrf_common.o
+ .debug_info    0x000000000001e354     0x15a0 Output/Release/Obj/twi_scanner_pca10056/system_nrf52840.o
 
 .debug_abbrev   0x0000000000000000     0x4ee8
  .debug_abbrev  0x0000000000000000       0x12 Output/Release/Obj/twi_scanner_pca10056/thumb_crt0.o
@@ -6637,63 +7878,63 @@ LOAD linker stubs
  .debug_aranges
                 0x0000000000000b80       0x38 Output/Release/Obj/twi_scanner_pca10056/system_nrf52840.o
 
-.debug_str      0x0000000000000000    0x97d83
+.debug_str      0x0000000000000000    0xa17aa
  .debug_str     0x0000000000000000       0xa7 Output/Release/Obj/twi_scanner_pca10056/thumb_crt0.o
- .debug_str     0x00000000000000a7    0x830dd Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_serial.o
-                                      0x84493 (size before relaxing)
- .debug_str     0x0000000000083184     0x4cd2 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_uart.o
-                                      0x88bea (size before relaxing)
- .debug_str     0x0000000000087e56      0x133 Output/Release/Obj/twi_scanner_pca10056/nrf_log_default_backends.o
-                                      0x84236 (size before relaxing)
- .debug_str     0x0000000000087f89     0x14b2 Output/Release/Obj/twi_scanner_pca10056/nrf_log_frontend.o
-                                      0x85838 (size before relaxing)
- .debug_str     0x000000000008943b      0x2f0 Output/Release/Obj/twi_scanner_pca10056/nrf_log_str_formatter.o
-                                      0x84543 (size before relaxing)
- .debug_str     0x000000000008972b      0x13b Output/Release/Obj/twi_scanner_pca10056/app_error.o
+ .debug_str     0x00000000000000a7    0x83f01 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_serial.o
+                                      0x852d8 (size before relaxing)
+ .debug_str     0x0000000000083fa8     0x4cd2 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_uart.o
+                                      0x89a2f (size before relaxing)
+ .debug_str     0x0000000000088c7a      0x133 Output/Release/Obj/twi_scanner_pca10056/nrf_log_default_backends.o
+                                      0x8507b (size before relaxing)
+ .debug_str     0x0000000000088dad     0x14b2 Output/Release/Obj/twi_scanner_pca10056/nrf_log_frontend.o
+                                      0x8667d (size before relaxing)
+ .debug_str     0x000000000008a25f      0x2f0 Output/Release/Obj/twi_scanner_pca10056/nrf_log_str_formatter.o
+                                      0x85388 (size before relaxing)
+ .debug_str     0x000000000008a54f      0x13b Output/Release/Obj/twi_scanner_pca10056/app_error.o
                                       0x7614f (size before relaxing)
- .debug_str     0x0000000000089866       0xdc Output/Release/Obj/twi_scanner_pca10056/app_error_weak.o
-                                      0x84907 (size before relaxing)
- .debug_str     0x0000000000089942      0x405 Output/Release/Obj/twi_scanner_pca10056/app_util_platform.o
+ .debug_str     0x000000000008a68a       0xdc Output/Release/Obj/twi_scanner_pca10056/app_error_weak.o
+                                      0x8574c (size before relaxing)
+ .debug_str     0x000000000008a766      0x405 Output/Release/Obj/twi_scanner_pca10056/app_util_platform.o
                                       0x769a9 (size before relaxing)
- .debug_str     0x0000000000089d47      0x6d1 Output/Release/Obj/twi_scanner_pca10056/nrf_atomic.o
-                                      0x80b66 (size before relaxing)
- .debug_str     0x000000000008a418      0x157 Output/Release/Obj/twi_scanner_pca10056/nrf_balloc.o
-                                      0x842c4 (size before relaxing)
- .debug_str     0x000000000008a56f      0x125 Output/Release/Obj/twi_scanner_pca10056/nrf_fprintf.o
-                                      0x80702 (size before relaxing)
- .debug_str     0x000000000008a694      0x527 Output/Release/Obj/twi_scanner_pca10056/nrf_fprintf_format.o
-                                      0x80bfc (size before relaxing)
- .debug_str     0x000000000008abbb      0x1c4 Output/Release/Obj/twi_scanner_pca10056/nrf_memobj.o
-                                      0x82640 (size before relaxing)
- .debug_str     0x000000000008ad7f       0xf3 Output/Release/Obj/twi_scanner_pca10056/nrf_ringbuf.o
-                                      0x80f45 (size before relaxing)
- .debug_str     0x000000000008ae72     0x1d15 Output/Release/Obj/twi_scanner_pca10056/nrf_drv_twi.o
-                                      0x860b7 (size before relaxing)
- .debug_str     0x000000000008cb87      0x46d Output/Release/Obj/twi_scanner_pca10056/nrf_drv_uart.o
-                                      0x8565c (size before relaxing)
- .debug_str     0x000000000008cff4      0x634 Output/Release/Obj/twi_scanner_pca10056/nrfx_prs.o
-                                      0x877bc (size before relaxing)
- .debug_str     0x000000000008d628     0x11dd Output/Release/Obj/twi_scanner_pca10056/nrfx_twim.o
-                                      0x894b3 (size before relaxing)
- .debug_str     0x000000000008e805      0x6c7 Output/Release/Obj/twi_scanner_pca10056/nrfx_uart.o
-                                      0x889cc (size before relaxing)
- .debug_str     0x000000000008eecc      0x94b Output/Release/Obj/twi_scanner_pca10056/nrfx_uarte.o
-                                      0x88e5f (size before relaxing)
- .debug_str     0x000000000008f817     0x16d7 Output/Release/Obj/twi_scanner_pca10056/nrfx_gpiote.o
-                                      0x8944b (size before relaxing)
- .debug_str     0x0000000000090eee     0x100d Output/Release/Obj/twi_scanner_pca10056/nrfx_timer.o
-                                      0x88901 (size before relaxing)
- .debug_str     0x0000000000091efb     0x3e86 Output/Release/Obj/twi_scanner_pca10056/main.o
-                                      0x8ed9e (size before relaxing)
- .debug_str     0x0000000000095d81      0xd33 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT.o
-                                      0x79aba (size before relaxing)
- .debug_str     0x0000000000096ab4      0xbbc Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
-                                      0x7a108 (size before relaxing)
- .debug_str     0x0000000000097670       0x5d Output/Release/Obj/twi_scanner_pca10056/ses_startup_nrf52840.o
+ .debug_str     0x000000000008ab6b      0x6d1 Output/Release/Obj/twi_scanner_pca10056/nrf_atomic.o
+                                      0x819ab (size before relaxing)
+ .debug_str     0x000000000008b23c      0x157 Output/Release/Obj/twi_scanner_pca10056/nrf_balloc.o
+                                      0x85109 (size before relaxing)
+ .debug_str     0x000000000008b393      0x125 Output/Release/Obj/twi_scanner_pca10056/nrf_fprintf.o
+                                      0x81547 (size before relaxing)
+ .debug_str     0x000000000008b4b8      0x527 Output/Release/Obj/twi_scanner_pca10056/nrf_fprintf_format.o
+                                      0x81a41 (size before relaxing)
+ .debug_str     0x000000000008b9df      0x1c4 Output/Release/Obj/twi_scanner_pca10056/nrf_memobj.o
+                                      0x83485 (size before relaxing)
+ .debug_str     0x000000000008bba3       0xf3 Output/Release/Obj/twi_scanner_pca10056/nrf_ringbuf.o
+                                      0x81d8a (size before relaxing)
+ .debug_str     0x000000000008bc96     0x1d15 Output/Release/Obj/twi_scanner_pca10056/nrf_drv_twi.o
+                                      0x86efc (size before relaxing)
+ .debug_str     0x000000000008d9ab      0x46d Output/Release/Obj/twi_scanner_pca10056/nrf_drv_uart.o
+                                      0x864a1 (size before relaxing)
+ .debug_str     0x000000000008de18      0x634 Output/Release/Obj/twi_scanner_pca10056/nrfx_prs.o
+                                      0x88601 (size before relaxing)
+ .debug_str     0x000000000008e44c     0x11dd Output/Release/Obj/twi_scanner_pca10056/nrfx_twim.o
+                                      0x8a2f8 (size before relaxing)
+ .debug_str     0x000000000008f629      0x6c7 Output/Release/Obj/twi_scanner_pca10056/nrfx_uart.o
+                                      0x89811 (size before relaxing)
+ .debug_str     0x000000000008fcf0      0x94b Output/Release/Obj/twi_scanner_pca10056/nrfx_uarte.o
+                                      0x89ca4 (size before relaxing)
+ .debug_str     0x000000000009063b     0x16d7 Output/Release/Obj/twi_scanner_pca10056/nrfx_gpiote.o
+                                      0x8a290 (size before relaxing)
+ .debug_str     0x0000000000091d12     0x100d Output/Release/Obj/twi_scanner_pca10056/nrfx_timer.o
+                                      0x89746 (size before relaxing)
+ .debug_str     0x0000000000092d1f     0xca89 Output/Release/Obj/twi_scanner_pca10056/main.o
+                                      0x9880d (size before relaxing)
+ .debug_str     0x000000000009f7a8      0xd33 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT.o
+                                      0x7a8ff (size before relaxing)
+ .debug_str     0x00000000000a04db      0xbbc Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
+                                      0x7af4d (size before relaxing)
+ .debug_str     0x00000000000a1097       0x5d Output/Release/Obj/twi_scanner_pca10056/ses_startup_nrf52840.o
                                          0xb1 (size before relaxing)
- .debug_str     0x00000000000976cd       0x5f Output/Release/Obj/twi_scanner_pca10056/ses_startup_nrf_common.o
+ .debug_str     0x00000000000a10f4       0x5f Output/Release/Obj/twi_scanner_pca10056/ses_startup_nrf_common.o
                                          0xb3 (size before relaxing)
- .debug_str     0x000000000009772c      0x657 Output/Release/Obj/twi_scanner_pca10056/system_nrf52840.o
+ .debug_str     0x00000000000a1153      0x657 Output/Release/Obj/twi_scanner_pca10056/system_nrf52840.o
                                       0x75180 (size before relaxing)
 
 .debug_ranges   0x0000000000000000     0x2498
@@ -6782,7 +8023,7 @@ LOAD linker stubs
  .debug_loc     0x000000000000f618       0x64 Output/Release/Obj/twi_scanner_pca10056/system_nrf52840.o
 
 .debug_pubnames
-                0x0000000000000000     0x65d7
+                0x0000000000000000     0x668c
  .debug_pubnames
                 0x0000000000000000       0x31 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_serial.o
  .debug_pubnames
@@ -6828,13 +8069,13 @@ LOAD linker stubs
  .debug_pubnames
                 0x0000000000004d37      0x816 Output/Release/Obj/twi_scanner_pca10056/nrfx_timer.o
  .debug_pubnames
-                0x000000000000554d      0xb7b Output/Release/Obj/twi_scanner_pca10056/main.o
+                0x000000000000554d      0xc30 Output/Release/Obj/twi_scanner_pca10056/main.o
  .debug_pubnames
-                0x00000000000060c8      0x3c3 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT.o
+                0x000000000000617d      0x3c3 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT.o
  .debug_pubnames
-                0x000000000000648b       0x42 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
+                0x0000000000006540       0x42 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
  .debug_pubnames
-                0x00000000000064cd      0x10a Output/Release/Obj/twi_scanner_pca10056/system_nrf52840.o
+                0x0000000000006582      0x10a Output/Release/Obj/twi_scanner_pca10056/system_nrf52840.o
 
 .debug_pubtypes
                 0x0000000000000000     0x3908
@@ -6891,7 +8132,7 @@ LOAD linker stubs
  .debug_pubtypes
                 0x000000000000374d      0x1bb Output/Release/Obj/twi_scanner_pca10056/system_nrf52840.o
 
-.debug_macro    0x0000000000000000     0x6436
+.debug_macro    0x0000000000000000     0x7ab9
  .debug_macro   0x0000000000000000      0x225 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_serial.o
  .debug_macro   0x0000000000000225       0x22 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_serial.o
  .debug_macro   0x0000000000000247       0x72 Output/Release/Obj/twi_scanner_pca10056/nrf_log_backend_serial.o
@@ -6968,18 +8209,49 @@ LOAD linker stubs
  .debug_macro   0x00000000000044f3      0x2b9 Output/Release/Obj/twi_scanner_pca10056/nrfx_timer.o
  .debug_macro   0x00000000000047ac       0x22 Output/Release/Obj/twi_scanner_pca10056/nrfx_timer.o
  .debug_macro   0x00000000000047ce       0x10 Output/Release/Obj/twi_scanner_pca10056/nrfx_timer.o
- .debug_macro   0x00000000000047de      0x3f0 Output/Release/Obj/twi_scanner_pca10056/main.o
- .debug_macro   0x0000000000004bce      0x7d0 Output/Release/Obj/twi_scanner_pca10056/main.o
- .debug_macro   0x000000000000539e       0x94 Output/Release/Obj/twi_scanner_pca10056/main.o
- .debug_macro   0x0000000000005432      0x40b Output/Release/Obj/twi_scanner_pca10056/main.o
- .debug_macro   0x000000000000583d       0xcc Output/Release/Obj/twi_scanner_pca10056/main.o
- .debug_macro   0x0000000000005909       0x10 Output/Release/Obj/twi_scanner_pca10056/main.o
- .debug_macro   0x0000000000005919      0x3b3 Output/Release/Obj/twi_scanner_pca10056/main.o
- .debug_macro   0x0000000000005ccc      0x19f Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT.o
- .debug_macro   0x0000000000005e6b       0x47 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT.o
- .debug_macro   0x0000000000005eb2      0x115 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT.o
- .debug_macro   0x0000000000005fc7      0x18a Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
- .debug_macro   0x0000000000006151       0x86 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
- .debug_macro   0x00000000000061d7       0xa6 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
- .debug_macro   0x000000000000627d       0xc8 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
- .debug_macro   0x0000000000006345       0xf1 Output/Release/Obj/twi_scanner_pca10056/system_nrf52840.o
+ .debug_macro   0x00000000000047de      0x659 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000004e37      0x7d0 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000005607       0x94 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x000000000000569b      0x40b Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000005aa6       0xcc Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000005b72       0x10 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000005b82      0x3b3 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000005f35       0x16 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000005f4b       0x40 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000005f8b       0xb2 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x000000000000603d      0x13a Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000006177      0x204 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x000000000000637b      0x5ad Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000006928       0x8d Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x00000000000069b5      0x205 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000006bba       0x1c Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000006bd6       0xee Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000006cc4       0x3c Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000006d00      0x343 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000007043       0x70 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x00000000000070b3       0x11 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x00000000000070c4       0x1c Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x00000000000070e0       0x16 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x00000000000070f6       0x3a Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000007130       0x16 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000007146       0x31 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000007177       0x16 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x000000000000718d       0x48 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x00000000000071d5       0x22 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x00000000000071f7       0x1c Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000007213       0x10 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000007223       0x88 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x00000000000072ab       0x42 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x00000000000072ed       0x10 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x00000000000072fd       0x16 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x0000000000007313       0x1c Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x000000000000732f       0x10 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x000000000000733f       0x10 Output/Release/Obj/twi_scanner_pca10056/main.o
+ .debug_macro   0x000000000000734f      0x19f Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT.o
+ .debug_macro   0x00000000000074ee       0x47 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT.o
+ .debug_macro   0x0000000000007535      0x115 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT.o
+ .debug_macro   0x000000000000764a      0x18a Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
+ .debug_macro   0x00000000000077d4       0x86 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
+ .debug_macro   0x000000000000785a       0xa6 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
+ .debug_macro   0x0000000000007900       0xc8 Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o
+ .debug_macro   0x00000000000079c8       0xf1 Output/Release/Obj/twi_scanner_pca10056/system_nrf52840.o
