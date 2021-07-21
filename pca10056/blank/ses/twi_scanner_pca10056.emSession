@@ -65,7 +65,7 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="14" y="851" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="main.c" selected="1" top="830" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="97" y="1016" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="main.c" selected="1" top="1007" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="8" y="278" useTextEdit="1" openedFrom="C:/nrf_sdk/examples/My Projects/HR_CLICK_5_TESTING/pca10056/blank/ses/main.c" useBinaryEdit="0" left="0" path="hr5_drv.h" selected="0" top="282" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="571" useTextEdit="1" openedFrom="C:/nrf_sdk/examples/My Projects/HR_CLICK_5_TESTING/pca10056/blank/ses/main.c" useBinaryEdit="0" left="0" path="../../../../../../integration/nrfx/legacy/nrf_drv_twi.h" selected="0" top="550" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="8" y="130" useTextEdit="1" openedFrom="C:/nrf_sdk/examples/My Projects/HR_CLICK_5_TESTING/pca10056/blank/ses/main.c" useBinaryEdit="0" left="0" path="../../../../../../components/boards/pca10056.h" selected="0" top="114" codecName="Default"/>
@@ -76,13 +76,17 @@
   <SessionOpenFile windowGroup="DockEditLeft" x="8" y="159" useTextEdit="1" openedFrom="C:/nrf_sdk/integration/nrfx/legacy/nrf_drv_gpiote.h" useBinaryEdit="0" left="0" path="../../../../../../modules/nrfx/drivers/include/nrfx_gpiote.h" selected="0" top="139" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" openedFrom="C:/nrf_sdk/modules/nrfx/drivers/include/nrfx_gpiote.h" useBinaryEdit="0" left="0" path="../../../../../../modules/nrfx/hal/nrf_gpio.h" selected="0" top="0" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="28" y="68" useTextEdit="1" openedFrom="C:/nrf_sdk/examples/My Projects/HR_CLICK_5_TESTING/pca10056/blank/ses/main.c" useBinaryEdit="0" left="0" path="../../../../../../modules/nrfx/hal/nrf_gpiote.h" selected="0" top="39" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="56" y="3973" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="3946" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="2449" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="2404" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="17" y="55" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../components/libraries/util/sdk_common.h" selected="0" top="33" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="46" y="62" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../components/libraries/log/src/nrf_log_ctrl_internal.h" selected="0" top="28" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="26" y="80" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../components/libraries/log/nrf_log_ctrl.h" selected="0" top="41" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="50" y="67" useTextEdit="1" openedFrom="C:/nrf_sdk/examples/My Projects/HR_CLICK_5_TESTING/pca10056/blank/ses/main.c" useBinaryEdit="0" left="0" path="../../../../../../components/libraries/log/nrf_log_default_backends.h" selected="0" top="47" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="5" y="57" useTextEdit="1" openedFrom="C:/nrf_sdk/components/libraries/log/nrf_log_default_backends.h" useBinaryEdit="0" left="0" path="nrf_log_default_backends.c" selected="0" top="37" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="71" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="ses_startup_nrf52840.s" selected="0" top="51" codecName=""/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="71" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="ses_startup_nrf52840.s" selected="0" top="51" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="35" y="259" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="nrfx_timer.c" selected="0" top="236" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="71" y="1689" useTextEdit="1" openedFrom="C:/nrf_sdk/examples/My Projects/HR_CLICK_5_TESTING/pca10056/blank/ses/main.c" useBinaryEdit="0" left="0" path="../../../../../../modules/nrfx/mdk/nrf52840.h" selected="0" top="1667" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="21" y="242" useTextEdit="1" openedFrom="C:/nrf_sdk/examples/My Projects/HR_CLICK_5_TESTING/pca10056/blank/ses/main.c" useBinaryEdit="0" left="0" path="SEGGER_RTT.c" selected="0" top="220" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="286" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="thumb_crt0.s" selected="0" top="267" codecName=""/>
  </Files>
  <ARMCrossStudioWindow activeProject="twi_scanner_pca10056" fileDialogDefaultFilter="*.c;*.cpp;*.cxx;*.cc;*.h;*.hpp;*.hxx" autoConnectTarget="J-Link" buildConfiguration="Release" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="C:/nrf_sdk/examples/My Projects/HR_CLICK_5_TESTING/pca10056/blank/ses" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>

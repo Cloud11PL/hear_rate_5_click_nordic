@@ -741,7 +741,9 @@ float peaksIdx[WIDE_BUFFER_SIZE];
 float IRmean, REDmean, IRThreshold;
 uint32_t k;
 float IR_processed[WIDE_BUFFER_SIZE];
+float RED_processed[WIDE_BUFFER_SIZE];
 uint32_t IR_valley_locations[WIDE_BUFFER_SIZE];
+float RED_AC, IR_AC;
 
 void resetBuffers(void) {
   memset(IR_BUFFER, 0, sizeof(IR_BUFFER));
@@ -761,12 +763,12 @@ void IRcalculateDCmean(void) {
     IRmean += IR_BUFFER[k];
   }
 
-  NRF_LOG_INFO("IRMean before %d", IRmean);
-  NRF_LOG_FLUSH();
+  //NRF_LOG_INFO("IRMean before %d", IRmean);
+  //NRF_LOG_FLUSH();
 
   IRmean = IRmean / WIDE_BUFFER_SIZE;
-  NRF_LOG_INFO("IRMean after %d", IRmean);
-  NRF_LOG_FLUSH();
+  //NRF_LOG_INFO("IRMean after %d", IRmean);
+  //NRF_LOG_FLUSH();
 }
 
 void IRremoveDCandInvert(void) {
@@ -870,8 +872,7 @@ int main(void) {
           //  NRF_LOG_FLUSH();
           //}
           IRcalcThreshold();
-          NRF_LOG_INFO("Threshold %d", IRThreshold);
-
+          //NRF_LOG_INFO("Threshold %d", IRThreshold);
 
           uint32_t windowSize = 4;
           uint32_t peakWidth = 0;
@@ -920,7 +921,7 @@ int main(void) {
 
           float numberOfOldPeaks, peakDistance = 0;
 
-          for (i = 1; i < numberOfPeaks; i++) {
+          for (i = -1; i < numberOfPeaks; i++) {
             numberOfOldPeaks = numberOfPeaks;
             numberOfPeaks = i + 1;
 
@@ -937,13 +938,13 @@ int main(void) {
           // resort indices
 
           for (i = 1; i < numberOfPeaks; i++) {
-            tempNumber = IR_processed[i];
+            tempNumber = IR_valley_locations[i];
 
-            for (j = i; j > 0 && tempNumber < IR_processed[j - 1]; j--) {
-              IR_processed[j] = IR_processed[j - 1];
+            for (j = i; j > 0 && tempNumber < IR_valley_locations[j - 1]; j--) {
+              IR_valley_locations[j] = IR_valley_locations[j - 1];
             }
 
-            IR_processed[j] = tempNumber;
+            IR_valley_locations[j] = tempNumber;
           }
 
           //for (int i = 0; i < WIDE_BUFFER_SIZE; i++) {
@@ -951,9 +952,93 @@ int main(void) {
           //  NRF_LOG_FLUSH();
           //}
 
-          numberOfPeaks = min(numberOfPeaks, 15);
+          //numberOfPeaks = min(numberOfPeaks, 15);
 
-          NRF_LOG_INFO("Number of Peaks %d", numberOfPeaks);
+          for (k = 0; k < WIDE_BUFFER_SIZE; k++) {
+            IR_processed[k] = IR_BUFFER[k];
+            RED_processed[k] = RED_BUFFER[k];
+          }
+
+          //NRF_LOG_INFO("Number of Peaks %d", numberOfPeaks);
+
+          float IRexactValleyLocationsCount, ratioAverage = 0;
+          uint32_t iRatioCount = 0;
+          float IRRedRatio[5];
+          float SPOVal = 0;
+          float IRMax, REDMax = -16777216; // x - ir, y - red
+
+          for (k = 0; k < 5; k++) {
+            IRRedRatio[k] = 0;
+          }
+
+          IRexactValleyLocationsCount = numberOfPeaks;
+
+          for (k = 0; k < IRexactValleyLocationsCount; k++) {
+            if (IR_valley_locations[k] > WIDE_BUFFER_SIZE) {
+              SPOVal = -999;
+            }
+          }
+
+          uint32_t REDMax_idx, IRMax_idx;
+
+          for (k = 0; k < IRexactValleyLocationsCount - 1; k++) {
+            REDMax = -16777216;
+            IRMax = -16777216;
+            if (IR_valley_locations[k + 1] - IR_valley_locations[k] > 3) {
+              for (i = IR_valley_locations[k]; i < IR_valley_locations[k + 1]; i++) {
+                if (IR_processed[i] > IRMax) {
+                  IRMax = IR_processed[i];
+                  IRMax_idx = i;
+                }
+                if (RED_processed[i] > REDMax) {
+                  REDMax = RED_processed[i];
+                  REDMax_idx = i;
+                }
+              }
+              RED_AC = (RED_processed[IR_valley_locations[k + 1]] - RED_processed[IR_valley_locations[k]]) * (REDMax_idx - IR_valley_locations[k]); //red
+              RED_AC = RED_processed[IR_valley_locations[k]] + RED_AC / (IR_valley_locations[k + 1] - IR_valley_locations[k]);
+              RED_AC = RED_processed[REDMax_idx] - RED_AC;
+              // subracting linear DC compoenents from raw
+              IR_AC = (IR_processed[IR_valley_locations[k + 1]] - IR_processed[IR_valley_locations[k]]) * (IRMax_idx - IR_valley_locations[k]); // ir
+              IR_AC = IR_processed[IR_valley_locations[k]] + IR_AC / (IR_valley_locations[k + 1] - IR_valley_locations[k]);
+              IR_AC = IR_processed[REDMax_idx] - IR_AC; // subracting linear DC compoenents from raw
+
+              NRF_LOG_INFO("%d;%d;%d;%d", IR_AC, RED_AC, IRMax, REDMax);
+              NRF_LOG_FLUSH();
+
+              if (IR_AC > 0 && RED_AC > 0) {
+                IRRedRatio[iRatioCount] = RED_AC * IRMax * 100 / IR_AC * REDMax;
+                iRatioCount++;
+              }
+
+              //n_nume = (RED_AC * IRMax) >> 7;           //prepare X100 to preserve floating value
+              //n_denom = (IR_AC * REDMax) >> 7;
+              //if (n_denom > 0 && iRatioCount < 5 && n_nume != 0) {
+              //  an_ratio[iRatioCount] = (n_nume * 100) / n_denom; //formular is ( RED_AC *IRMax) / ( IR_AC *REDMax) ;
+
+              //}
+            }
+          }
+
+          uint32_t middleIdx;
+
+          middleIdx = iRatioCount / 2;
+
+          if (middleIdx > 1) {
+            ratioAverage = (IRRedRatio[middleIdx - 1] + IRRedRatio[middleIdx]) / 2; // use median
+          } else {
+            ratioAverage = IRRedRatio[middleIdx];
+          }
+
+          //NRF_LOG_INFO("ratio avg %d", ratioAverage);
+          //if (ratioAverage > 2 && ratioAverage < 184) {
+          //  // n_spo2_calc= uch_spo2_table[ratioAverage] ;
+          //  SPOVal = uch_spo2_table[ratioAverage];
+          //  //pch_spo2_valid = 1; //  float_SPO2 =  -45.060*ratioAverage* ratioAverage/10000 + 30.354 *ratioAverage/100 + 94.845 ;  // for comparison with table
+          //} else {
+          //  SPOVal = -999; // do not use SPO2 since signal IRRedRatio is out of range
+          //}
+
           //NRF_LOG_INFO("Number of calculatedHR %d", calculatedHR);
 
           //// TO MOVE
