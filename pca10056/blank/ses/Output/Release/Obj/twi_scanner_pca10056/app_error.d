@@ -18,7 +18,7 @@ Output/Release/Obj/twi_scanner_pca10056/app_error.o: \
  c\:\nrf_sdk\components\libraries\util\app_error.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdbool.h \
  c\:\nrf_sdk\components\libraries\util\sdk_errors.h \
- c\:\nrf_sdk\components\drivers_nrf\nrf_soc_nosd\nrf_error.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_error.h \
  c\:\nrf_sdk\components\libraries\util\nordic_common.h \
  c\:\nrf_sdk\components\libraries\util\app_error_weak.h \
  c\:\nrf_sdk\components\libraries\util\nordic_common.h \

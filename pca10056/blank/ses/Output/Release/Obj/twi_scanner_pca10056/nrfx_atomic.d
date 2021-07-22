@@ -30,17 +30,26 @@ Output/Release/Obj/twi_scanner_pca10056/nrfx_atomic.o: \
  c\:\nrf_sdk\components\libraries\util\app_util.h \
  c\:\nrf_sdk\modules\nrfx\mdk\compiler_abstraction.h \
  c\:\nrf_sdk\components\libraries\util\nordic_common.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf52\nrf_mbr.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_svc.h \
  c\:\nrf_sdk\components\libraries\util\nordic_common.h \
  c\:\nrf_sdk\components\libraries\util\app_util_platform.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_soc.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_svc.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_error.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_error_soc.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_nvic.h \
  c\:\nrf_sdk\components\libraries\util\nrf_assert.h \
  c\:\nrf_sdk\components\libraries\util\app_error.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdio.h \
  c\:\nrf_sdk\components\libraries\util\sdk_errors.h \
- c\:\nrf_sdk\components\drivers_nrf\nrf_soc_nosd\nrf_error.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_error.h \
  c\:\nrf_sdk\components\libraries\util\app_error_weak.h \
  c\:\nrf_sdk\modules\nrfx\soc\nrfx_coredep.h \
  c\:\nrf_sdk\modules\nrfx\soc\nrfx_atomic.h \
  c\:\nrf_sdk\components\libraries\util\sdk_errors.h \
  c\:\nrf_sdk\components\libraries\util\sdk_resources.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_sd_def.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_soc.h \
  c\:\nrf_sdk\modules\nrfx\drivers\nrfx_errors.h \
  c\:\nrf_sdk\modules\nrfx\soc\nrfx_atomic_internal.h

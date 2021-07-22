@@ -21,6 +21,8 @@ Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o: \
  c\:\nrf_sdk\modules\nrfx\mdk\nrf51_to_nrf52840.h \
  c\:\nrf_sdk\modules\nrfx\mdk\nrf52_to_nrf52840.h \
  c\:\nrf_sdk\modules\nrfx\mdk\compiler_abstraction.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf52\nrf_mbr.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_svc.h \
  c\:\nrf_sdk\components\softdevice\s140\headers\ble.h \
  c\:\nrf_sdk\components\softdevice\s140\headers\nrf_svc.h \
  c\:\nrf_sdk\components\softdevice\s140\headers\nrf_error.h \
@@ -40,5 +42,5 @@ Output/Release/Obj/twi_scanner_pca10056/ble_srv_common.o: \
  c\:\nrf_sdk\components\libraries\util\app_error.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdio.h \
  c\:\nrf_sdk\components\libraries\util\sdk_errors.h \
- c\:\nrf_sdk\components\drivers_nrf\nrf_soc_nosd\nrf_error.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_error.h \
  c\:\nrf_sdk\components\libraries\util\app_error_weak.h

@@ -18,13 +18,18 @@ Output/Release/Obj/twi_scanner_pca10056/SEGGER_RTT_Syscalls_SES.o: \
  c\:\nrf_sdk\modules\nrfx\mdk\nrf51_to_nrf52840.h \
  c\:\nrf_sdk\modules\nrfx\mdk\nrf52_to_nrf52840.h \
  c\:\nrf_sdk\modules\nrfx\mdk\compiler_abstraction.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_soc.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_svc.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_error.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_error_soc.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_nvic.h \
  c\:\nrf_sdk\components\libraries\util\nrf_assert.h \
  c\:\nrf_sdk\components\libraries\util\app_error.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdio.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/__crossworks.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdbool.h \
  c\:\nrf_sdk\components\libraries\util\sdk_errors.h \
- c\:\nrf_sdk\components\drivers_nrf\nrf_soc_nosd\nrf_error.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_error.h \
  c\:\nrf_sdk\components\libraries\util\nordic_common.h \
  c\:\nrf_sdk\components\libraries\util\app_error_weak.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdarg.h \

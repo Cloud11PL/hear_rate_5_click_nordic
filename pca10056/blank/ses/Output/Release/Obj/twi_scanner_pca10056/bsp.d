@@ -1,6 +1,6 @@
 Output/Release/Obj/twi_scanner_pca10056/bsp.o: \
- C\:\nrf_sdk\components\libraries\bsp\bsp.c \
- C\:\nrf_sdk\components\libraries\bsp\bsp.h \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\bsp.c \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\bsp.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdint.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdbool.h \
  c\:\nrf_sdk\components\boards\boards.h \
@@ -31,21 +31,35 @@ Output/Release/Obj/twi_scanner_pca10056/bsp.o: \
  c\:\nrf_sdk\components\libraries\util\app_util.h \
  c\:\nrf_sdk\modules\nrfx\mdk\compiler_abstraction.h \
  c\:\nrf_sdk\components\libraries\util\nordic_common.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf52\nrf_mbr.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_svc.h \
  c\:\nrf_sdk\components\libraries\util\nordic_common.h \
  c\:\nrf_sdk\components\libraries\util\app_util_platform.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_soc.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_svc.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_error.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_error_soc.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_nvic.h \
  c\:\nrf_sdk\components\libraries\util\nrf_assert.h \
  c\:\nrf_sdk\components\libraries\util\app_error.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdio.h \
  c\:\nrf_sdk\components\libraries\util\sdk_errors.h \
- c\:\nrf_sdk\components\drivers_nrf\nrf_soc_nosd\nrf_error.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_error.h \
  c\:\nrf_sdk\components\libraries\util\app_error_weak.h \
  c\:\nrf_sdk\modules\nrfx\soc\nrfx_coredep.h \
  c\:\nrf_sdk\modules\nrfx\soc\nrfx_atomic.h \
  c\:\nrf_sdk\components\libraries\util\sdk_errors.h \
  c\:\nrf_sdk\components\libraries\util\sdk_resources.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_sd_def.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_soc.h \
  c\:\nrf_sdk\modules\nrfx\drivers\nrfx_errors.h \
  c\:\nrf_sdk\components\boards\pca10056.h \
- c\:\nrf_sdk\components\libraries\button\app_button.h \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\app_button.h \
  c\:\nrf_sdk\components\libraries\util\app_error.h \
- C\:\nrf_sdk\components\libraries\bsp\bsp_config.h \
- c\:\nrf_sdk\components\libraries\timer\app_timer.h
+ c\:\nrf_sdk\components\libraries\bsp\bsp_config.h \
+ c\:\nrf_sdk\components\libraries\button\app_button.h \
+ c\:\nrf_sdk\components\libraries\timer\app_timer.h \
+ c\:\nrf_sdk\components\libraries\log\nrf_log_instance.h \
+ c\:\nrf_sdk\components\libraries\experimental_section_vars\nrf_section.h \
+ c\:\nrf_sdk\components\libraries\log\nrf_log_types.h \
+ c\:\nrf_sdk\components\libraries\sortlist\nrf_sortlist.h

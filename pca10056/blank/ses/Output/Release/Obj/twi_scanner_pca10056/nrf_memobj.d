@@ -5,7 +5,7 @@ Output/Release/Obj/twi_scanner_pca10056/nrf_memobj.o: \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdlib.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/__crossworks.h \
  c\:\nrf_sdk\components\libraries\util\sdk_errors.h \
- c\:\nrf_sdk\components\drivers_nrf\nrf_soc_nosd\nrf_error.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_error.h \
  c\:\nrf_sdk\components\libraries\balloc\nrf_balloc.h \
  ../config/sdk_config.h \
  c\:\nrf_sdk\components\libraries\util\app_util_platform.h \
@@ -22,6 +22,11 @@ Output/Release/Obj/twi_scanner_pca10056/nrf_memobj.o: \
  c\:\nrf_sdk\modules\nrfx\mdk\nrf51_to_nrf52840.h \
  c\:\nrf_sdk\modules\nrfx\mdk\nrf52_to_nrf52840.h \
  c\:\nrf_sdk\modules\nrfx\mdk\compiler_abstraction.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_soc.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_svc.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_error.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_error_soc.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_nvic.h \
  c\:\nrf_sdk\components\libraries\util\nrf_assert.h \
  c\:\nrf_sdk\components\libraries\util\app_error.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdio.h \
@@ -31,6 +36,8 @@ Output/Release/Obj/twi_scanner_pca10056/nrf_memobj.o: \
  c\:\nrf_sdk\components\libraries\util\app_error_weak.h \
  c\:\nrf_sdk\components\libraries\util\app_util.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stddef.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf52\nrf_mbr.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_svc.h \
  c\:\nrf_sdk\components\libraries\log\nrf_log_instance.h \
  c\:\nrf_sdk\components\libraries\experimental_section_vars\nrf_section.h \
  c\:\nrf_sdk\components\libraries\util\nordic_common.h \

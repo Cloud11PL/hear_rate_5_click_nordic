@@ -15,8 +15,9 @@
       arm_simulator_memory_simulation_parameter="RWX 00000000,00100000,FFFFFFFF;RWX 20000000,00010000,CDCDCDCD"
       arm_target_device_name="nRF52840_xxAA"
       arm_target_interface_type="SWD"
-      c_preprocessor_definitions="BOARD_PCA10056;CONFIG_GPIO_AS_PINRESET;FLOAT_ABI_HARD;INITIALIZE_USER_SECTIONS;NO_VTOR_CONFIG;NRF52840_XXAA;"
-      c_user_include_directories="../../../config ;../../../../../../components;../../../../../../components/boards;../../../../../../components/drivers_nrf/nrf_soc_nosd;../../../../../../components/libraries/atomic;../../../../../../components/libraries/atomic_flags;../../../../../../components/libraries/balloc;../../../../../../components/libraries/button;../../../../../../components/libraries/delay;../../../../../../components/libraries/experimental_section_vars;../../../../../../components/libraries/fds;../../../../../../components/libraries/log;../../../../../../components/libraries/log/src;../../../../../../components/libraries/memobj;../../../../../../components/libraries/ringbuf;../../../../../../components/libraries/strerror;../../../../../../components/libraries/sensorsim;../../../../../../components/libraries/timer;../../../../../../components/libraries/util;../../../../../../components/libraries/pwr_mgmt;../../../../../../components/toolchain/cmsis/include;../../../../../../components/ble/ble_advertising ;../../../../../../components/ble/ble_dtm;../../../../../../components/ble/ble_racp;../../../../../../components/ble/ble_services/ble_ancs_c;../../../../../../components/ble/ble_services/ble_ans_c;../../../../../../components/ble/ble_services/ble_bas;../../../../../../components/ble/ble_services/ble_bas_c;../../../../../../components/ble/ble_services/ble_cscs;../../../../../../components/ble/ble_services/ble_cts_c;../../../../../../components/ble/ble_services/ble_dfu;../../../../../../components/ble/ble_services/ble_dis;../../../../../../components/ble/ble_services/ble_gls;../../../../../../components/ble/ble_services/ble_hids;../../../../../../components/ble/ble_services/ble_hrs;../../../../../../components/ble/ble_services/ble_hrs_c;../../../../../../components/ble/ble_services/ble_hts;../../../../../../components/ble/ble_services/ble_ias;../../../../../../components/ble/ble_services/ble_ias_c;../../../../../../components/ble/ble_services/ble_lbs;../../../../../../components/ble/ble_services/ble_lbs_c;../../../../../../components/ble/ble_services/ble_lls;../../../../../../components/ble/ble_services/ble_nus;../../../../../../components/ble/ble_services/ble_nus_c;../../../../../../components/ble/ble_services/ble_rscs;../../../../../../components/ble/ble_services/ble_rscs_c;../../../../../../components/ble/ble_services/ble_tps;../../../../../../components/ble/common;../../../../../../components/ble/nrf_ble_gatt;../../../../../../components/ble/nrf_ble_qwr;../../../../../../components/ble/peer_manager;../../../../../../components/softdevice/common;../../../../../../components/softdevice/s140/headers;../../../../../../components/softdevice/s140/headers/nrf52;../../..;../../../../../../external/fprintf;../../../../../../external/segger_rtt;../../../../../../integration/nrfx;../../../../../../integration/nrfx/legacy;../../../../../../modules/nrfx;../../../../../../modules/nrfx/drivers/src;../../../../../../modules/nrfx/drivers/include;../../../../../../modules/nrfx/hal;../../../../../../modules/nrfx/mdk;../../../../../../modules/nrfx/soc;../config;hr5_drv"
+      c_preprocessor_definitions="BOARD_PCA10056;FLOAT_ABI_HARD;NO_VTOR_CONFIG;NRF52840_XXAA;APP_TIMER_V2 ;APP_TIMER_V2_RTC1_ENABLED;BLE_STACK_SUPPORT_REQD;BOARD_PCA10056;CONFIG_GPIO_AS_PINRESET;INITIALIZE_USER_SECTIONS;NRF52840_XXAA;NRF_SD_BLE_API_VERSION=7;S140;SOFTDEVICE_PRESENT"
+      c_user_include_directories="../../../config ;../../../../../../components;../../../../../../components/boards;../../../../../../components/libraries/atomic;../../../../../../components/libraries/atomic_fifo;../../../../../../components/libraries/atomic_flags;../../../../../../components/libraries/balloc;../../../../../../components/libraries/button;../../../../../../components/libraries/bsp;../../../../../../components/libraries/crypto;../../../../../../components/libraries/crypto/backend/cc310;../../../../../../components/libraries/crypto/backend/cc310_bl;../../../../../../components/libraries/crypto/backend/cifra;../../../../../../components/libraries/crypto/backend/mbedtls;../../../../../../components/libraries/crypto/backend/micro_ecc;../../../../../../components/libraries/crypto/backend/nrf_hw;../../../../../../components/libraries/crypto/backend/nrf_sw;../../../../../../components/libraries/crypto/backend/oberon;../../../../../../components/libraries/crypto/backend/optiga;../../../../../../components/libraries/nrf_ble_qwr;../../../../../../components/libraries/experimental_section_vars;../../../../../../components/libraries/delay;../../../../../../components/libraries/fds;../../../../../../components/libraries/fstorage;../../../../../../components/libraries/log;../../../../../../components/libraries/log/src;../../../../../../components/libraries/memobj;../../../../../../components/libraries/mutex;../../../../../../components/libraries/ringbuf;../../../../../../components/libraries/strerror;../../../../../../components/libraries/sensorsim;../../../../../../components/libraries/stack_info;../../../../../../components/libraries/sortlist;../../../../../../components/libraries/timer;../../../../../../components/libraries/util;../../../../../../components/libraries/pwr_mgmt;../../../../../../components/toolchain/cmsis/include;../../../../../../components/softdevice/common;../../../../../../components/softdevice/s140/headers;../../../../../../components/softdevice/s140/headers/nrf52;../../../../../../components/ble/ble_advertising;../../../../../../components/ble/ble_dtm;../../../../../../components/ble/ble_racp;../../../../../../components/ble/ble_services/ble_ancs_c;../../../../../../components/ble/ble_services/ble_ans_c;../../../../../../components/ble/ble_services/ble_bas;../../../../../../components/ble/ble_services/ble_bas_c;../../../../../../components/ble/ble_services/ble_cscs;../../../../../../components/ble/ble_services/ble_cts_c;../../../../../../components/ble/ble_services/ble_dfu;../../../../../../components/ble/ble_services/ble_dis;../../../../../../components/ble/ble_services/ble_gls;../../../../../../components/ble/ble_services/ble_hids;../../../../../../components/ble/ble_services/ble_hrs;../../../../../../components/ble/ble_services/ble_hrs_c;../../../../../../components/ble/ble_services/ble_hts;../../../../../../components/ble/ble_services/ble_ias;../../../../../../components/ble/ble_services/ble_ias_c;../../../../../../components/ble/ble_services/ble_lbs;../../../../../../components/ble/ble_services/ble_lbs_c;../../../../../../components/ble/ble_services/ble_lls;../../../../../../components/ble/ble_services/ble_nus;../../../../../../components/ble/ble_services/ble_nus_c;../../../../../../components/ble/ble_services/ble_rscs;../../../../../../components/ble/ble_services/ble_rscs_c;../../../../../../components/ble/ble_services/ble_tps;../../../../../../components/ble/common;../../../../../../components/ble/nrf_ble_gatt;../../../../../../components/ble/nrf_ble_qwr;../../../../../../components/ble/peer_manager;../../..;../../../../../../external/nrf_cc310/include;../../../../../../external/fprintf;../../../../../../external/segger_rtt;../../../../../../integration/nrfx;../../../../../../integration/nrfx/legacy;../../../../../../modules/nrfx;../../../../../../modules/nrfx/drivers/src;../../../../../../modules/nrfx/drivers/include;../../../../../../modules/nrfx/hal;../../../../../../modules/nrfx/mdk;../../../../../../modules/nrfx/soc;../config;hr5_drv"
+      debug_additional_load_file="../../../../../../components/softdevice/s140/hex/s140_nrf52_7.2.0_softdevice.hex"
       debug_register_definition_file="../../../../../../modules/nrfx/mdk/nrf52840.svd"
       debug_start_from_entry_point_symbol="No"
       debug_target_connection="J-Link"
@@ -27,7 +28,7 @@
       linker_printf_width_precision_supported="Yes"
       linker_scanf_fmt_level="long"
       linker_section_placement_file="flash_placement.xml"
-      linker_section_placement_macros="FLASH_PH_START=0x0;FLASH_PH_SIZE=0x100000;RAM_PH_START=0x20000000;RAM_PH_SIZE=0x40000;FLASH_START=0x0;FLASH_SIZE=0x100000;RAM_START=0x20000000;RAM_SIZE=0x40000"
+      linker_section_placement_macros="FLASH_PH_START=0x0;FLASH_PH_SIZE=0x100000;RAM_PH_START=0x20000000;RAM_PH_SIZE=0x40000;FLASH_START=0x27000;FLASH_SIZE=0xd9000;RAM_START=0x20002be0;RAM_SIZE=0x3d420"
       linker_section_placements_segments="FLASH RX 0x0 0x100000;RAM1 RWX 0x20000000 0x40000"
       macros="CMSIS_CONFIG_TOOL=../../../../../../external_tools/cmsisconfig/CMSIS_Configuration_Wizard.jar"
       project_directory=""
@@ -60,8 +61,16 @@
       <file file_name="nrf_ringbuf.c" />
       <file file_name="nrf_strerror.c" />
       <file file_name="app_button.c" />
-      <file file_name="../../../../../../components/libraries/fds/fds.c" />
+      <file file_name="fds.c" />
       <file file_name="nrf_pwr_mgmt.c" />
+      <file file_name="nrf_section_iter.c" />
+      <file file_name="app_timer2.c" />
+      <file file_name="drv_rtc.c" />
+      <file file_name="nrf_atfifo.c" />
+      <file file_name="nrf_atflags.c" />
+      <file file_name="pm_buffer.c" />
+      <file file_name="nrf_fstorage.c" />
+      <file file_name="nrf_fstorage_sd.c" />
     </folder>
     <folder Name="nRF_Drivers">
       <file file_name="nrf_drv_twi.c" />
@@ -79,6 +88,7 @@
       <file file_name="main.c" />
       <file file_name="hr5_drv.c">
         <configuration Name="Release" build_exclude_from_build="Yes" />
+        <configuration Name="Debug" build_exclude_from_build="Yes" />
       </file>
       <file file_name="../config/sdk_config.h" />
     </folder>
@@ -116,6 +126,7 @@
       </folder>
       <file file_name="heartrate5_base.c" />
       <configuration Name="Release" build_exclude_from_build="Yes" />
+      <configuration Name="Debug" build_exclude_from_build="Yes" />
     </folder>
     <folder Name="hr5_drv">
       <file file_name="hr5_drv.h">
@@ -124,27 +135,73 @@
     </folder>
     <folder Name="nRF_BLE">
       <file file_name="../../../../../../components/ble/common/ble_advdata.c" />
-      <file file_name="../../../../../../components/ble/common/ble_advdata.h" />
       <file file_name="../../../../../../components/ble/common/ble_conn_params.c" />
-      <file file_name="../../../../../../components/ble/common/ble_conn_params.h" />
       <file file_name="../../../../../../components/ble/common/ble_conn_state.c" />
-      <file file_name="../../../../../../components/ble/common/ble_conn_state.h" />
-      <file file_name="../../../../../../components/ble/common/ble_date_time.h" />
-      <file file_name="../../../../../../components/ble/common/ble_gatt_db.h" />
-      <file file_name="../../../../../../components/ble/common/ble_sensor_location.h" />
       <file file_name="../../../../../../components/ble/common/ble_srv_common.c" />
-      <file file_name="../../../../../../components/ble/common/ble_srv_common.h" />
       <configuration Name="Release" build_exclude_from_build="No" />
-      <file file_name="ble.h">
-        <configuration Name="Release" build_exclude_from_build="Yes" />
-      </file>
-      <file file_name="nrf_svc.h" />
       <file file_name="../../../../../../components/ble/ble_advertising/ble_advertising.c" />
-      <file file_name="ble_advertising.h" />
+      <file file_name="../../../../../../components/ble/nrf_ble_gatt/nrf_ble_gatt.c" />
+      <file file_name="../../../../../../components/ble/nrf_ble_qwr/nrf_ble_qwr.c" />
+      <file file_name="../../../../../../components/ble/peer_manager/peer_manager_handler.c" />
+      <file file_name="../../../../../../components/ble/peer_manager/peer_manager.c" />
+      <file file_name="../../../../../../components/ble/peer_manager/id_manager.c" />
+      <file file_name="../../../../../../components/ble/peer_manager/peer_data_storage.c" />
+      <file file_name="../../../../../../components/ble/peer_manager/peer_database.c" />
+      <file file_name="../../../../../../components/ble/peer_manager/peer_id.c" />
+      <file file_name="../../../../../../components/ble/peer_manager/security_dispatcher.c" />
+      <file file_name="../../../../../../components/ble/peer_manager/security_manager.c" />
+      <file file_name="../../../../../../components/ble/peer_manager/auth_status_tracker.c" />
+      <file file_name="../../../../../../components/ble/peer_manager/gatt_cache_manager.c" />
+      <file file_name="../../../../../../components/ble/peer_manager/gatts_cache_manager.c" />
+      <file file_name="../../../../../../components/ble/peer_manager/nrf_ble_lesc.c" />
     </folder>
     <folder Name="Board Support">
-      <file file_name="../../../../../../components/libraries/bsp/bsp_btn_ble.c" />
-      <file file_name="../../../../../../components/libraries/bsp/bsp.c" />
+      <file file_name="bsp_btn_ble.c" />
+      <file file_name="bsp.c" />
+    </folder>
+    <folder Name="nRF_SoftDevice">
+      <file file_name="nrf_sdh.c" />
+      <file file_name="nrf_sdh_ble.c" />
+      <file file_name="nrf_sdh_soc.c" />
+    </folder>
+    <folder Name="nRF_Crypto backend CC310">
+      <file file_name="../../../../../../components/libraries/crypto/backend/cc310/cc310_backend_aes.c" />
+      <file file_name="../../../../../../components/libraries/crypto/backend/cc310/cc310_backend_aes_aead.c" />
+      <file file_name="../../../../../../components/libraries/crypto/backend/cc310/cc310_backend_chacha_poly_aead.c" />
+      <file file_name="../../../../../../components/libraries/crypto/backend/cc310/cc310_backend_ecc.c" />
+      <file file_name="../../../../../../components/libraries/crypto/backend/cc310/cc310_backend_ecdh.c" />
+      <file file_name="../../../../../../components/libraries/crypto/backend/cc310/cc310_backend_ecdsa.c" />
+      <file file_name="../../../../../../components/libraries/crypto/backend/cc310/cc310_backend_eddsa.c" />
+      <file file_name="../../../../../../components/libraries/crypto/backend/cc310/cc310_backend_hash.c" />
+      <file file_name="../../../../../../components/libraries/crypto/backend/cc310/cc310_backend_hmac.c" />
+      <file file_name="../../../../../../components/libraries/crypto/backend/cc310/cc310_backend_init.c" />
+      <file file_name="../../../../../../components/libraries/crypto/backend/cc310/cc310_backend_mutex.c" />
+      <file file_name="../../../../../../components/libraries/crypto/backend/cc310/cc310_backend_rng.c" />
+      <file file_name="../../../../../../components/libraries/crypto/backend/cc310/cc310_backend_shared.c" />
+    </folder>
+    <folder Name="nRF_Crypto">
+      <file file_name="../../../../../../components/libraries/crypto/nrf_crypto_aead.c" />
+      <file file_name="../../../../../../components/libraries/crypto/nrf_crypto_aes.c" />
+      <file file_name="../../../../../../components/libraries/crypto/nrf_crypto_aes_shared.c" />
+      <file file_name="../../../../../../components/libraries/crypto/nrf_crypto_ecc.c" />
+      <file file_name="../../../../../../components/libraries/crypto/nrf_crypto_ecdh.c" />
+      <file file_name="../../../../../../components/libraries/crypto/nrf_crypto_ecdsa.c" />
+      <file file_name="../../../../../../components/libraries/crypto/nrf_crypto_eddsa.c" />
+      <file file_name="../../../../../../components/libraries/crypto/nrf_crypto_error.c" />
+      <file file_name="../../../../../../components/libraries/crypto/nrf_crypto_hash.c" />
+      <file file_name="../../../../../../components/libraries/crypto/nrf_crypto_hkdf.c" />
+      <file file_name="../../../../../../components/libraries/crypto/nrf_crypto_hmac.c" />
+      <file file_name="../../../../../../components/libraries/crypto/nrf_crypto_init.c" />
+      <file file_name="../../../../../../components/libraries/crypto/nrf_crypto_rng.c" />
+      <file file_name="../../../../../../components/libraries/crypto/nrf_crypto_shared.c" />
+    </folder>
+    <folder Name="nRF_Crypto backend nRF HW">
+      <file file_name="../../../../../../components/libraries/crypto/backend/nrf_hw/nrf_hw_backend_init.c" />
+      <file file_name="../../../../../../components/libraries/crypto/backend/nrf_hw/nrf_hw_backend_rng.c" />
+      <file file_name="../../../../../../components/libraries/crypto/backend/nrf_hw/nrf_hw_backend_rng_mbedtls.c" />
+    </folder>
+    <folder Name="nrf_cc310">
+      <file file_name="../../../../../../external/nrf_cc310/lib/cortex-m4/hard-float/libnrf_cc310_0.9.13.a" />
     </folder>
   </project>
   <configuration
