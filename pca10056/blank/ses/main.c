@@ -43,6 +43,7 @@
 #include "peer_manager.h"
 #include "peer_manager_handler.h"
 #include "sensorsim.h"
+#include "ble_types.h"
 
 /* TWI instance ID. */
 #if TWI0_ENABLED
@@ -901,13 +902,19 @@ static void ble_stack_init(void) {
 
   // Register a handler for BLE events.
   NRF_SDH_BLE_OBSERVER(m_ble_observer, APP_BLE_OBSERVER_PRIO, ble_evt_handler, NULL);
+  //NRF_LOG_FLUSH();
 }
 
 /**@brief Function for initializing the GATT module.
  */
 static void gatt_init(void) {
-  ret_code_t err_code = nrf_ble_gatt_init(&m_gatt, gatt_evt_handler);
+  ret_code_t err_code;
+
+  err_code = nrf_ble_gatt_init(&m_gatt, gatt_evt_handler);
   APP_ERROR_CHECK(err_code);
+
+  //err_code = nrf_ble_gatt_att_mtu_periph_set(&m_gatt, 64);
+  //APP_ERROR_CHECK(err_code);
 }
 
 ///**@brief Function for putting the chip into sleep mode.
@@ -1221,8 +1228,10 @@ static void conn_params_init(void) {
   cp_init.first_conn_params_update_delay = FIRST_CONN_PARAMS_UPDATE_DELAY;
   cp_init.next_conn_params_update_delay = NEXT_CONN_PARAMS_UPDATE_DELAY;
   cp_init.max_conn_params_update_count = MAX_CONN_PARAMS_UPDATE_COUNT;
+  cp_init.start_on_notify_cccd_handle = BLE_GATT_HANDLE_INVALID;
   //cp_init.start_on_notify_cccd_handle = m_hrs.hrm_handles.cccd_handle;
-  cp_init.disconnect_on_fail = false;
+  cp_init.disconnect_on_fail = true;
+  //cp_init.evt_handler = NULL;
   cp_init.evt_handler = on_conn_params_evt;
   cp_init.error_handler = conn_params_error_handler;
 
@@ -1262,6 +1271,23 @@ static void peer_manager_init(void) {
   APP_ERROR_CHECK(err_code);
 }
 
+/**@brief Function for handling the idle state (main loop).
+ *
+ * @details If there is no pending log operation, then sleep until next the next event occurs.
+ */
+static void idle_state_handle(void)
+{
+    ret_code_t err_code;
+
+    err_code = nrf_ble_lesc_request_handler();
+    APP_ERROR_CHECK(err_code);
+
+    if (NRF_LOG_PROCESS() == false)
+    {
+        //nrf_pwr_mgmt_run();
+    }
+}
+
 int main(void) {
   ret_code_t err_code;
   uint8_t address;
@@ -1271,8 +1297,8 @@ int main(void) {
 
   APP_ERROR_CHECK(NRF_LOG_INIT(get_rtc_counter));
   NRF_LOG_DEFAULT_BACKENDS_INIT();
-  nrf_gpio_cfg_output(BSP_QSPI_IO0_PIN);
-  nrf_gpio_cfg_output(15);
+  //nrf_gpio_cfg_output(BSP_QSPI_IO0_PIN);
+  //nrf_gpio_cfg_output(15);
   gpio_init();
   nrf_delay_ms(500);
 
@@ -1309,7 +1335,7 @@ int main(void) {
       // return
 
       nrf_delay_ms(1);
-
+      idle_state_handle();
       if (adc_rdy) {
         //nrf_delay_ms(10);
         //WIDE_IR_BUFFER[HR_INDEX] = heartrate5_getLed2val();

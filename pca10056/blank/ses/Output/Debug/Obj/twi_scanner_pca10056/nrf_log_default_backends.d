@@ -54,4 +54,5 @@ Output/Debug/Obj/twi_scanner_pca10056/nrf_log_default_backends.o: \
  c\:\nrf_sdk\components\libraries\log\src\nrf_log_internal.h \
  c\:\nrf_sdk\components\libraries\log\nrf_log_types.h \
  c\:\nrf_sdk\components\libraries\util\nrf_assert.h \
+ c\:\nrf_sdk\components\libraries\log\nrf_log_backend_rtt.h \
  c\:\nrf_sdk\components\libraries\log\nrf_log_backend_uart.h

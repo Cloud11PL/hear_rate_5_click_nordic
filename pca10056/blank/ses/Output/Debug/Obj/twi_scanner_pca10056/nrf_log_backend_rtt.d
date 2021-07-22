@@ -28,4 +28,52 @@ Output/Debug/Obj/twi_scanner_pca10056/nrf_log_backend_rtt.o: \
  c\:\nrf_sdk\components\softdevice\s140\headers\nrf52\nrf_mbr.h \
  c\:\nrf_sdk\components\softdevice\s140\headers\nrf_svc.h \
  c\:\nrf_sdk\components\libraries\util\sdk_macros.h \
- c\:\nrf_sdk\components\libraries\util\nrf_assert.h
+ c\:\nrf_sdk\components\libraries\util\nrf_assert.h \
+ c\:\nrf_sdk\components\libraries\log\nrf_log_backend_rtt.h \
+ c\:\nrf_sdk\components\libraries\log\nrf_log_backend_interface.h \
+ c\:\nrf_sdk\components\libraries\memobj\nrf_memobj.h \
+ C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdlib.h \
+ c\:\nrf_sdk\components\libraries\util\sdk_errors.h \
+ c\:\nrf_sdk\components\libraries\balloc\nrf_balloc.h \
+ c\:\nrf_sdk\components\libraries\util\app_util_platform.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_soc.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_svc.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_error.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_error_soc.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_nvic.h \
+ c\:\nrf_sdk\components\libraries\util\app_error.h \
+ C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50a/include/stdio.h \
+ c\:\nrf_sdk\components\libraries\util\app_error_weak.h \
+ c\:\nrf_sdk\components\libraries\util\app_util.h \
+ c\:\nrf_sdk\components\libraries\log\nrf_log_instance.h \
+ c\:\nrf_sdk\components\libraries\experimental_section_vars\nrf_section.h \
+ c\:\nrf_sdk\components\libraries\util\nordic_common.h \
+ c\:\nrf_sdk\components\libraries\log\nrf_log_types.h \
+ c\:\nrf_sdk\components\libraries\log\src\nrf_log_backend_serial.h \
+ c\:\nrf_sdk\components\libraries\log\nrf_log_backend_interface.h \
+ c\:\nrf_sdk\external\fprintf\nrf_fprintf.h \
+ c\:\nrf_sdk\components\libraries\log\nrf_log_str_formatter.h \
+ c\:\nrf_sdk\components\libraries\log\nrf_log_ctrl.h \
+ c\:\nrf_sdk\components\libraries\log\src\nrf_log_ctrl_internal.h \
+ c\:\nrf_sdk\components\libraries\log\src\nrf_log_internal.h \
+ c\:\nrf_sdk\components\libraries\log\nrf_log_types.h \
+ c\:\nrf_sdk\components\libraries\delay\nrf_delay.h \
+ c\:\nrf_sdk\modules\nrfx\nrfx.h \
+ c\:\nrf_sdk\integration\nrfx\nrfx_config.h \
+ c\:\nrf_sdk\modules\nrfx\drivers\nrfx_common.h \
+ c\:\nrf_sdk\modules\nrfx\mdk\nrf_peripherals.h \
+ c\:\nrf_sdk\modules\nrfx\mdk\nrf52840_peripherals.h \
+ c\:\nrf_sdk\integration\nrfx\nrfx_glue.h \
+ c\:\nrf_sdk\integration\nrfx\legacy\apply_old_config.h \
+ c\:\nrf_sdk\modules\nrfx\soc\nrfx_irqs.h \
+ c\:\nrf_sdk\modules\nrfx\soc\nrfx_irqs_nrf52840.h \
+ c\:\nrf_sdk\components\libraries\util\nrf_assert.h \
+ c\:\nrf_sdk\modules\nrfx\soc\nrfx_coredep.h \
+ c\:\nrf_sdk\modules\nrfx\soc\nrfx_atomic.h \
+ c\:\nrf_sdk\components\libraries\util\sdk_resources.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_sd_def.h \
+ c\:\nrf_sdk\components\softdevice\s140\headers\nrf_soc.h \
+ c\:\nrf_sdk\modules\nrfx\drivers\nrfx_errors.h \
+ c\:\nrf_sdk\external\segger_rtt\segger_rtt_conf.h \
+ c\:\nrf_sdk\external\segger_rtt\segger_rtt.h \
+ c\:\nrf_sdk\external\segger_rtt\SEGGER_RTT_Conf.h
