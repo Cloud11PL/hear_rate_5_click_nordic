@@ -18,8 +18,21 @@ SECTIONS
   __STACKSIZE_PROCESS__ = 0;
   __STACKSIZE__ = 8192;
 
-  __vectors_ram_load_start__ = 0x20000000;
-  .vectors_ram 0x20000000 (NOLOAD) : AT(0x20000000)
+  __reserved_ram_load_start__ = 0x20000000;
+  .reserved_ram 0x20000000 (NOLOAD) : AT(0x20000000)
+  {
+    __reserved_ram_start__ = .;
+    *(.reserved_ram .reserved_ram.*)
+    . = MAX(__reserved_ram_start__ + 0x20002be0-0x20000000 , .);
+  }
+  __reserved_ram_end__ = __reserved_ram_start__ + SIZEOF(.reserved_ram);
+  __reserved_ram_size__ = SIZEOF(.reserved_ram);
+  __reserved_ram_load_end__ = __reserved_ram_end__;
+
+  . = ASSERT(__reserved_ram_start__ == __reserved_ram_end__ || (__reserved_ram_end__ - __RAM1_segment_start__) <= __RAM1_segment_size__ , "error: .reserved_ram is too large to fit in RAM1 memory segment");
+
+  __vectors_ram_load_start__ = 0x20002be0;
+  .vectors_ram 0x20002be0 (NOLOAD) : AT(0x20002be0)
   {
     __vectors_ram_start__ = .;
     __app_ram_start__ =   __vectors_ram_start__;
@@ -30,6 +43,7 @@ SECTIONS
   __vectors_ram_load_end__ = __vectors_ram_end__;
 
   . = ASSERT(__vectors_ram_start__ == __vectors_ram_end__ || (__vectors_ram_end__ - __RAM1_segment_start__) <= __RAM1_segment_size__ , "error: .vectors_ram is too large to fit in RAM1 memory segment");
+  . = ASSERT(__reserved_ram_end__ <= __vectors_ram_start__ , "error: section .reserved_ram overlaps absolute placed section .vectors_ram");
 
   __nrf_sections_run_load_start__ = ALIGN(__vectors_ram_end__ , 4);
   .nrf_sections_run ALIGN(__vectors_ram_end__ , 4) (NOLOAD) : AT(ALIGN(__vectors_ram_end__ , 4))
@@ -44,8 +58,21 @@ SECTIONS
 
   . = ASSERT(__nrf_sections_run_start__ == __nrf_sections_run_end__ || (__nrf_sections_run_end__ - __RAM1_segment_start__) <= __RAM1_segment_size__ , "error: .nrf_sections_run is too large to fit in RAM1 memory segment");
 
-  __vectors_load_start__ = 0x0;
-  .vectors 0x0 : AT(0x0)
+  __reserved_flash_load_start__ = 0x0;
+  .reserved_flash 0x0 (NOLOAD) : AT(0x0)
+  {
+    __reserved_flash_start__ = .;
+    *(.reserved_flash .reserved_flash.*)
+    . = MAX(__reserved_flash_start__ + 0x27000-0x0 , .);
+  }
+  __reserved_flash_end__ = __reserved_flash_start__ + SIZEOF(.reserved_flash);
+  __reserved_flash_size__ = SIZEOF(.reserved_flash);
+  __reserved_flash_load_end__ = __reserved_flash_end__;
+
+  . = ASSERT(__reserved_flash_start__ == __reserved_flash_end__ || (__reserved_flash_end__ - __FLASH_segment_start__) <= __FLASH_segment_size__ , "error: .reserved_flash is too large to fit in FLASH memory segment");
+
+  __vectors_load_start__ = 0x27000;
+  .vectors 0x27000 : AT(0x27000)
   {
     __vectors_start__ = .;
     *(.vectors .vectors.*)
@@ -55,6 +82,7 @@ SECTIONS
   __vectors_load_end__ = __vectors_end__;
 
   . = ASSERT(__vectors_start__ == __vectors_end__ || (__vectors_end__ - __FLASH_segment_start__) <= __FLASH_segment_size__ , "error: .vectors is too large to fit in FLASH memory segment");
+  . = ASSERT(__reserved_flash_end__ <= __vectors_start__ , "error: section .reserved_flash overlaps absolute placed section .vectors");
 
   __init_load_start__ = ALIGN(__vectors_end__ , 4);
   .init ALIGN(__vectors_end__ , 4) : AT(ALIGN(__vectors_end__ , 4))
@@ -208,8 +236,106 @@ SECTIONS
 
   . = ASSERT(__nrf_sections_run_end_start__ == __nrf_sections_run_end_end__ || (__nrf_sections_run_end_end__ - __RAM1_segment_start__) <= __RAM1_segment_size__ , "error: .nrf_sections_run_end is too large to fit in RAM1 memory segment");
 
-  __dtors_load_start__ = ALIGN(__log_filter_data_load_start__ + SIZEOF(.log_filter_data) , 4);
-  .dtors ALIGN(__log_filter_data_load_start__ + SIZEOF(.log_filter_data) , 4) : AT(ALIGN(__log_filter_data_load_start__ + SIZEOF(.log_filter_data) , 4))
+  __sdh_soc_observers_load_start__ = ALIGN(__log_filter_data_load_start__ + SIZEOF(.log_filter_data) , 4);
+  .sdh_soc_observers ALIGN(__log_filter_data_load_start__ + SIZEOF(.log_filter_data) , 4) : AT(ALIGN(__log_filter_data_load_start__ + SIZEOF(.log_filter_data) , 4))
+  {
+    __sdh_soc_observers_start__ = .;
+    __start_sdh_soc_observers =   __sdh_soc_observers_start__;
+    KEEP(*(SORT(.sdh_soc_observers*)))
+  }
+  __sdh_soc_observers_end__ = __sdh_soc_observers_start__ + SIZEOF(.sdh_soc_observers);
+  __sdh_soc_observers_size__ = SIZEOF(.sdh_soc_observers);
+  __stop_sdh_soc_observers =   __sdh_soc_observers_end__;
+  __sdh_soc_observers_load_end__ = __sdh_soc_observers_end__;
+
+  . = ASSERT(__sdh_soc_observers_start__ == __sdh_soc_observers_end__ || (__sdh_soc_observers_end__ - __FLASH_segment_start__) <= __FLASH_segment_size__ , "error: .sdh_soc_observers is too large to fit in FLASH memory segment");
+
+  __sdh_ble_observers_load_start__ = ALIGN(__sdh_soc_observers_end__ , 4);
+  .sdh_ble_observers ALIGN(__sdh_soc_observers_end__ , 4) : AT(ALIGN(__sdh_soc_observers_end__ , 4))
+  {
+    __sdh_ble_observers_start__ = .;
+    __start_sdh_ble_observers =   __sdh_ble_observers_start__;
+    KEEP(*(SORT(.sdh_ble_observers*)))
+  }
+  __sdh_ble_observers_end__ = __sdh_ble_observers_start__ + SIZEOF(.sdh_ble_observers);
+  __sdh_ble_observers_size__ = SIZEOF(.sdh_ble_observers);
+  __stop_sdh_ble_observers =   __sdh_ble_observers_end__;
+  __sdh_ble_observers_load_end__ = __sdh_ble_observers_end__;
+
+  . = ASSERT(__sdh_ble_observers_start__ == __sdh_ble_observers_end__ || (__sdh_ble_observers_end__ - __FLASH_segment_start__) <= __FLASH_segment_size__ , "error: .sdh_ble_observers is too large to fit in FLASH memory segment");
+
+  __pwr_mgmt_data_load_start__ = ALIGN(__sdh_ble_observers_end__ , 4);
+  .pwr_mgmt_data ALIGN(__sdh_ble_observers_end__ , 4) : AT(ALIGN(__sdh_ble_observers_end__ , 4))
+  {
+    __pwr_mgmt_data_start__ = .;
+    __start_pwr_mgmt_data =   __pwr_mgmt_data_start__;
+    KEEP(*(SORT(.pwr_mgmt_data*)))
+  }
+  __pwr_mgmt_data_end__ = __pwr_mgmt_data_start__ + SIZEOF(.pwr_mgmt_data);
+  __pwr_mgmt_data_size__ = SIZEOF(.pwr_mgmt_data);
+  __stop_pwr_mgmt_data =   __pwr_mgmt_data_end__;
+  __pwr_mgmt_data_load_end__ = __pwr_mgmt_data_end__;
+
+  . = ASSERT(__pwr_mgmt_data_start__ == __pwr_mgmt_data_end__ || (__pwr_mgmt_data_end__ - __FLASH_segment_start__) <= __FLASH_segment_size__ , "error: .pwr_mgmt_data is too large to fit in FLASH memory segment");
+
+  __nrf_queue_load_start__ = ALIGN(__pwr_mgmt_data_end__ , 4);
+  .nrf_queue ALIGN(__pwr_mgmt_data_end__ , 4) : AT(ALIGN(__pwr_mgmt_data_end__ , 4))
+  {
+    __nrf_queue_start__ = .;
+    __start_nrf_queue =   __nrf_queue_start__;
+    KEEP(*(.nrf_queue*))
+  }
+  __nrf_queue_end__ = __nrf_queue_start__ + SIZEOF(.nrf_queue);
+  __nrf_queue_size__ = SIZEOF(.nrf_queue);
+  __stop_nrf_queue =   __nrf_queue_end__;
+  __nrf_queue_load_end__ = __nrf_queue_end__;
+
+  . = ASSERT(__nrf_queue_start__ == __nrf_queue_end__ || (__nrf_queue_end__ - __FLASH_segment_start__) <= __FLASH_segment_size__ , "error: .nrf_queue is too large to fit in FLASH memory segment");
+
+  __sdh_req_observers_load_start__ = ALIGN(__nrf_queue_end__ , 4);
+  .sdh_req_observers ALIGN(__nrf_queue_end__ , 4) : AT(ALIGN(__nrf_queue_end__ , 4))
+  {
+    __sdh_req_observers_start__ = .;
+    __start_sdh_req_observers =   __sdh_req_observers_start__;
+    KEEP(*(SORT(.sdh_req_observers*)))
+  }
+  __sdh_req_observers_end__ = __sdh_req_observers_start__ + SIZEOF(.sdh_req_observers);
+  __sdh_req_observers_size__ = SIZEOF(.sdh_req_observers);
+  __stop_sdh_req_observers =   __sdh_req_observers_end__;
+  __sdh_req_observers_load_end__ = __sdh_req_observers_end__;
+
+  . = ASSERT(__sdh_req_observers_start__ == __sdh_req_observers_end__ || (__sdh_req_observers_end__ - __FLASH_segment_start__) <= __FLASH_segment_size__ , "error: .sdh_req_observers is too large to fit in FLASH memory segment");
+
+  __sdh_state_observers_load_start__ = ALIGN(__sdh_req_observers_end__ , 4);
+  .sdh_state_observers ALIGN(__sdh_req_observers_end__ , 4) : AT(ALIGN(__sdh_req_observers_end__ , 4))
+  {
+    __sdh_state_observers_start__ = .;
+    __start_sdh_state_observers =   __sdh_state_observers_start__;
+    KEEP(*(SORT(.sdh_state_observers*)))
+  }
+  __sdh_state_observers_end__ = __sdh_state_observers_start__ + SIZEOF(.sdh_state_observers);
+  __sdh_state_observers_size__ = SIZEOF(.sdh_state_observers);
+  __stop_sdh_state_observers =   __sdh_state_observers_end__;
+  __sdh_state_observers_load_end__ = __sdh_state_observers_end__;
+
+  . = ASSERT(__sdh_state_observers_start__ == __sdh_state_observers_end__ || (__sdh_state_observers_end__ - __FLASH_segment_start__) <= __FLASH_segment_size__ , "error: .sdh_state_observers is too large to fit in FLASH memory segment");
+
+  __sdh_stack_observers_load_start__ = ALIGN(__sdh_state_observers_end__ , 4);
+  .sdh_stack_observers ALIGN(__sdh_state_observers_end__ , 4) : AT(ALIGN(__sdh_state_observers_end__ , 4))
+  {
+    __sdh_stack_observers_start__ = .;
+    __start_sdh_stack_observers =   __sdh_stack_observers_start__;
+    KEEP(*(SORT(.sdh_stack_observers*)))
+  }
+  __sdh_stack_observers_end__ = __sdh_stack_observers_start__ + SIZEOF(.sdh_stack_observers);
+  __sdh_stack_observers_size__ = SIZEOF(.sdh_stack_observers);
+  __stop_sdh_stack_observers =   __sdh_stack_observers_end__;
+  __sdh_stack_observers_load_end__ = __sdh_stack_observers_end__;
+
+  . = ASSERT(__sdh_stack_observers_start__ == __sdh_stack_observers_end__ || (__sdh_stack_observers_end__ - __FLASH_segment_start__) <= __FLASH_segment_size__ , "error: .sdh_stack_observers is too large to fit in FLASH memory segment");
+
+  __dtors_load_start__ = ALIGN(__sdh_stack_observers_end__ , 4);
+  .dtors ALIGN(__sdh_stack_observers_end__ , 4) : AT(ALIGN(__sdh_stack_observers_end__ , 4))
   {
     __dtors_start__ = .;
     KEEP (*(SORT(.dtors.*))) KEEP (*(.dtors)) KEEP (*(.fini_array)) KEEP (*(SORT(.fini_array.*)))
