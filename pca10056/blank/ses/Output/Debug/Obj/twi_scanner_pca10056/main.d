@@ -122,6 +122,7 @@ Output/Debug/Obj/twi_scanner_pca10056/main.o: \
  c\:\nrf_sdk\components\softdevice\s140\headers\ble_hci.h \
  c\:\nrf_sdk\components\ble\ble_services\ble_hrs\ble_hrs.h \
  c\:\nrf_sdk\components\ble\nrf_ble_gatt\nrf_ble_gatt.h \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\ble_spo.h \
  C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\bsp_btn_ble.h \
  C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\bsp.h \
  C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\app_button.h \
@@ -138,5 +139,4 @@ Output/Debug/Obj/twi_scanner_pca10056/main.o: \
  c\:\nrf_sdk\components\ble\peer_manager\peer_manager_internal.h \
  c\:\nrf_sdk\components\ble\peer_manager\peer_manager_handler.h \
  c\:\nrf_sdk\components\ble\peer_manager\peer_manager.h \
- c\:\nrf_sdk\components\libraries\sensorsim\sensorsim.h \
- C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\ble_spo.h
+ c\:\nrf_sdk\components\libraries\sensorsim\sensorsim.h

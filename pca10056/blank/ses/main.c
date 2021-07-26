@@ -462,7 +462,7 @@ int32_t red_buffer[BUFFER_SIZE];
 void in_pin_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action) {
   //nrf_drv_gpiote_out_toggle(PIN_OUT);
   //nrf_drv_gpiote_out_toggle(PIN_OUT);
-
+  //adc_rdy = true;
   switch (action) {
   case NRF_GPIOTE_POLARITY_HITOLO:
     adc_rdy = true;
@@ -967,6 +967,7 @@ int main(void) {
   uint8_t sample_data;
   bool detected_device = false;
   bool erase_bonds;
+  bool hasFinished = true;
 
   APP_ERROR_CHECK(NRF_LOG_INIT(get_rtc_counter));
   NRF_LOG_DEFAULT_BACKENDS_INIT();
@@ -1003,19 +1004,14 @@ int main(void) {
       nrf_delay_ms(1);
       //idle_state_handle();
 
-      if (adc_rdy) {
-        //nrf_delay_ms(10);
-        //WIDE_IR_BUFFER[HR_INDEX] = heartrate5_getLed2val();
-        //WIDE_RED_BUFFER[HR_INDEX] = heartrate5_getAled2val_led3val();
+      if (adc_rdy && hasFinished) {
+        hasFinished = false;
 
-        if (BUFFER_INDEX <= WIDE_BUFFER_SIZE) {
+        if (BUFFER_INDEX < WIDE_BUFFER_SIZE) {
           addLEDvalsToBuffers();
         }
 
         if (BUFFER_INDEX == WIDE_BUFFER_SIZE) {
-          NRF_LOG_INFO("equals adc ready");
-          NRF_LOG_FLUSH();
-
           // Data preprocessing
           IRcalculateDCmean();
           IRremoveDCandInvert();
@@ -1102,7 +1098,7 @@ int main(void) {
             RED_processed[k] = RED_BUFFER[k];
           }
 
-          NRF_LOG_INFO("Number of Peaks %d", numberOfPeaks);
+          //NRF_LOG_INFO("Number of Peaks %d", numberOfPeaks);
 
           float IRexactValleyLocationsCount, ratioAverage = 0;
           uint32_t iRatioCount = 0;
@@ -1184,6 +1180,7 @@ int main(void) {
         }
 
         NRF_LOG_FLUSH();
+        hasFinished = true;
       }
     }
 
