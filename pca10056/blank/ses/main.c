@@ -29,7 +29,9 @@
 #include "ble_err.h"
 #include "ble_hci.h"
 #include "ble_hrs.h"
+#include "ble_spo.h"
 #include "ble_srv_common.h"
+#include "ble_types.h"
 #include "bsp_btn_ble.h"
 #include "fds.h"
 #include "nordic_common.h"
@@ -43,13 +45,10 @@
 #include "peer_manager.h"
 #include "peer_manager_handler.h"
 #include "sensorsim.h"
-#include "ble_types.h"
 
 /* TWI instance ID. */
 #if TWI0_ENABLED
 #define TWI_INSTANCE_ID 0
-//elif TWI1_ENABLED
-//#define TWI_INSTANCE_ID 1
 #endif
 
 /* Number of possible TWI addresses. */
@@ -60,6 +59,8 @@
 #define APP_ADV_INTERVAL 300
 
 #define APP_ADV_DURATION 18000
+
+BLE_SPO_DEF(m_spo);
 
 #define APP_BLE_CONN_CFG_TAG 1
 #define APP_BLE_OBSERVER_PRIO 3 /**< Application's BLE observer priority. You shouldn't need to modify this value. */
@@ -85,10 +86,12 @@
 #define MAX_CONN_PARAMS_UPDATE_COUNT 3                       /**< Number of attempts before giving up the connection parameter negotiation. */
 
 static uint16_t m_conn_handle = BLE_CONN_HANDLE_INVALID; /**< Handle of the current connection. */
+#define SPO_INTERVAL APP_TIMER_TICKS(2000)
 
 NRF_BLE_QWR_DEF(m_qwr);             /**< Context for the Queued Write module.*/
 NRF_BLE_GATT_DEF(m_gatt);           /**< GATT module instance. */
 BLE_ADVERTISING_DEF(m_advertising); /**< Advertising module instance. */
+APP_TIMER_DEF(m_spo_timer_id);
 
 static ble_uuid_t m_adv_uuids[] = /**< Universally unique service identifiers. */
     {
@@ -217,9 +220,6 @@ uint8_t hr5_set_led_currents(uint8_t led1_current, uint8_t led2_current,
   temp[3] |= currents;
   temp[2] |= currents >> 8;
   temp[1] |= currents >> 16;
-  //temp[3] = currents[0];
-  //temp[2] = currents[1];
-  //temp[3] = currents[2];
   temp[0] = LED_CONFIG;
 
   nrf_drv_twi_tx(&m_twi, HR5_ADDR, temp, sizeof(temp), false);
@@ -386,20 +386,8 @@ void heartrate5_init() {
       {0x1D, 0x009C3F}, /*PRPCOUNT*/
       {0x1E, 0x000103}, /*CONTROL1*/
       {0x20, 0x008015}, /*TIAGAIN*/
-      //{0x20, 0x008005}, /*TIAGAIN*/
-      //{0x21, 0x000001}, /*TIA_AMB_GAIN*/
       {0x21, 0x000021}, /*TIA_AMB_GAIN*/
-      //{0x21, 0x000011}, /*TIA_AMB_GAIN*/
-      //{0x21, 0x000011}, /*TIA_AMB_GAIN*/
-      //{0x22, 0x000000}, /*LEDCNTRL*/
-      //{0x22, 0x004280}, /*LEDCNTRL*/
-      //{0x22, 0x004200}, /*LEDCNTRL*/
       {0x22, 0x0030C0}, /*LEDCNTRL*/
-      //{0x22, 0x002080}, /*LEDCNTRL*/
-      //{0x22, 0x0030C0}, /*LEDCNTRL*/
-      //{0x22, 0x0040C0}, /*LEDCNTRL*/
-      //{0x22, 0x004140}, /*LEDCNTRL*/
-      //{0x22, 0x004140}, /*LEDCNTRL*/
       {0x23, 0x124218}, /*CONTROL2*/
       {0x29, 0x000000}, /*CLKDIV1*/
       {0x2A, 0x000000}, /*LED2VAL*/
@@ -416,8 +404,6 @@ void heartrate5_init() {
       {0x36, 0x000191}, /*LED3LEDSTC*/
       {0x37, 0x000320}, /*LED3LEDENDC*/
       {0x39, 0x000005}, /*CLKDIV2*/
-      //{0x39, 0x000000}, /*CLKDIV2*/
-      //{0x39, 0x000005}, /*CLKDIV2*/
       {0x3A, 0x000000}, /*OFFDAC*/
                         //{0x3D, 0x000028}, /*AVG*/
                         //{0x3D, 0x000022}, /*AVG*/
@@ -428,39 +414,7 @@ void heartrate5_init() {
   for (uint8_t reg_index = 0; reg_index < NUM_REGISTERS; reg_index++) {
     printf("Debug: Register: 0x%lx - 0x%lx\r\n", reg[reg_index][0], reg[reg_index][1]);
     heartrate5_writeReg(reg[reg_index][0], reg[reg_index][1]);
-    // If on error
-    //if (!heartrate5_writeReg(reg[reg_index][0], reg[reg_index][1])) {
-    //  printf("DEBUG: init_registers error!\r\n");
-    //  //return false;
-    //}
   }
-  //hr5_set_timer_and_average_num(true, 3);
-
-  //perform_hw_start_end(HR5_REG13H, HR5_REG14H, 3612, 4671); //AMB1 CONVERT
-  //hr5_set_dynamic_settings(&dynamic_modes);
-
-  //perform_hw_start_end(HR5_REG32H, HR5_REG33H, 5471, 39199); //PDN cycle
-  ////perform_hw_start_end(HR5_REG1DH, HR5_REG1DH, 401, 39199);  //PRPCT count
-  //set_prpct_count(39999);
-
-  //hr5_set_led_currents(50, 50, 50); //22h
-  ////hr5_set_timer_and_average_num(true, 3); //1e 0x000103
-  //heartrate5_writeReg(0x1E, 0x000103); // timeren set ; broj semplova od 0 do F
-
-  ////hr5_set_seperate_tia_gain(true, 0, 4); // 20h 0x008003
-  //heartrate5_writeReg(0x20, 0x008004); //ENSEPGAIN  ; TIA_CF_SEP
-  ////heartrate5_writeReg(0x20, 0x008003); //ENSEPGAIN  ; TIA_CF_SEP
-
-  ////hr5_set_tia_gain(false, 0, 3); // 21h 0x000003
-  //heartrate5_writeReg(0x21, 0x000000); //PROG_TG_EN(disabled) ; TIA_CF(0); TIA_GAIN(3);
-
-  ////hr5_set_clkout_div(false, 0); //29h 0x000000
-  //heartrate5_writeReg(0x29, 0x000000); // ENABLE_CLKOUT(bit9)=0; CLKDIV_CLKOUT(bit1-bit4) =0;
-
-  ////hr5_set_int_clk_div(0); // teoretycznie 0 39h 0x000000
-  //heartrate5_writeReg(0x39, 0x000001); //CLKDIV_PRF(bit0-bit2) = 0;
-
-  //heartrate5_swReset();
 }
 
 void twi_init(void) {
@@ -487,10 +441,7 @@ void getReading() {
   float valFive = (float)heartrate5_getLed2_aled2val();
   float valSix = (float)heartrate5_getLed1_aled1val();
 
-  //NRF_LOG_INFO(";%u;%u;%u;", valOne, valTwo, valThree);
-  //NRF_LOG_INFO(";%u;%u;", valTwo, valThree);
   NRF_LOG_INFO(";%u;%u;%u;%u;%u;%u;", valOne, valTwo, heartrate5_readReg(0x3F), heartrate5_readReg(0x40), valFive, valSix);
-  //NRF_LOG_INFO(";%u;%u;%u;%u;%u;%u;", valOne, valTwo, valThree, valFour, valFive, valSix);
   NRF_LOG_FLUSH();
 }
 
@@ -498,258 +449,19 @@ void getReading() {
 #define READING_DELAY 40
 #define min(a, b) ((a) < (b) ? (a) : (b))
 
-void find_peaks_above_min_height(int32_t *pn_locs, int32_t *n_npks, int32_t *pn_x, int32_t n_size, int32_t n_min_height) {
-  int32_t i = 1, n_width;
-  *n_npks = 0;
-
-  while (i < n_size - 1) {
-    if (pn_x[i] > n_min_height && pn_x[i] > pn_x[i - 1]) { // find left edge of potential peaks
-      n_width = 1;
-      while (i + n_width < n_size && pn_x[i] == pn_x[i + n_width]) // find flat peaks
-        n_width++;
-      if (pn_x[i] > pn_x[i + n_width] && (*n_npks) < 15) { // find right edge of peaks
-        pn_locs[(*n_npks)++] = i;
-        // for flat peaks, peak location is left edge
-        i += n_width + 1;
-      } else
-        i += n_width;
-    } else
-      i++;
-  }
-}
-
-void sort_ascend(int32_t *pn_x, int32_t n_size) {
-  int32_t i, j, n_temp;
-  for (i = 1; i < n_size; i++) {
-    n_temp = pn_x[i];
-    for (j = i; j > 0 && n_temp < pn_x[j - 1]; j--)
-      pn_x[j] = pn_x[j - 1];
-    pn_x[j] = n_temp;
-  }
-}
-
-void sort_indices_descend(int32_t *pn_x, int32_t *pn_indx, int32_t n_size) {
-  int32_t i, j, n_temp;
-  for (i = 1; i < n_size; i++) {
-    n_temp = pn_indx[i];
-    for (j = i; j > 0 && pn_x[n_temp] > pn_x[pn_indx[j - 1]]; j--)
-      pn_indx[j] = pn_indx[j - 1];
-    pn_indx[j] = n_temp;
-  }
-}
-
-void remove_close_peaks(int32_t *pn_locs, int32_t *pn_npks, int32_t *pn_x, int32_t n_min_distance) {
-  int32_t i, j, n_old_npks, n_dist;
-
-  /* Order peaks from large to small */
-  sort_indices_descend(pn_x, pn_locs, *pn_npks);
-
-  for (i = -1; i < *pn_npks; i++) {
-    n_old_npks = *pn_npks;
-    *pn_npks = i + 1;
-    for (j = i + 1; j < n_old_npks; j++) {
-      n_dist = pn_locs[j] - (i == -1 ? -1 : pn_locs[i]); // lag-zero peak of autocorr is at index -1
-      if (n_dist > n_min_distance || n_dist < -n_min_distance)
-        pn_locs[(*pn_npks)++] = pn_locs[j];
-    }
-  }
-
-  // Resort indices int32_to ascending order
-  sort_ascend(pn_locs, *pn_npks);
-};
-
 #define FS 25
 
-void find_peaks(int32_t *pn_locs, int32_t *n_npks, int32_t *pn_x, int32_t n_size, int32_t n_min_height, int32_t n_min_distance, int32_t n_max_num) {
-  find_peaks_above_min_height(pn_locs, n_npks, pn_x, n_size, n_min_height);
-  remove_close_peaks(pn_locs, n_npks, pn_x, n_min_distance);
-  *n_npks = min(*n_npks, n_max_num); // ????????????
-}
-
-bool adc_rdy = false;
+volatile bool adc_rdy = false;
 
 int32_t ir_buffer[BUFFER_SIZE];
 int32_t red_buffer[BUFFER_SIZE];
 
-void get_hr_vals_init() {
-  // get n readings (25Hz) -> 25 times per second
-  // eg 100 buffer -> 4 sec
-  // 4 seconds algorithm
-
-  int32_t k, i, n_exact_ir_valley_locs_count;
-  int32_t n_threshold_1, n_peaks, n_peak_interval_sum;
-  int32_t an_ir_valley_locs[15];
-  int32_t ir_buffer[BUFFER_SIZE];
-  int32_t red_buffer[BUFFER_SIZE];
-  int32_t an_x[BUFFER_SIZE];
-  int32_t an_y[BUFFER_SIZE];
-  static int32_t n_last_peak_interval = FS;
-
-  for (int i = 0; i < BUFFER_SIZE; i++) {
-    ir_buffer[i] = (float)heartrate5_getLed2val();
-    red_buffer[i] = (float)heartrate5_getAled2val_led3val();
-    nrf_delay_ms(READING_DELAY);
-  }
-
-  // DC and subtract DC from IR
-
-  uint32_t ir_mean_val;
-
-  ir_mean_val = 0;
-  for (k = 0; k < BUFFER_SIZE; k++) {
-    ir_mean_val += ir_buffer[k];
-  }
-
-  ir_mean_val = ir_mean_val / BUFFER_SIZE;
-
-  // remove DC
-
-  for (k = 0; k < BUFFER_SIZE; k++) {
-    an_x[k] = ir_mean_val - ir_buffer[k];
-  }
-
-  // 4 pt moving avg
-
-  for (k = 0; k < (BUFFER_SIZE - 4); k++) {
-    an_x[k] = (an_x[k] + an_x[k + 1] + an_x[k + 2] + an_x[k + 3]) / (int)4;
-  }
-
-  int32_t n_spo2_calc;
-  float *pn_spo2;
-  int8_t *pch_spo2_valid;
-  int8_t *pch_hr_valid;
-
-  // calculate threshold
-
-  n_threshold_1 = 0;
-  for (k = 0; k < (BUFFER_SIZE - 4); k++) {
-    n_threshold_1 += an_x[k];
-  }
-
-  n_threshold_1 = n_threshold_1 / (BUFFER_SIZE - 4);
-
-  NRF_LOG_INFO("TH1 %d.", n_threshold_1);
-  NRF_LOG_FLUSH();
-
-  for (k = 0; k < 15; k++)
-    an_ir_valley_locs[k] = 0;
-
-  find_peaks(an_ir_valley_locs, &n_peaks, an_x, (BUFFER_SIZE - 4), n_threshold_1, 4, 15);
-  n_peak_interval_sum = 0;
-
-  int32_t *pn_heart_rate; // !!!!!!!!!!!!!!!!
-
-  NRF_LOG_INFO("Peaks %d.", n_peaks);
-  NRF_LOG_FLUSH();
-
-  NRF_LOG_INFO("Interval sum %d.", n_peak_interval_sum);
-  NRF_LOG_FLUSH();
-
-  if (n_peaks >= 2) {
-    for (k = 1; k < n_peaks; k++)
-      n_peak_interval_sum += (an_ir_valley_locs[k] - an_ir_valley_locs[k - 1]);
-    n_peak_interval_sum = n_peak_interval_sum / (n_peaks - 1);
-    *pn_heart_rate = (int32_t)((FS * 60) / n_peak_interval_sum);
-    *pch_hr_valid = 1;
-  } else {
-    *pn_heart_rate = -999; // unable to calculate because # of peaks are too small
-    *pch_hr_valid = 0;
-  }
-
-  NRF_LOG_INFO("HR %x.", pn_heart_rate);
-  NRF_LOG_FLUSH();
-
-  n_exact_ir_valley_locs_count = n_peaks;
-
-  int32_t n_ratio_average, n_i_ratio_count, n_middle_idx;
-  int32_t an_ratio[5];
-
-  n_ratio_average = 0;
-  n_i_ratio_count = 0;
-
-  for (k = 0; k < 5; k++)
-    an_ratio[k] = 0;
-
-  for (k = 0; k < n_exact_ir_valley_locs_count; k++) {
-    if (an_ir_valley_locs[k] > BUFFER_SIZE) {
-      *pn_spo2 = -999; // do not use SPO2 since valley loc is out of range
-      *pch_spo2_valid = 0;
-      return;
-    }
-  }
-
-  int32_t n_y_ac, n_x_ac;
-  int32_t n_y_dc_max, n_x_dc_max;
-  int32_t n_y_dc_max_idx, n_x_dc_max_idx;
-  int32_t n_nume, n_denom;
-
-  for (k = 0; k < n_exact_ir_valley_locs_count - 1; k++) {
-    n_y_dc_max = -16777216;
-    n_x_dc_max = -16777216;
-    if (an_ir_valley_locs[k + 1] - an_ir_valley_locs[k] > 3) {
-      for (i = an_ir_valley_locs[k]; i < an_ir_valley_locs[k + 1]; i++) {
-        if (an_x[i] > n_x_dc_max) {
-          n_x_dc_max = an_x[i];
-          n_x_dc_max_idx = i;
-        }
-        if (an_y[i] > n_y_dc_max) {
-          n_y_dc_max = an_y[i];
-          n_y_dc_max_idx = i;
-        }
-      }
-      n_y_ac = (an_y[an_ir_valley_locs[k + 1]] - an_y[an_ir_valley_locs[k]]) * (n_y_dc_max_idx - an_ir_valley_locs[k]); //red
-      n_y_ac = an_y[an_ir_valley_locs[k]] + n_y_ac / (an_ir_valley_locs[k + 1] - an_ir_valley_locs[k]);
-      n_y_ac = an_y[n_y_dc_max_idx] - n_y_ac;                                                                           // subracting linear DC compoenents from raw
-      n_x_ac = (an_x[an_ir_valley_locs[k + 1]] - an_x[an_ir_valley_locs[k]]) * (n_x_dc_max_idx - an_ir_valley_locs[k]); // ir
-      n_x_ac = an_x[an_ir_valley_locs[k]] + n_x_ac / (an_ir_valley_locs[k + 1] - an_ir_valley_locs[k]);
-      n_x_ac = an_x[n_y_dc_max_idx] - n_x_ac; // subracting linear DC compoenents from raw
-      n_nume = (n_y_ac * n_x_dc_max) >> 7;    //prepare X100 to preserve floating value
-      n_denom = (n_x_ac * n_y_dc_max) >> 7;
-      if (n_denom > 0 && n_i_ratio_count < 5 && n_nume != 0) {
-        an_ratio[n_i_ratio_count] = (n_nume * 100) / n_denom; //formular is ( n_y_ac *n_x_dc_max) / ( n_x_ac *n_y_dc_max) ;
-        n_i_ratio_count++;
-      }
-    }
-  }
-
-  sort_ascend(an_ratio, n_i_ratio_count);
-  n_middle_idx = n_i_ratio_count / 2;
-
-  long uch_spo2_table[15];
-
-  if (n_middle_idx > 1)
-    n_ratio_average = (an_ratio[n_middle_idx - 1] + an_ratio[n_middle_idx]) / 2; // use median
-  else
-    n_ratio_average = an_ratio[n_middle_idx];
-
-  if (n_ratio_average > 2 && n_ratio_average < 184) {
-    n_spo2_calc = uch_spo2_table[n_ratio_average];
-    *pn_spo2 = uch_spo2_table[n_ratio_average];
-    *pch_spo2_valid = 1; //  float_SPO2 =  -45.060*n_ratio_average* n_ratio_average/10000 + 30.354 *n_ratio_average/100 + 94.845 ;  // for comparison with table
-  } else {
-    *pn_spo2 = -999; // do not use SPO2 since signal an_ratio is out of range
-    *pch_spo2_valid = 0;
-  }
-
-  NRF_LOG_INFO("Values %x.", pn_spo2);
-  NRF_LOG_FLUSH();
-  adc_rdy = false;
-  // get output values
-}
-
-#define PIN_IN ARDUINO_12_PIN
+#define PIN_IN ARDUINO_8_PIN
 #define PIN_OUT BSP_LED_2
-
-//#ifdef BSP_LED_0
-//#define PIN_OUT BSP_LED_0
-//#endif
-//#ifndef PIN_OUT
-//#error "Please indicate output pin"
-//#endif
 
 void in_pin_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action) {
   //nrf_drv_gpiote_out_toggle(PIN_OUT);
-  nrf_drv_gpiote_out_toggle(PIN_OUT);
+  //nrf_drv_gpiote_out_toggle(PIN_OUT);
 
   switch (action) {
   case NRF_GPIOTE_POLARITY_HITOLO:
@@ -757,20 +469,6 @@ void in_pin_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action) {
   default:
     break;
   }
-
-  //adc_rdy = true;
-  //NRF_LOG_INFO("Interrupted by adcrdy");
-  //NRF_LOG_FLUSH();
-  //switch(action) {
-  //  case GPIOTE_CONFIG_POLARITY_Toggle:
-  //    nrf_drv_gpiote_out_toggle(PIN_OUT);
-  //    adc_rdy = true;
-  //    break;
-  //  default:
-  //    break;
-  //}
-  //NRF_LOG_INFO("Gpio init XS");
-  //NRF_LOG_FLUSH();
 }
 
 static void gpio_init(void) {
@@ -778,9 +476,6 @@ static void gpio_init(void) {
 
   err_code = nrf_drv_gpiote_init();
   APP_ERROR_CHECK(err_code);
-
-  nrf_gpio_cfg_output(PIN_OUT);
-  nrf_gpio_pin_set(PIN_OUT);
 
   nrf_drv_gpiote_in_config_t in_config = GPIOTE_CONFIG_IN_SENSE_HITOLO(true);
   in_config.pull = NRF_GPIO_PIN_PULLUP;
@@ -810,12 +505,15 @@ static void ble_evt_handler(ble_evt_t const *p_ble_evt, void *p_context) {
     m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
     err_code = nrf_ble_qwr_conn_handle_assign(&m_qwr, m_conn_handle);
     APP_ERROR_CHECK(err_code);
+    app_timer_start(m_spo_timer_id, SPO_INTERVAL, NULL);
     break;
 
   case BLE_GAP_EVT_DISCONNECTED:
     NRF_LOG_INFO("Disconnected, reason %d.",
         p_ble_evt->evt.gap_evt.params.disconnected.reason);
     m_conn_handle = BLE_CONN_HANDLE_INVALID;
+
+    app_timer_stop(m_spo_timer_id);
     break;
 
   case BLE_GAP_EVT_PHY_UPDATE_REQUEST: {
@@ -881,7 +579,7 @@ static void gatt_evt_handler(nrf_ble_gatt_t *p_gatt, nrf_ble_gatt_evt_t const *p
         p_evt->params.att_mtu_effective);
   }
 
-  //ble_hrs_on_gatt_evt(&m_hrs, p_evt);
+  ble_spo_on_gatt_evt(&m_spo, p_evt);
 }
 
 static void ble_stack_init(void) {
@@ -890,19 +588,14 @@ static void ble_stack_init(void) {
   err_code = nrf_sdh_enable_request();
   APP_ERROR_CHECK(err_code);
 
-  // Configure the BLE stack using the default settings.
-  // Fetch the start address of the application RAM.
   uint32_t ram_start = 0;
   err_code = nrf_sdh_ble_default_cfg_set(APP_BLE_CONN_CFG_TAG, &ram_start);
   APP_ERROR_CHECK(err_code);
 
-  // Enable BLE stack.
   err_code = nrf_sdh_ble_enable(&ram_start);
   APP_ERROR_CHECK(err_code);
 
-  // Register a handler for BLE events.
   NRF_SDH_BLE_OBSERVER(m_ble_observer, APP_BLE_OBSERVER_PRIO, ble_evt_handler, NULL);
-  //NRF_LOG_FLUSH();
 }
 
 /**@brief Function for initializing the GATT module.
@@ -1009,65 +702,31 @@ static void advertising_init(void) {
   ble_advertising_conn_cfg_tag_set(&m_advertising, APP_BLE_CONN_CFG_TAG);
 }
 
+static void nrf_qwr_error_handler(uint32_t nrf_error) {
+  APP_ERROR_CHECK(nrf_error);
+}
+
 /**@brief Function for initializing services that will be used by the application.
  *
  * @details Initialize the Heart Rate, Battery and Device Information services.
  */
 static void services_init(void) {
-  //ret_code_t err_code;
-  //ble_hrs_init_t hrs_init;
-  //ble_bas_init_t bas_init;
-  //ble_dis_init_t dis_init;
-  //nrf_ble_qwr_init_t qwr_init = {0};
-  //uint8_t body_sensor_location;
+  ret_code_t err_code;
+  nrf_ble_qwr_init_t qwr_init = {0};
+  ble_spo_init_t spo_init;
 
-  //// Initialize Queued Write Module.
-  //qwr_init.error_handler = nrf_qwr_error_handler;
+  qwr_init.error_handler = nrf_qwr_error_handler;
 
-  //err_code = nrf_ble_qwr_init(&m_qwr, &qwr_init);
-  //APP_ERROR_CHECK(err_code);
+  err_code = nrf_ble_qwr_init(&m_qwr, &qwr_init);
+  APP_ERROR_CHECK(err_code);
 
-  //// Initialize Heart Rate Service.
-  //body_sensor_location = BLE_HRS_BODY_SENSOR_LOCATION_FINGER;
+  spo_init.evt_handler = NULL;
 
-  //memset(&hrs_init, 0, sizeof(hrs_init));
+  spo_init.spo_cccd_wr_sec = SEC_OPEN;
+  spo_init.bsl_rd_sec = SEC_OPEN;
 
-  //hrs_init.evt_handler = NULL;
-  //hrs_init.is_sensor_contact_supported = true;
-  //hrs_init.p_body_sensor_location = &body_sensor_location;
-
-  //// Here the sec level for the Heart Rate Service can be changed/increased.
-  //hrs_init.hrm_cccd_wr_sec = SEC_OPEN;
-  //hrs_init.bsl_rd_sec = SEC_OPEN;
-
-  //err_code = ble_hrs_init(&m_hrs, &hrs_init);
-  //APP_ERROR_CHECK(err_code);
-
-  //// Initialize Battery Service.
-  //memset(&bas_init, 0, sizeof(bas_init));
-
-  //bas_init.evt_handler = NULL;
-  //bas_init.support_notification = true;
-  //bas_init.p_report_ref = NULL;
-  //bas_init.initial_batt_level = 100;
-
-  //// Here the sec level for the Battery Service can be changed/increased.
-  //bas_init.bl_rd_sec = SEC_OPEN;
-  //bas_init.bl_cccd_wr_sec = SEC_OPEN;
-  //bas_init.bl_report_rd_sec = SEC_OPEN;
-
-  //err_code = ble_bas_init(&m_bas, &bas_init);
-  //APP_ERROR_CHECK(err_code);
-
-  //// Initialize Device Information Service.
-  //memset(&dis_init, 0, sizeof(dis_init));
-
-  //ble_srv_ascii_to_utf8(&dis_init.manufact_name_str, (char *)MANUFACTURER_NAME);
-
-  //dis_init.dis_char_rd_sec = SEC_OPEN;
-
-  //err_code = ble_dis_init(&dis_init);
-  //APP_ERROR_CHECK(err_code);
+  err_code = ble_spo_init(&m_spo, &spo_init);
+  APP_ERROR_CHECK(err_code);
 }
 
 #define WIDE_BUFFER_SIZE 50
@@ -1108,13 +767,7 @@ void IRcalculateDCmean(void) {
   for (k = 0; k < WIDE_BUFFER_SIZE; k++) {
     IRmean += IR_BUFFER[k];
   }
-
-  //NRF_LOG_INFO("IRMean before %d", IRmean);
-  //NRF_LOG_FLUSH();
-
   IRmean = IRmean / WIDE_BUFFER_SIZE;
-  //NRF_LOG_INFO("IRMean after %d", IRmean);
-  //NRF_LOG_FLUSH();
 }
 
 void IRremoveDCandInvert(void) {
@@ -1127,8 +780,6 @@ void IRmoveAverage(void) {
   // why
   for (k = 0; k < WIDE_BUFFER_SIZE_CUT; k++) {
     double addedVal = IR_processed[k] + IR_processed[k + 1] + IR_processed[k + 2] + IR_processed[k + 3];
-    //NRF_LOG_INFO("Added val %d", addedVal);
-    //NRF_LOG_FLUSH();
     IR_processed[k] = addedVal / (int)4;
   }
 }
@@ -1189,16 +840,6 @@ static void pm_evt_handler(pm_evt_t const *p_evt) {
   }
 }
 
-/**@brief Function for handling the Connection Parameters Module.
- *
- * @details This function will be called for all events in the Connection Parameters Module which
- *          are passed to the application.
- *          @note All this function does is to disconnect. This could have been done by simply
- *                setting the disconnect_on_fail config parameter, but instead we use the event
- *                handler mechanism to demonstrate its use.
- *
- * @param[in] p_evt  Event received from the Connection Parameters Module.
- */
 static void on_conn_params_evt(ble_conn_params_evt_t *p_evt) {
   ret_code_t err_code;
 
@@ -1229,9 +870,7 @@ static void conn_params_init(void) {
   cp_init.next_conn_params_update_delay = NEXT_CONN_PARAMS_UPDATE_DELAY;
   cp_init.max_conn_params_update_count = MAX_CONN_PARAMS_UPDATE_COUNT;
   cp_init.start_on_notify_cccd_handle = BLE_GATT_HANDLE_INVALID;
-  //cp_init.start_on_notify_cccd_handle = m_hrs.hrm_handles.cccd_handle;
   cp_init.disconnect_on_fail = true;
-  //cp_init.evt_handler = NULL;
   cp_init.evt_handler = on_conn_params_evt;
   cp_init.error_handler = conn_params_error_handler;
 
@@ -1275,17 +914,51 @@ static void peer_manager_init(void) {
  *
  * @details If there is no pending log operation, then sleep until next the next event occurs.
  */
-static void idle_state_handle(void)
-{
-    ret_code_t err_code;
+static void idle_state_handle(void) {
+  ret_code_t err_code;
 
-    err_code = nrf_ble_lesc_request_handler();
-    APP_ERROR_CHECK(err_code);
+  err_code = nrf_ble_lesc_request_handler();
+  APP_ERROR_CHECK(err_code);
 
-    if (NRF_LOG_PROCESS() == false)
-    {
-        //nrf_pwr_mgmt_run();
-    }
+  if (NRF_LOG_PROCESS() == false) {
+    //nrf_pwr_mgmt_run();
+  }
+}
+
+static void data_meas_timeout_handler(void *p_context) {
+  static uint32_t cnt = 0;
+  ret_code_t err_code;
+  uint16_t heart_rate;
+
+  UNUSED_PARAMETER(p_context);
+
+  cnt++;
+  err_code = ble_spo_data_measurement_send(&m_spo, rand());
+  if ((err_code != NRF_SUCCESS) &&
+      (err_code != NRF_ERROR_INVALID_STATE) &&
+      (err_code != NRF_ERROR_RESOURCES) &&
+      (err_code != NRF_ERROR_BUSY) &&
+      (err_code != BLE_ERROR_GATTS_SYS_ATTR_MISSING)) {
+    APP_ERROR_HANDLER(err_code);
+  }
+}
+
+static void timers_init(void) {
+  ret_code_t err_code;
+
+  err_code = app_timer_init();
+
+  APP_ERROR_CHECK(err_code);
+
+  err_code = app_timer_create(&m_spo_timer_id, APP_TIMER_MODE_REPEATED, data_meas_timeout_handler);
+  APP_ERROR_CHECK(err_code);
+}
+
+static void app_timers_start(void) {
+  ret_code_t err_code;
+
+  err_code = app_timer_start(m_spo_timer_id, SPO_INTERVAL, NULL);
+  APP_ERROR_CHECK(err_code);
 }
 
 int main(void) {
@@ -1297,17 +970,18 @@ int main(void) {
 
   APP_ERROR_CHECK(NRF_LOG_INIT(get_rtc_counter));
   NRF_LOG_DEFAULT_BACKENDS_INIT();
-  //nrf_gpio_cfg_output(BSP_QSPI_IO0_PIN);
-  //nrf_gpio_cfg_output(15);
   gpio_init();
   nrf_delay_ms(500);
 
+  timers_init();
   ble_stack_init();
   gap_params_init();
   gatt_init();
   advertising_init();
+  services_init();
   conn_params_init();
   peer_manager_init();
+
   advertising_start(erase_bonds);
 
   NRF_LOG_INFO("TWI scanner started.");
@@ -1325,17 +999,10 @@ int main(void) {
     nrf_delay_ms(500);
 
     while (true) {
-      // 1. Everytime adc is rdy add vals at specific interval to buffer
-
-      // 2. Check if buffer is filled
-
-      // if filled
-      // do algorithm for vals
-      // if not
-      // return
 
       nrf_delay_ms(1);
-      idle_state_handle();
+      //idle_state_handle();
+
       if (adc_rdy) {
         //nrf_delay_ms(10);
         //WIDE_IR_BUFFER[HR_INDEX] = heartrate5_getLed2val();
@@ -1346,31 +1013,14 @@ int main(void) {
         }
 
         if (BUFFER_INDEX == WIDE_BUFFER_SIZE) {
-          // DO ALGORITHM
-          //for (int i = 0; i < BUFFER_SIZE; i++) {
-          //  NRF_LOG_INFO("%d;%d", RED_BUFFER[i], IR_BUFFER[i]);
-          //  NRF_LOG_FLUSH();
-          //}
+          NRF_LOG_INFO("equals adc ready");
+          NRF_LOG_FLUSH();
 
           // Data preprocessing
-
           IRcalculateDCmean();
-          //for (int i = 0; i < WIDE_BUFFER_SIZE; i++) {
-          //  NRF_LOG_INFO(";%d", IR_BUFFER[i]);
-          //  NRF_LOG_FLUSH();
-          //}
           IRremoveDCandInvert();
-          //for (int i = 0; i < WIDE_BUFFER_SIZE; i++) {
-          //  NRF_LOG_INFO(";%d", IR_processed[i]);
-          //  NRF_LOG_FLUSH();
-          //}
           IRmoveAverage();
-          //for (int i = 0; i < WIDE_BUFFER_SIZE; i++) {
-          //  NRF_LOG_INFO(";%d", IR_processed[i]);
-          //  NRF_LOG_FLUSH();
-          //}
           IRcalcThreshold();
-          //NRF_LOG_INFO("Threshold %d", IRThreshold);
 
           uint32_t windowSize = 4;
           uint32_t peakWidth = 0;
@@ -1445,11 +1095,6 @@ int main(void) {
             IR_valley_locations[j] = tempNumber;
           }
 
-          //for (int i = 0; i < WIDE_BUFFER_SIZE; i++) {
-          //  NRF_LOG_INFO(";%d", IR_processed[i]);
-          //  NRF_LOG_FLUSH();
-          //}
-
           //numberOfPeaks = min(numberOfPeaks, 15);
 
           for (k = 0; k < WIDE_BUFFER_SIZE; k++) {
@@ -1457,7 +1102,7 @@ int main(void) {
             RED_processed[k] = RED_BUFFER[k];
           }
 
-          //NRF_LOG_INFO("Number of Peaks %d", numberOfPeaks);
+          NRF_LOG_INFO("Number of Peaks %d", numberOfPeaks);
 
           float IRexactValleyLocationsCount, ratioAverage = 0;
           uint32_t iRatioCount = 0;

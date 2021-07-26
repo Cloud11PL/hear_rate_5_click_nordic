@@ -138,4 +138,5 @@ Output/Debug/Obj/twi_scanner_pca10056/main.o: \
  c\:\nrf_sdk\components\ble\peer_manager\peer_manager_internal.h \
  c\:\nrf_sdk\components\ble\peer_manager\peer_manager_handler.h \
  c\:\nrf_sdk\components\ble\peer_manager\peer_manager.h \
- c\:\nrf_sdk\components\libraries\sensorsim\sensorsim.h
+ c\:\nrf_sdk\components\libraries\sensorsim\sensorsim.h \
+ C\:\nrf_sdk\examples\My\ Projects\HR_CLICK_5_TESTING\pca10056\blank\ses\ble_spo.h

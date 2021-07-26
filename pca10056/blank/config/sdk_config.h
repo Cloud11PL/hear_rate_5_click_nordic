@@ -747,7 +747,7 @@
 // <7=> 7
 
 #ifndef GPIOTE_CONFIG_IRQ_PRIORITY
-#define GPIOTE_CONFIG_IRQ_PRIORITY 2
+#define GPIOTE_CONFIG_IRQ_PRIORITY 6
 #endif
 
 // </e>
@@ -774,7 +774,7 @@
 // <7=> 7
 
 #ifndef NRFX_GPIOTE_CONFIG_IRQ_PRIORITY
-#define NRFX_GPIOTE_CONFIG_IRQ_PRIORITY 1
+#define NRFX_GPIOTE_CONFIG_IRQ_PRIORITY 6
 #endif
 
 
@@ -2068,7 +2068,7 @@
 // <e> GPIOTE_CONFIG_LOG_ENABLED - Enables logging in the module.
 //==========================================================
 #ifndef GPIOTE_CONFIG_LOG_ENABLED
-#define GPIOTE_CONFIG_LOG_ENABLED 0
+#define GPIOTE_CONFIG_LOG_ENABLED 1
 #endif
 // <o> GPIOTE_CONFIG_LOG_LEVEL  - Default Severity level
  
@@ -4985,15 +4985,15 @@
 // <o> BLE_HRS_BLE_OBSERVER_PRIO  
 // <i> Priority with which BLE events are dispatched to the Heart Rate Service.
 
-#ifndef BLE_HRS_BLE_OBSERVER_PRIO
-#define BLE_HRS_BLE_OBSERVER_PRIO 2
+#ifndef BLE_SPO_BLE_OBSERVER_PRIO
+#define BLE_SPO_BLE_OBSERVER_PRIO 2
 #endif
 
 // <o> BLE_HRS_C_BLE_OBSERVER_PRIO  
 // <i> Priority with which BLE events are dispatched to the Heart Rate Service Client.
 
-#ifndef BLE_HRS_C_BLE_OBSERVER_PRIO
-#define BLE_HRS_C_BLE_OBSERVER_PRIO 2
+#ifndef BLE_SPO_C_BLE_OBSERVER_PRIO
+#define BLE_SPO_C_BLE_OBSERVER_PRIO 2
 #endif
 
 // <o> BLE_HTS_BLE_OBSERVER_PRIO  
